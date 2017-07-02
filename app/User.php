@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\User\Student', 'user_id', 'id');
     }
+
+    public function parent()
+    {
+        $this->belongsTo('App\Models\User\StudentParent', 'user_id', 'id');
+    }
 }
