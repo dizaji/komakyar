@@ -15,4 +15,9 @@ class LevelField extends Model
     {
         return $this->belongsTo('App\Models\Lookup\Field', 'field_id', 'id');
     }
+
+    public function courses()
+    {
+        return $this->hasMany('App\Models\Lookup\Course', 'level_field_id', 'id');
+    }
 }
