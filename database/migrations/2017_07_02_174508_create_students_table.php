@@ -40,6 +40,6 @@ class CreateStudentsTable extends Migration
             $table->dropForeign('fk_user_student_1');
         });
 
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('user_students');
     }
 }
