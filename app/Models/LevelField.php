@@ -20,4 +20,9 @@ class LevelField extends Model
     {
         return $this->hasMany('App\Models\Lookup\CourseSource', 'level_field_id', 'id');
     }
+
+    public function groups()
+    {
+        return $this->hasMany('App\Models\Education\Group', 'level_field_id', 'id');
+    }
 }
