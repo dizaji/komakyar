@@ -17,6 +17,8 @@ class CreateStaffTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
+            $table->unsignedInteger('user_id');
+
             $table->enum('degree', ['below diploma', 'diploma', 'BsC', 'MsC', 'PhD', 'Other'])->nullable();
             $table->string('field_of_study')->nullable();
             $table->string('direct_no')->nullable();
