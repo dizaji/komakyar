@@ -25,4 +25,9 @@ class LevelField extends Model
     {
         return $this->hasMany('App\Models\Education\Group', 'level_field_id', 'id');
     }
+
+    public function courses()
+    {
+        return $this->hasMany('App\Models\Education\Course', 'level_field_id', 'id');
+    }
 }
