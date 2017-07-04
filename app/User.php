@@ -34,6 +34,11 @@ class User extends Authenticatable
 
     public function parent()
     {
-        $this->belongsTo('App\Models\User\StudentParent', 'user_id', 'id');
+        $this->hasOne('App\Models\User\StudentParent', 'user_id', 'id');
+    }
+
+    public function staff()
+    {
+        $this->hasOne('App\Models\User\Staff', 'user_id', 'id');
     }
 }
