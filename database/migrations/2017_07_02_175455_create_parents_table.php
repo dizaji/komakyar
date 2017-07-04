@@ -41,6 +41,6 @@ class CreateParentsTable extends Migration
             $table->dropForeign('fk_user_parents_2');
         });
 
-        Schema::dropIfExists('parents');
+        Schema::dropIfExists('user_parents');
     }
 }
