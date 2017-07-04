@@ -4,9 +4,9 @@ namespace App\Models\Lookup;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Course extends Model
+class CourseSource extends Model
 {
-    protected $table = 'lookup_courses';
+    protected $table = 'lookup_course_sources';
 
     public function levelField()
     {
