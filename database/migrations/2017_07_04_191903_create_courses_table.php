@@ -17,7 +17,7 @@ class CreateCoursesTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->unsignedInteger('lookup_course_source_id');
+            $table->unsignedInteger('course_source_id');
             $table->unsignedInteger('level_field_id');
             $table->unsignedInteger('academic_year_id');
 
@@ -25,7 +25,7 @@ class CreateCoursesTable extends Migration
         });
 
         Schema::table('education_courses', function (Blueprint $table) {
-            $table->foreign('lookup_course_source_id', 'fk_education_courses_1')->references('id')->on('lookup_course_sources')->onUpdate('CASCADE');
+            $table->foreign('course_source_id', 'fk_education_courses_1')->references('id')->on('lookup_course_sources')->onUpdate('CASCADE');
             $table->foreign('level_field_id', 'fk_education_courses_2')->references('id')->on('level_fields')->onUpdate('CASCADE');
             $table->foreign('academic_year_id', 'fk_education_courses_3')->references('id')->on('academic_years')->onUpdate('CASCADE');
         });
