@@ -21,7 +21,7 @@ class CreateStaffTable extends Migration
             $table->string('field_of_study')->nullable();
             $table->string('direct_no')->nullable();
             $table->string('extension')->nullable();
-            $table->text('dscription')->nullable();
+            $table->text('description')->nullable();
             $table->boolean('is_visible')->default(true);
         });
 
