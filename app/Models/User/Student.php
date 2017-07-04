@@ -15,6 +15,6 @@ class Student extends Model
 
     public function parent()
     {
-        $this->belongsTo('App\Models\User\StudentParent', 'student_id', 'id');
+        $this->hasMany('App\Models\User\StudentParent', 'student_id', 'id');
     }
 }
