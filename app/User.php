@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         $this->hasOne('App\Models\User\Staff', 'user_id', 'id');
     }
+
+    public function teacher()
+    {
+        $this->hasOne('App\Models\User\Teacher', 'user_id', 'id');
+    }
 }
