@@ -12,4 +12,9 @@ class CourseSource extends Model
     {
         return $this->belongsTo('App\Models\LevelField', 'level_field_id', 'id');
     }
+
+    public function Course()
+    {
+        return $this->hasMany('App\Models\Education\Course', 'course_source_id', 'id');
+    }
 }
