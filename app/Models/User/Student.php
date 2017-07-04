@@ -17,4 +17,9 @@ class Student extends Model
     {
         $this->hasMany('App\Models\User\StudentParent', 'student_id', 'id');
     }
+
+    public function groupStudents()
+    {
+        return $this->hasMany('App\Models\Education\GroupStudent', 'student_id', 'id');
+    }
 }
