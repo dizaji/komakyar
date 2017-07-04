@@ -17,4 +17,9 @@ class Group extends Model
     {
         return $this->belongsTo('App\Models\LevelField', 'level_field_id', 'id');
     }
+
+    public function groupStudents()
+    {
+        return $this->hasMany('App\Models\Education\GroupStudent', 'group_id', 'id');
+    }
 }
