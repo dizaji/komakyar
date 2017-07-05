@@ -23,7 +23,7 @@ class Course extends Model
         $this->belongsTo('App\Models\AcademicYear', 'academic_year_id', 'id');
     }
 
-    public function Presentation()
+    public function Presentations()
     {
         return $this->hasMany('App\Models\Education\Course\Presentation', 'course_id', 'id');
     }
