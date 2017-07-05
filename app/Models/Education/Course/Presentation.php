@@ -15,7 +15,7 @@ class Presentation extends Model
 
     public function teacher()
     {
-        return $this->belongsTo('App\Models\User\Teacher', 'teacher_id', 'id');
+        return $this->belongsTo('App\Models\User\Teacher\Teacher', 'teacher_id', 'id');
     }
 
     public function course()

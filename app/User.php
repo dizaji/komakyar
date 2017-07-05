@@ -44,6 +44,6 @@ class User extends Authenticatable
 
     public function teacher()
     {
-        $this->hasOne('App\Models\User\Teacher', 'user_id', 'id');
+        $this->hasOne('App\Models\User\Teacher\Teacher', 'user_id', 'id');
     }
 }
