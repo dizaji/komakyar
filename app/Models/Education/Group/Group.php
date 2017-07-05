@@ -22,4 +22,9 @@ class Group extends Model
     {
         return $this->hasMany('App\Models\Education\Group\GroupStudent', 'group_id', 'id');
     }
+
+    public function Presentation()
+    {
+        return $this->hasMany('App\Models\Education\Course\Presentation', 'group_id', 'id');
+    }
 }

@@ -12,4 +12,9 @@ class Teacher extends Model
     {
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
+
+    public function Presentation()
+    {
+        return $this->hasMany('App\Models\Education\Course\Presentation', 'teacher_id', 'id');
+    }
 }
