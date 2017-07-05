@@ -17,4 +17,9 @@ class CourseSource extends Model
     {
         return $this->hasMany('App\Models\Education\Course\Course', 'course_source_id', 'id');
     }
+
+    public function gradeTypes()
+    {
+        return $this->hasMany('App\Models\User\Teacher\GradeType', 'course_source_id', 'id');
+    }
 }
