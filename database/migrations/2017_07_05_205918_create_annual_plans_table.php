@@ -13,7 +13,7 @@ class CreateAnnualPlansTable extends Migration
      */
     public function up()
     {
-        Schema::create('education_schedule_annual_plans', function (Blueprint $table) {
+        Schema::create('education_annual_programs', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
 
@@ -31,8 +31,8 @@ class CreateAnnualPlansTable extends Migration
             $table->text('description')->nullable();
         });
 
-        Schema::table('education_schedule_annual_plans', function (Blueprint $table) {
-            $table->foreign('presentation_id', 'fk_education_schedule_annual_plans_1')->references('id')->on('education_course_presentations')->onUpdate('CASCADE');
+        Schema::table('education_annual_programs', function (Blueprint $table) {
+            $table->foreign('presentation_id', 'fk_education_annual_programs_1')->references('id')->on('education_course_presentations')->onUpdate('CASCADE');
         });
     }
 
@@ -43,10 +43,10 @@ class CreateAnnualPlansTable extends Migration
      */
     public function down()
     {
-        Schema::table('education_schedule_annual_plans', function (Blueprint $table) {
-            $table->dropForeign('fk_education_schedule_annual_plans_1');
+        Schema::table('education_annual_programs', function (Blueprint $table) {
+            $table->dropForeign('fk_education_annual_programs_1');
         });
 
-        Schema::dropIfExists('education_schedule_annual_plans');
+        Schema::dropIfExists('education_annual_programs');
     }
 }
