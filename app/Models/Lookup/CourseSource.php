@@ -15,6 +15,6 @@ class CourseSource extends Model
 
     public function courses()
     {
-        return $this->hasMany('App\Models\Education\Course', 'course_source_id', 'id');
+        return $this->hasMany('App\Models\Education\Course\Course', 'course_source_id', 'id');
     }
 }

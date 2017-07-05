@@ -28,6 +28,6 @@ class LevelField extends Model
 
     public function courses()
     {
-        return $this->hasMany('App\Models\Education\Course', 'level_field_id', 'id');
+        return $this->hasMany('App\Models\Education\Course\Course', 'level_field_id', 'id');
     }
 }

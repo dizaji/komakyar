@@ -15,6 +15,6 @@ class AcademicYear extends Model
 
     public function courses()
     {
-        return $this->hasMany('App\Modals\Education\Course', 'academic_year_id');
+        return $this->hasMany('App\Modals\Education\Course\Course', 'academic_year_id');
     }
 }
