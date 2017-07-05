@@ -22,4 +22,9 @@ class Presentation extends Model
     {
         return $this->belongsTo('App\Models\Education\Course\Course', 'course_id', 'id');
     }
+
+    public function annualPrograms()
+    {
+        return $this->hasMany('App\Models\Education\Program\AnnualProgram', 'presentation_id', 'id');
+    }
 }
