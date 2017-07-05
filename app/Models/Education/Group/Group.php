@@ -20,6 +20,6 @@ class Group extends Model
 
     public function groupStudents()
     {
-        return $this->hasMany('App\Models\Education\GroupStudent', 'group_id', 'id');
+        return $this->hasMany('App\Models\Education\Group\GroupStudent', 'group_id', 'id');
     }
 }

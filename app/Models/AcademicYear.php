@@ -10,7 +10,7 @@ class AcademicYear extends Model
 
     public function groups()
     {
-        return $this->hasMany('App\Models\Education\Group', 'academic_year_id', 'id');
+        return $this->hasMany('App\Models\Education\Group\Group', 'academic_year_id', 'id');
     }
 
     public function courses()
