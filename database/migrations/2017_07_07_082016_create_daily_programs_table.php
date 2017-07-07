@@ -23,6 +23,8 @@ class CreateDailyProgramsTable extends Migration
 
             $table->timestamp('started_at')->nullable();
             $table->timestamp('finished_at')->nullable();
+            $table->unsignedTinyInteger('time_of_day');
+            $table->unsignedTinyInteger('part_of_time')->default(1);
 
             $table->text('description')->nullable();
         });
