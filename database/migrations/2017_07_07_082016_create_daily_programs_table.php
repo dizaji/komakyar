@@ -44,9 +44,9 @@ class CreateDailyProgramsTable extends Migration
     public function down()
     {
         Schema::table('education_daily_programs', function (Blueprint $table) {
-            $table->foreign('presentation_id', 'fk_education_daily_programs_1')->references('id')->on('education_course_presentations')->onUpdate('CASCADE');
-            $table->foreign('staff_id', 'fk_education_daily_programs_2')->references('id')->on('user_staffs')->onUpdate('CASCADE');
-            $table->foreign('group_id', 'fk_education_daily_programs_3')->references('id')->on('education_groups')->onUpdate('CASCADE');
+            $table->dropForeign('fk_education_daily_programs_1');
+            $table->dropForeign('fk_education_daily_programs_2');
+            $table->dropForeign('fk_education_daily_programs_3');
         });
 
         Schema::dropIfExists('education_daily_programs');
