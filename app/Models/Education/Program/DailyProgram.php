@@ -22,4 +22,9 @@ class DailyProgram extends Model
     {
         return $this->belongsTo('App\Models\Education\Group\Group', 'group_id', 'id');
     }
+
+    public function rollcalls()
+    {
+        return $this->hasMany('App\Models\Education\Group\Rollcall', 'daily_program_id', 'id');
+    }
 }
