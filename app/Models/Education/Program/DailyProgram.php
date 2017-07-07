@@ -27,4 +27,9 @@ class DailyProgram extends Model
     {
         return $this->hasMany('App\Models\Education\Group\Rollcall', 'daily_program_id', 'id');
     }
+
+    public function grades()
+    {
+        return $this->hasMany('App\Models\Education\Group\Grade', 'daily_program_id', 'id');
+    }
 }

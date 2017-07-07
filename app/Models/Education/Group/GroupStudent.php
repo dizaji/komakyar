@@ -22,4 +22,9 @@ class GroupStudent extends Model
     {
         return $this->hasMany('App\Models\Education\Group\Rollcall', 'group_student_id', 'id');
     }
+
+    public function grades()
+    {
+        return $this->hasMany('App\Models\Education\Group\Grade', 'grade_id', 'id');
+    }
 }

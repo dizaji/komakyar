@@ -17,4 +17,9 @@ class GradeType extends Model
     {
         return $this->belongsTo('App\Models\Lookup\CourseSource', 'course_source_id', 'id');
     }
+
+    public function grades()
+    {
+        return $this->hasMany('App\Models\Education\Group\Grade', 'grade_type_id', 'id');
+    }
 }
