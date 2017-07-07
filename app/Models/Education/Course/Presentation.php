@@ -27,4 +27,9 @@ class Presentation extends Model
     {
         return $this->hasMany('App\Models\Education\Program\AnnualProgram', 'presentation_id', 'id');
     }
+
+    public function dailyPrograms()
+    {
+        return $this->hasMany('App\Models\Education\Program\DailyProgram', 'presentation_id', 'id');
+    }
 }

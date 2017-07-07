@@ -27,4 +27,9 @@ class Group extends Model
     {
         return $this->hasMany('App\Models\Education\Course\Presentation', 'group_id', 'id');
     }
+
+    public function dailyPrograms()
+    {
+        return $this->hasMany('App\Models\Education\Program\DailyProgram', 'group_id', 'id');
+    }
 }

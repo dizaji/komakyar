@@ -12,4 +12,9 @@ class Staff extends Model
     {
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
+
+    public function dailyPrograms()
+    {
+        return $this->hasMany('App\Models\Education\Program\DailyProgram', 'staff_id', 'id');
+    }
 }
