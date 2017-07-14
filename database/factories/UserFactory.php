@@ -15,10 +15,17 @@
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
+    $user_type = $faker->randomElements(['student', 'teacher', 'staff']);
     return [
-        'name' => $faker->name,
+        'name' => $faker->firstName,
+        'family' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'password' => bcrypt('secret'),
+        'is_student' => $user_type == 'student',
+        'is_teacher' => $user_type == 'teacher',
+        'is_staff' => $user_type == 'staff',
+        'is_parent' => false,
+        'profile_picture' => $faker->imageUrl(150,150,'people'),
+        'description' => $faker->text,
     ];
 });
