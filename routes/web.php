@@ -11,6 +11,13 @@
 |
 */
 
+Route::group(['prefix' => 'staff', 'as'=>'staff.', 'namespace'=>'Staff', 'middleware' => ['auth']], function () {
+    Route::group(['prefix' => 'group', 'as'=>'group.', 'namespace'=>'Group'], function () {
+        Route::resource('', 'GroupController', ['parameters' => ['' => 'group']]);
+    });
+});
+
+
 Route::get('/', function () {
     return view('welcome');
 });
