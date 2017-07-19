@@ -18,13 +18,13 @@ class CreateCourseSourcesTable extends Migration
             $table->timestamps();
 
             $table->string('title');
-            $table->integer('level_field_id');
+            $table->unsignedInteger('level_field_id');
             $table->string('reference_code')->nullable();
             $table->string('reference_name')->nullable();
         });
 
         Schema::table('lookup_course_sources', function (Blueprint $table) {
-            $table->foreign('level_field_id', 'fk_lookup_courses_1')->references('id')->on('level_fields')->onUpdate('CASCADE');
+            $table->foreign('level_field_id', 'fk_lookup_course_sources_1')->references('id')->on('level_fields')->onUpdate('CASCADE');
         });
     }
 
@@ -36,7 +36,7 @@ class CreateCourseSourcesTable extends Migration
     public function down()
     {
         Schema::table('lookup_course_sources', function (Blueprint $table) {
-            $table->dropForeign('fk_lookup_courses_1');
+            $table->dropForeign('fk_lookup_course_sources_1');
         });
 
         Schema::dropIfExists('lookup_course_sources');
