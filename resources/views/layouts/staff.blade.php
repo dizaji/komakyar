@@ -12,8 +12,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('fonts/font.css') }}" rel="stylesheet">
 </head>
-<body>
+<body style="direction: rtl; font-family: IRANSans, Tahoma">
 <div id="staff-app">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
