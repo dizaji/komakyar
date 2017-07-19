@@ -12,9 +12,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('fonts/font.css') }}" rel="stylesheet">
+    {{--<link href="{{ asset('fonts/font.css') }}" rel="stylesheet">--}}
 </head>
-<body style="direction: rtl; font-family: IRANSans, Tahoma">
+<body style="font-family: IRANSans, Tahoma">
 <div id="staff-app">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
@@ -79,5 +79,10 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/staff/app.js') }}"></script>
 @yield('script')
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
 </body>
 </html>

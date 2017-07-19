@@ -1,0 +1,28 @@
+@for $i from 1 through 12 {
+  .col-sm-#{$i} {
+    float: right;
+  }
+  .col-md-#{$i} {
+    float: right;
+  }
+  .col-lg-#{$i} {
+    float: right;
+  }
+  .col-xs-#{$i} {
+    float: right;
+  }
+}
+
+.float-none{
+  float: none;
+}
+
+.form-horizontal {
+  .control-label {
+    text-align: left;
+  }
+
+  .form-control-static {
+    text-align: right;
+  }
+}
