@@ -16,7 +16,7 @@ class UsersAdminSeeder extends Seeder
             'name' => 'مدیر وبسایت',
             'family' => '',
             'email' => 'admin@nourinik.ir',
-            'password' => '1234567890',
+            'password' => \Illuminate\Support\Facades\Hash::make('1234567890'),
             'is_student' => false,
             'is_teacher' => false,
             'is_staff' => true,

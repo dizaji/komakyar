@@ -15,7 +15,7 @@
 $factory->define(\App\Models\Education\Group\Group::class, function (Faker\Generator $faker) {
 
     return [
-        'level_field_id' => \App\Models\LevelField::random()->id,
+        'level_field_id' => \App\Models\LevelField::inRandomOrder()->first()->id,
         'academic_year_id' => 1,
 
         'title' => $faker->text(20),

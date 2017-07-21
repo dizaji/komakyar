@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(LevelFieldTableSeeder::class);
         $this->call(AcademicYearTableSeeder::class);
+        $this->call(UsersAdminSeeder::class);
 
         //fake
         $this->call(StudentsTableSeeder::class);

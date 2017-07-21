@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-rtl.css') }}" rel="stylesheet">
     {{--<link href="{{ asset('fonts/font.css') }}" rel="stylesheet">--}}
 </head>
 <body style="font-family: IRANSans, Tahoma">
