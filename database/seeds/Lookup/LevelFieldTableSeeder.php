@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class LevelFieldSeeder extends Seeder
+class LevelFieldTableSeeder extends Seeder
 {
     /**
      * @var \Faker\Generator

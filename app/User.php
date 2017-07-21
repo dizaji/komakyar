@@ -34,16 +34,16 @@ class User extends Authenticatable
 
     public function parent()
     {
-        $this->hasOne('App\Models\User\StudentParent', 'user_id', 'id');
+        return $this->hasOne('App\Models\User\StudentParent', 'user_id', 'id');
     }
 
     public function staff()
     {
-        $this->hasOne('App\Models\User\Staff', 'user_id', 'id');
+        return $this->hasOne('App\Models\User\Staff', 'user_id', 'id');
     }
 
     public function teacher()
     {
-        $this->hasOne('App\Models\User\Teacher\Teacher', 'user_id', 'id');
+        return $this->hasOne('App\Models\User\Teacher\Teacher', 'user_id', 'id');
     }
 }

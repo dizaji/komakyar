@@ -1,7 +1,7 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(\App\Models\User\Student::class, function (Faker\Generator $faker) {
+$factory->define(\App\Models\User\Staff::class, function (Faker\Generator $faker) {
     return [
         'degree' => $faker->randomElements(['below diploma', 'diploma', 'BsC', 'MsC', 'PhD', 'Other', null]),
         'field_of_study' => $faker->text(3),

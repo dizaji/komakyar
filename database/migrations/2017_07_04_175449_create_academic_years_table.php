@@ -17,7 +17,7 @@ class CreateAcademicYearsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->unsignedSmallInteger('year');
-            $table->text('description')->nullable();
+            $table->string('title');
         });
     }
 
