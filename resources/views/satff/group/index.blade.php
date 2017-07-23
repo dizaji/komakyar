@@ -2,6 +2,6 @@
 
 @section('content')
     <div id="users-app">
-        <group-list></group-list>
+        <group-list initial-groups='{!! $groups !!}'></group-list>
     </div>
 @endsection
