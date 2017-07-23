@@ -23,7 +23,7 @@ class LevelFieldTableSeeder extends Seeder
     public function run()
     {
         $math = \App\Models\Lookup\Field::create(['title' => 'ریاضی']);
-        $science = \App\Models\Lookup\Field::create(['title' => 'علئم تجربی']);
+        $science = \App\Models\Lookup\Field::create(['title' => 'علوم تجربی']);
         $humanities = \App\Models\Lookup\Field::create(['title' => 'علوم انسانی']);
         $general = \App\Models\Lookup\Field::create(['title' => 'عمومی']);
 
