@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers\Staff\Group;
 
+use App\Models\Education\Group\Group;
+use App\Repositories\Staff\GroupRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class GroupController extends Controller
 {
+    private $groups;
+
+    public function __construct(GroupRepository $groups)
+    {
+        $this->groups = $groups;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,7 @@ class GroupController extends Controller
      */
     public function index()
     {
-        return view('satff.group.index');
+        return view('satff.group.index', ['groups' => json_encode($this->groups->indexWithData())]);
     }
 
     /**
