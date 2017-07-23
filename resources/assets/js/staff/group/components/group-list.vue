@@ -6,7 +6,7 @@
                     <div class="panel-heading">Dashboard</div>
 
                     <div class="panel-body">
-                        <group-card></group-card>
+                        <group-card v-for="group in groups.data" :group="group"></group-card>
                     </div>
                 </div>
             </div>
@@ -16,9 +16,12 @@
 <script>
     import GroupCard from './group-card.vue'
     export default{
+
+        props: ['initialGroups'],
+
         data(){
             return{
-                msg:'hello vue'
+                groups: JSON.parse(this.initialGroups)
             }
         },
         components:{
