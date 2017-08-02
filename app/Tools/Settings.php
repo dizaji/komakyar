@@ -13,6 +13,7 @@ class Settings
 {
     const VAT = 9;
     const PAGINATION_LIMIT_API = 25;
+    const PAGINATION_LIMIT_STAFF = 25;
     const PAGINATION_LIMIT_ADMIN = 25;
     const PAGINATION_LIMIT_API_CHILDS = 10;
 }

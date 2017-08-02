@@ -10,23 +10,49 @@ namespace App\Repositories\Staff;
 
 
 use App\Models\Education\Group\Group;
+use App\Tools\Settings;
+use Illuminate\Database\Eloquent\Builder;
 
 class GroupRepository
 {
-    protected function getLoadArray()
+    public function index($window_size = Settings::PAGINATION_LIMIT_STAFF)
     {
-        return [
-            'levelField.level',
-            'levelField.field',
-            'groupStudents' => function ($query) {
-                $query->limit(30);
-                $query->with('student.user');
-            }
-        ];
+        $group_query = Group::query();
+        return $this->load($group_query)->paginate($window_size);
     }
 
-    public function indexWithData()
+    public function load($group)
     {
-        return Group::with($this->getLoadArray())->paginate(5);
+        $group_student_query = function ($query) {
+            $query->limit(30);
+            $query->with('student.user');
+        };
+
+        if($group instanceof Group){
+            $group->load([
+                'levelField.level',
+                'levelField.field',
+                'groupStudents' => $group_student_query
+            ]);
+        } elseif ($group instanceof Builder) {
+            $group->with([
+                'levelField.level',
+                'levelField.field',
+                'groupStudents' => $group_student_query
+            ]);
+        } else {
+            foreach ($group as $index=>$value){
+                $group[$index] = $this->load($value);
+            }
+        }
+
+        return $group;
+    }
+
+    protected function getLoadArray()
+    {
+
+
+        return ;
     }
 }

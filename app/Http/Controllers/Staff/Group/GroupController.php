@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Staff\Group;
 
 use App\Models\Education\Group\Group;
 use App\Repositories\Staff\GroupRepository;
+use App\Tools\HttpResponse;
+use App\Tools\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -23,7 +25,11 @@ class GroupController extends Controller
      */
     public function index()
     {
-        return view('satff.group.index', ['groups' => json_encode($this->groups->indexWithData())]);
+        if (request()->expectsJson()) {
+            return JsonResponse::successObject(HttpResponse::OK, $this->groups->index());
+        } else {
+            return view('staff.group.index');
+        }
     }
 
     /**
@@ -55,7 +61,7 @@ class GroupController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('staff.group.show');
     }
 
     /**
