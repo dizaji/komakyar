@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "bootstrap-rtl": "^3.3.4",
-    "bootstrap-vue": "^0.18.0"
+    "bootstrap-vue": "^0.18.0",
+    "laravel-vue-pagination": "^1.0.6",
+    "vue-progressbar": "^0.7.2"
   }
 }

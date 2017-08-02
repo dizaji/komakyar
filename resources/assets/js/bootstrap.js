@@ -14,6 +14,48 @@ try {
     //require('bootstrap-rtl');
 } catch (e) {}
 
+window.default_values = {
+    logos: {
+        telegram: '/images/logos/telegram.png',
+        instageam: '/images/logos/instagram.png'
+    },
+    defaults: {
+        dp: '/images/defaults/dp.jpg',
+        cover_photo: '/images/defaults/cover_photo.png'
+    },
+    routes: {
+        base_url: window.location.origin,
+        users: '/admin/users',
+
+        resource: {
+            index: function (base_route_name) {
+                return this.appendBaseUrl(sprintf("%s", default_values.routes[base_route_name]));
+            },
+            show: function (base_route_name, id) {
+                return this.appendBaseUrl(sprintf("%s/%s", default_values.routes[base_route_name], id));
+            },
+            create: function (base_route_name) {
+                return this.appendBaseUrl(sprintf("%s/create", default_values.routes[base_route_name]));
+            },
+            store: function (base_route_name) {
+                return this.appendBaseUrl(sprintf("%s", default_values.routes[base_route_name]));
+            },
+            edit: function (base_route_name, id) {
+                return this.appendBaseUrl(sprintf("%s/%s/edit", default_values.routes[base_route_name], id));
+            },
+            update: function (base_route_name, id) {
+                return this.appendBaseUrl(sprintf("%s/%s", default_values.routes[base_route_name], id));
+            },
+            destroy: function (base_route_name, id) {
+                return this.appendBaseUrl(sprintf("%s/%s", default_values.routes[base_route_name], id));
+            },
+            appendBaseUrl: function(url){
+                return sprintf("%s%s", default_values.routes.base_url, url);
+            }
+        }
+    }
+};
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -22,6 +64,7 @@ try {
 
 window.axios = require('axios');
 
+window.axios.defaults.headers.common['Accept'] = 'application/json';
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
@@ -37,6 +80,20 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+var sprintf = require('sprintf-js').sprintf,
+    vsprintf = require('sprintf-js').vsprintf;
+
+window.removeNulls = function (obj) {
+    var isArray = obj instanceof Array;
+    for (var k in obj) {
+        if (obj[k] === null) isArray ? obj.splice(k, 1) : delete obj[k];
+        else if (typeof obj[k] == "object") removeNulls(obj[k]);
+        if (isArray && obj.length == k) removeNulls(obj);
+    }
+    return obj;
+}
+
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
