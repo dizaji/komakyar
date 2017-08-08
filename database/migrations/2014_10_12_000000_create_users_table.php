@@ -19,7 +19,8 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('family');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
+            $table->string('national_code')->unique();
             $table->string('password');
             $table->boolean('is_student')->defualt(true);
             $table->boolean('is_teacher')->default(false);

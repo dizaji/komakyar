@@ -26,6 +26,7 @@ window.default_values = {
     routes: {
         base_url: window.location.origin,
         users: '/admin/users',
+        staff_group: '/staff/group',
 
         resource: {
             index: function (base_route_name) {

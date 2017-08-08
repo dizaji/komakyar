@@ -11,9 +11,12 @@
 |
 */
 
-Route::group(['prefix' => 'staff', 'as'=>'staff.', 'namespace'=>'Staff', 'middleware' => ['auth']], function () {
-    Route::group(['prefix' => 'group', 'as'=>'group.', 'namespace'=>'Group'], function () {
+Route::group(['prefix' => 'staff', 'as' => 'staff.', 'namespace' => 'Staff', 'middleware' => ['auth']], function () {
+    Route::group(['prefix' => 'group', 'as' => 'group.', 'namespace' => 'Group'], function () {
         Route::resource('', 'GroupController', ['parameters' => ['' => 'group']]);
+    });
+    Route::group(['prefix' => 'student', 'as' => 'student.', 'namespace' => 'Student'], function () {
+        Route::resource('', 'StudentController', ['parameters' => ['' => 'student']]);
     });
 });
 

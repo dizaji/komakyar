@@ -6,6 +6,7 @@
  */
 
 require('./group/group');
+require('./student/student');
 
 const staff_app = new Vue({
      el: '#staff-app'

@@ -23,6 +23,9 @@
     "bootstrap-rtl": "^3.3.4",
     "bootstrap-vue": "^0.18.0",
     "laravel-vue-pagination": "^1.0.6",
+    "moment-jalaali": "^0.7.0",
+    "persian-date": "^0.1.8-b",
+    "persian-datepicker": "^0.4.5",
     "vue-progressbar": "^0.7.2"
   }
 }

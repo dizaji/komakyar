@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="groups">
         <div class="row">
             <div class="col-md-12 float-none">
                 <div class="panel panel-default">
@@ -28,8 +28,11 @@
         components:{
             'group-card': GroupCard,
         },
+        created(){
+            this.loadData();
+        },
         methods:{
-            loadData(page){
+            loadData: function(page){
                 this.$Progress.start();
 
                 if (typeof page === 'undefined') {
@@ -38,21 +41,22 @@
                     this.current_page = page;
                 }
 
+                console.log(default_values.routes);
                 // Using vue-resource as an example
-                axios.get(default_values.routes.resource.index('group'), {
+                axios.get(default_values.routes.resource.index('staff_group'), {
                     params: {
                         page: page
                     }
                 }).then(this.onLoadSuccess).catch(this.onError);
             },
 
-            onLoadSuccess(response){
+            onLoadSuccess: function(response){
                 console.log(response.data);
-                this.group = response.data;
+                this.groups = response.data;
                 this.$Progress.finish();
             },
 
-            onError(error){
+            onError: function(error){
                 alert('Oops! Some thing went wrong. :(');
                 this.$Progress.fail();
                 console.log(error);
