@@ -72,9 +72,12 @@
             </div>
         </div>
     </nav>
-
-    @yield('content')
+    <div class="container-fluid">
+        @yield('content')
+    </div>
 </div>
+
+@routes
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}"></script>

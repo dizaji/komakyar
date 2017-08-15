@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers\Staff\Student;
 
+use App\Http\Requests\Staff\Student\StudentRequest;
 use App\Models\User\Student;
+use App\Repositories\Staff\User\Student\StudentRepository;
+use App\Tools\HttpResponse;
+use App\Tools\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class StudentController extends Controller
 {
+    protected $studentRepository;
+
+    public function __construct(StudentRepository $studentRepository)
+    {
+        $this->studentRepository = $studentRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -31,12 +42,12 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param StudentRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
-        //
+        return JsonResponse::successObject(HttpResponse::CREATED, $this->studentRepository->store($request));
     }
 
     /**

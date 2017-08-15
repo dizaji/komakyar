@@ -43,7 +43,7 @@
 
                 console.log(default_values.routes);
                 // Using vue-resource as an example
-                axios.get(default_values.routes.resource.index('staff_group'), {
+                axios.get(route('staff.group.index'), {
                     params: {
                         page: page
                     }

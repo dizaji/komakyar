@@ -23,38 +23,6 @@ window.default_values = {
         dp: '/images/defaults/dp.jpg',
         cover_photo: '/images/defaults/cover_photo.png'
     },
-    routes: {
-        base_url: window.location.origin,
-        users: '/admin/users',
-        staff_group: '/staff/group',
-
-        resource: {
-            index: function (base_route_name) {
-                return this.appendBaseUrl(sprintf("%s", default_values.routes[base_route_name]));
-            },
-            show: function (base_route_name, id) {
-                return this.appendBaseUrl(sprintf("%s/%s", default_values.routes[base_route_name], id));
-            },
-            create: function (base_route_name) {
-                return this.appendBaseUrl(sprintf("%s/create", default_values.routes[base_route_name]));
-            },
-            store: function (base_route_name) {
-                return this.appendBaseUrl(sprintf("%s", default_values.routes[base_route_name]));
-            },
-            edit: function (base_route_name, id) {
-                return this.appendBaseUrl(sprintf("%s/%s/edit", default_values.routes[base_route_name], id));
-            },
-            update: function (base_route_name, id) {
-                return this.appendBaseUrl(sprintf("%s/%s", default_values.routes[base_route_name], id));
-            },
-            destroy: function (base_route_name, id) {
-                return this.appendBaseUrl(sprintf("%s/%s", default_values.routes[base_route_name], id));
-            },
-            appendBaseUrl: function(url){
-                return sprintf("%s%s", default_values.routes.base_url, url);
-            }
-        }
-    }
 };
 
 /**
@@ -85,15 +53,18 @@ if (token) {
 var sprintf = require('sprintf-js').sprintf,
     vsprintf = require('sprintf-js').vsprintf;
 
-window.removeNulls = function (obj) {
+window.removeNulls = function (obj, remove_empties) {
+    if(!remove_empties) {
+        remove_empties = false;
+    }
     var isArray = obj instanceof Array;
     for (var k in obj) {
-        if (obj[k] === null) isArray ? obj.splice(k, 1) : delete obj[k];
-        else if (typeof obj[k] == "object") removeNulls(obj[k]);
-        if (isArray && obj.length == k) removeNulls(obj);
+        if (obj[k] === null  || (obj[k] === '' && remove_empties)) isArray ? obj.splice(k, 1) : delete obj[k];
+        else if (typeof obj[k] == "object") removeNulls(obj[k],remove_empties);
+        if (isArray && obj.length == k) removeNulls(obj,remove_empties);
     }
     return obj;
-}
+};
 
 
 /**

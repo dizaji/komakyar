@@ -13,8 +13,8 @@ class UsersAdminSeeder extends Seeder
     public function run()
     {
         $user = \App\User::create([
-            'name' => 'مدیر وبسایت',
-            'family' => '',
+            'first_name' => 'مدیر وبسایت',
+            'surname' => '',
             'email' => 'admin@nourinik.ir',
             'password' => \Illuminate\Support\Facades\Hash::make('1234567890'),
             'is_student' => false,

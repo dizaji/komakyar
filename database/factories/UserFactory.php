@@ -17,8 +17,8 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
     $user_type = $faker->randomElements(['student', 'teacher', 'staff']);
     return [
-        'name' => $faker->firstName,
-        'family' => $faker->lastName,
+        'first_name' => $faker->firstName,
+        'surname' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
         'password' => bcrypt('secret'),
         'is_student' => $user_type == 'student',

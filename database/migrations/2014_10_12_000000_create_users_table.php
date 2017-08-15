@@ -17,12 +17,12 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->rememberToken();
             $table->timestamps();
-            $table->string('name');
-            $table->string('family');
-            $table->string('email')->unique()->nullable();
-            $table->string('national_code')->unique();
+            $table->string('first_name');
+            $table->string('surname');
+            $table->string('email')->nullable();
+            $table->string('national_code')->nullable();
             $table->string('password');
-            $table->boolean('is_student')->defualt(true);
+            $table->boolean('is_student')->default(false);
             $table->boolean('is_teacher')->default(false);
             $table->boolean('is_staff')->default(false);
             $table->boolean('is_parent')->default(false);
