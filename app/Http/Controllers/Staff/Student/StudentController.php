@@ -26,7 +26,11 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        if (request()->expectsJson()) {
+            return JsonResponse::successObject(HttpResponse::OK, $this->studentRepository->index());
+        } else {
+            return view('staff.student.index');
+        }
     }
 
     /**
@@ -48,50 +52,59 @@ class StudentController extends Controller
     public function store(StudentRequest $request)
     {
         return JsonResponse::successObject(HttpResponse::CREATED, $this->studentRepository->store($request));
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User\Student  $student
+     * @param  \App\Models\User\Student $student
      * @return \Illuminate\Http\Response
      */
     public function show(Student $student)
     {
-        //
+        if (request()->expectsJson()) {
+            return JsonResponse::successObject(HttpResponse::OK, $this->studentRepository->show($student));
+        } else {
+            return view('staff.student.show', ['student' => $student]);
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User\Student  $student
+     * @param  \App\Models\User\Student $student
      * @return \Illuminate\Http\Response
      */
     public function edit(Student $student)
     {
-        //
+        if (request()->expectsJson()) {
+            return JsonResponse::successObject(HttpResponse::OK, $this->studentRepository->edit($student));
+        } else {
+            return view('staff.student.edit', ['student' => $student]);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User\Student  $student
+     * @param StudentRequest|Request $request
+     * @param  \App\Models\User\Student $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(StudentRequest $request, Student $student)
     {
-        //
+        return JsonResponse::successMessage(HttpResponse::OK, $this->studentRepository->update($request, $student));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User\Student  $student
+     * @param  \App\Models\User\Student $student
      * @return \Illuminate\Http\Response
      */
     public function destroy(Student $student)
     {
-        //
+        return JsonResponse::successMessage(HttpResponse::OK, $this->studentRepository->destroy($student));
     }
 }

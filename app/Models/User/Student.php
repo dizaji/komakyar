@@ -13,9 +13,9 @@ class Student extends Model
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
-    public function parent()
+    public function parents()
     {
-        $this->hasMany('App\Models\User\StudentParent', 'student_id', 'id');
+        return $this->hasMany('App\Models\User\StudentParent', 'student_id', 'id');
     }
 
     public function groupStudents()
