@@ -2,7 +2,7 @@
     <div>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <span>دانش آموز جدید</span>
+                <span>دانش آموز جدید test</span>
             </div>
             <div class="panel-body">
                 <validation-errors-alert :errors="errors"></validation-errors-alert>

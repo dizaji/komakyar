@@ -76,19 +76,17 @@ class StudentRepository
 
     public function load($object)
     {
-        $parent_query = function ($query) {
-            $query->take(Settings::PARENT_LIMIT);
-        };
-        $group_student_query = function ($query) {
-            $query->take(Settings::GROUP_STUDENT_LIMIT);
-            $query->with('group');
-        };
+//        $parent_query = function ($query) {
+//            $query->take(Settings::PARENT_LIMIT);
+//        };
+//        $group_student_query = function ($query) {
+//            $query->take(Settings::GROUP_STUDENT_LIMIT);
+//            $query->with('group');
+//        };
 
         if($object instanceof Student) {
             return $object->load([
                 'user',
-                'parents' => $parent_query,
-                'groupStudents' => $group_student_query,
             ]);
         }
 

@@ -10,11 +10,20 @@ class StudentParent extends Model
 
     public function user()
     {
-        $this->belongsTo('App\User', 'user_id', 'id');
+        return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
     public function student()
     {
-        $this->belongsTo('App\Models\User\Student', 'student_id', 'id');
+        return $this->belongsTo('App\Models\User\Student', 'student_id', 'id');
     }
+
+    const RELATIVE_FATHER = 'father';
+    const RELATIVE_MOTHER = 'mother';
+    const RELATIVE_OTHER = 'other';
+    const RELATIVES = [
+        self::RELATIVE_FATHER,
+        self::RELATIVE_MOTHER,
+        self::RELATIVE_OTHER,
+    ];
 }

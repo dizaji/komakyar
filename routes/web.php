@@ -16,6 +16,9 @@ Route::group(['prefix' => 'staff', 'as' => 'staff.', 'namespace' => 'Staff', 'mi
         Route::resource('', 'GroupController', ['parameters' => ['' => 'group']]);
     });
     Route::group(['prefix' => 'student', 'as' => 'student.', 'namespace' => 'Student'], function () {
+        Route::group(['prefix' => '{student}'], function () {
+            Route::resource('parent', 'ParentController', ['except' => ['create', 'edit', 'show']]);
+        });
         Route::resource('', 'StudentController', ['parameters' => ['' => 'student']]);
     });
 });
