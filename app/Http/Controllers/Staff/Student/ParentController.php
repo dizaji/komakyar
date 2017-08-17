@@ -58,7 +58,7 @@ class ParentController extends Controller
      */
     public function update(ParentRequest $request, Student $student, StudentParent $parent)
     {
-        return JsonResponse::successMessage(HttpResponse::OK, $this->parentRepository->update($request, $student, $parent));
+        return JsonResponse::successObject(HttpResponse::OK, $this->parentRepository->update($request, $student, $parent));
     }
 
     /**

@@ -24,7 +24,6 @@
             }
         },
         components:{
-            StudentCard,
             'student-card': StudentCard,
         }
     }

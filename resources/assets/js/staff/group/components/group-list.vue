@@ -47,7 +47,9 @@
                     params: {
                         page: page
                     }
-                }).then(this.onLoadSuccess).catch(this.onError);
+                })
+                    .then(this.onLoadSuccess)
+                    .catch(this.onError);
             },
 
             onLoadSuccess: function(response){

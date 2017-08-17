@@ -31,6 +31,8 @@ const options = {
 Vue.use(VueProgressBar, options);
 
 Vue.component('validation-errors-alert', require('./components/common/validation_errors-alert.vue'));
+Vue.component('confirm-delete-modal', require('./components/common/modals/confirm-delete-modal.vue'));
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

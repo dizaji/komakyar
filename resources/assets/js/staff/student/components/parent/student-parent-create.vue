@@ -22,37 +22,43 @@
                             <div class="form-group">
                                 <label for="input-first-name" class="col-sm-3 control-label">نام</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" id="input-first-name" placeholder="حسن" v-model="parent.user.first_name">
+                                    <input class="form-control" id="input-first-name" placeholder="حسن"
+                                           v-model="parent.user.first_name">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="input-surname" class="col-sm-3 control-label"> نام خانوادگی</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" id="input-surname" placeholder="شیرازی" v-model="parent.user.surname">
+                                    <input class="form-control" id="input-surname" placeholder="شیرازی"
+                                           v-model="parent.user.surname">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="input-email" class="col-sm-3 control-label">ایمیل</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" id="input-email" placeholder="email@domain.com" v-model="parent.user.email">
+                                    <input class="form-control" id="input-email" placeholder="email@domain.com"
+                                           v-model="parent.user.email">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="input-national-code" class="col-sm-3 control-label">کد ملی</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" id="input-national-code" placeholder="0011231239" v-model="parent.user.national_code">
+                                    <input class="form-control" id="input-national-code" placeholder="0011231239"
+                                           v-model="parent.user.national_code">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="input-password" class="col-sm-3 control-label">گذرواژه</label>
                                 <div class="col-sm-9">
-                                    <input type="password" class="form-control" id="input-password" placeholder="XXXXXX" v-model="parent.user.password">
+                                    <input type="password" class="form-control" id="input-password" placeholder="XXXXXX"
+                                           v-model="parent.user.password">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="input-password-confirm" class="col-sm-3 control-label">تکرار گذرواژه</label>
                                 <div class="col-sm-9">
-                                    <input type="password" class="form-control" id="input-password-confirm" placeholder="XXXXXX" v-model="parent.user.password_confirm">
+                                    <input type="password" class="form-control" id="input-password-confirm"
+                                           placeholder="XXXXXX" v-model="parent.user.password_confirm">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -68,13 +74,15 @@
                             <div class="form-group">
                                 <label for="input-mobile1" class="col-sm-3 control-label">موبایل1</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" id="input-mobile1" placeholder="09XXXXXXXXX" v-model="parent.mobile_1">
+                                    <input class="form-control" id="input-mobile1" placeholder="09XXXXXXXXX"
+                                           v-model="parent.mobile_1">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="input-mobile2" class="col-sm-3 control-label">موبایل2</label>
                                 <div class="col-sm-9">
-                                    <input class="form-control" id="input-mobile2" placeholder="09XXXXXXXXX" v-model="parent.mobile_2">
+                                    <input class="form-control" id="input-mobile2" placeholder="09XXXXXXXXX"
+                                           v-model="parent.mobile_2">
                                 </div>
                             </div>
                             <div class="clearfix"></div>
@@ -91,7 +99,7 @@
 </template>
 <script>
     export default {
-        props: ['student', 'onCreate'],
+        props: ['student'],
         data() {
             return {
                 parent: {
@@ -112,7 +120,7 @@
             }
         },
         methods: {
-            btnSaveClicked(){
+            btnSaveClicked() {
                 this.$Progress.start();
                 this.errors = [];
 
@@ -122,12 +130,13 @@
             },
             onSaveSuccess: function (response) {
                 this.$Progress.finish();
-                this.onCreate(response);
+                this.$emit('created', response);
                 $('#add-new-parent').modal('hide');
             },
-            onError(error){
+            onError(error) {
+                console.log(error);
                 this.$Progress.fail();
-                if(error.response.status === 422) {
+                if (error.response.status === 422) {
                     this.errors = error.response.data;
                 } else {
                     alert("Oops, Something went wrong!!!");

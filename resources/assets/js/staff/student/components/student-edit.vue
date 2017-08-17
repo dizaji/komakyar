@@ -20,7 +20,7 @@
                         <a href="#general" aria-controls="general" role="tab" data-toggle="tab">اطلاعات کلی</a>
                     </li>
                     <li role="presentation">
-                        <a href="#parents" aria-controls="parents" role="tab" data-toggle="tab">والدین</a>
+                        <a href="#parents" aria-controls="parents" role="tab" data-toggle="tab" v-on:click="$refs.parent_list.loadData()">والدین</a>
                     </li>
                     <li role="presentation">
                         <a href="#groups" aria-controls="groups" role="tab" data-toggle="tab">گروه ها</a>
@@ -34,7 +34,7 @@
                         <student-general-info :student="student" :mode="mode"></student-general-info>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="parents">
-                        <student-parent-list :student="student"></student-parent-list>
+                        <student-parent-list :student="student" ref="parent_list"></student-parent-list>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="groups">...</div>
                     <div role="tabpanel" class="tab-pane fade" id="password">password</div>
