@@ -16,7 +16,7 @@ use App\Models\User\Student;
 use App\Repositories\Staff\User\UserRepository;
 use App\Tools\FileHelper;
 use App\Tools\Settings;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Builder;
 
 class StudentRepository
 {
@@ -32,6 +32,11 @@ class StudentRepository
     public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
+    }
+
+    public function index()
+    {
+        return $this->load(Student::query())->paginate(Settings::STUDENT_LOAD_LIMIT);
     }
 
     public function store(StudentRequest $request)
@@ -92,7 +97,9 @@ class StudentRepository
 //        };
 
         if($object instanceof Student) {
-            $object->user = $this->userRepository->load($object->user);
+            $object->load(['user']);
+        } elseif ($object instanceof Builder) {
+            return $object->with(['user']);
         }
 
         return $object;

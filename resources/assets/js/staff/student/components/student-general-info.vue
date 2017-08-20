@@ -161,7 +161,7 @@
         computed: {
             profile_picture: function () {
                 if (this.student && this.student.user.profile_picture) {
-                    return this.student.user.profile_picture;
+                    return window.default_values.storage_base_url + this.student.user.profile_picture;
                 } else {
                     return window.default_values.defaults.dp;
                 }

@@ -15,6 +15,7 @@ try {
 } catch (e) {}
 
 window.default_values = {
+    storage_base_url: "https://storage.dev.komakyar.mohammad.inpin.co/",
     logos: {
         telegram: '/images/logos/telegram.png',
         instageam: '/images/logos/instagram.png'
