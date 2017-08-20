@@ -40,7 +40,7 @@ class ParentRequest extends FormRequest
                         'string',
                         'email',
                         'max:255',
-                        Rule::unique('users','email')->whereNotNull('users.email')
+                        Rule::unique('users', 'email')->whereNotNull('users.email')
                     ],
                     'user.national_code' => 'required|unique:users,national_code',
                     'user.description' => 'string|max:65535',
@@ -51,23 +51,23 @@ class ParentRequest extends FormRequest
                 ];
             case 'PUT':
             case 'PATCH':
-            return [
-                'user.first_name' => 'required|string|between:3,255',
-                'user.surname' => 'required|string|between:3,255',
-                'user.password' => 'filled|same:user.password_confirm|between:6,255|string',
-                'user.password_confirm' => 'filled|same:user.password_confirm|between:6,255|string',
-                'user.email' => [
-                    'email',
-                    'max:255',
-                    Rule::unique('users','email')->whereNotNull('users.email')->ignore($this->parent->user->id)
-                ],
-                'user.national_code' => 'required|unique:users,national_code,' . $this->parent->user->id,
-                'user.description' => 'max:65535',
+                return [
+                    'user.first_name' => 'required|string|between:3,255',
+                    'user.surname' => 'required|string|between:3,255',
+                    'user.password' => 'filled|same:user.password_confirm|between:6,255|string',
+                    'user.password_confirm' => 'filled|same:user.password|between:6,255|string',
+                    'user.email' => [
+                        'email',
+                        'max:255',
+                        Rule::unique('users', 'email')->whereNotNull('users.email')->ignore($this->parent->user->id)
+                    ],
+                    'user.national_code' => 'required|unique:users,national_code,' . $this->parent->user->id,
+                    'user.description' => 'max:65535',
 
-                'relative' => 'required|in:' . KomakyarHelper::stringifyArrayForValidation(StudentParent::RELATIVES),
-                'mobile_1' => 'required|max:20',
-                'mobile_2' => 'max:20',
-            ];
+                    'relative' => 'required|in:' . implode(',', StudentParent::RELATIVES),
+                    'mobile_1' => 'required|max:20',
+                    'mobile_2' => 'max:20',
+                ];
         }
 
 

@@ -9,10 +9,14 @@
 namespace App\Repositories\Staff\User\Student;
 
 
+use App\Http\Requests\General\DisplayPictureRequest;
+use App\Http\Requests\Staff\Student\ChangePasswordRequest;
 use App\Http\Requests\Staff\Student\StudentRequest;
 use App\Models\User\Student;
 use App\Repositories\Staff\User\UserRepository;
+use App\Tools\FileHelper;
 use App\Tools\Settings;
+use Illuminate\Support\Facades\Storage;
 
 class StudentRepository
 {
@@ -55,7 +59,10 @@ class StudentRepository
 
     public function update(StudentRequest $request, Student $student)
     {
-        return $student;
+        $this->fill($request->all(), $student)->save();
+        $this->userRepository->fill($request->user, $student->user)->save();
+
+        return $this->load($student);
     }
 
     public function destroy(Student $student)
@@ -85,11 +92,26 @@ class StudentRepository
 //        };
 
         if($object instanceof Student) {
-            return $object->load([
-                'user',
-            ]);
+            $object->user = $this->userRepository->load($object->user);
         }
 
         return $object;
+    }
+
+    public function uploadDisplayPicture(DisplayPictureRequest $request, Student $student)
+    {
+        $new_dp_path = FileHelper::store($request->file('file'), 'file.images.user.profile_picture.path');
+
+        $user = $student->user;
+        FileHelper::delete($user->profile_picture);
+        $user->profile_picture = $new_dp_path;
+        $user->save();
+
+        return ['url' => FileHelper::downloadFileURL($user->profile_picture)];
+    }
+
+    public function changePassword(ChangePasswordRequest $request, Student $student)
+    {
+        return $this->userRepository->fill($request->all(), $student->user)->save();
     }
 }

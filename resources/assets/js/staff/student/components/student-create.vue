@@ -11,7 +11,8 @@
                         <div class="form-group">
                             <label for="input-name" class="col-sm-2 col-md-4 control-label">نام</label>
                             <div class="col-sm-10 col-md-8">
-                                <input class="form-control" id="input-name" placeholder="محمد" v-model="student.user.first_name">
+                                <input class="form-control" id="input-name" placeholder="محمد"
+                                       v-model="student.user.first_name">
                             </div>
                         </div>
                     </div>
@@ -19,7 +20,8 @@
                         <div class="form-group">
                             <label for="input-surname" class="col-sm-2 col-md-4 control-label">نام خانوادگی</label>
                             <div class="col-sm-10 col-md-8">
-                                <input class="form-control" id="input-surname" placeholder="احمدی" v-model="student.user.surname">
+                                <input class="form-control" id="input-surname" placeholder="احمدی"
+                                       v-model="student.user.surname">
                             </div>
                         </div>
                     </div>
@@ -27,7 +29,8 @@
                         <div class="form-group">
                             <label for="input-national-code" class="col-sm-2 col-md-4 control-label">کد ملی</label>
                             <div class="col-sm-10 col-md-8">
-                                <input type="number" class="form-control" id="input-national-code" placeholder="0012345678" v-model="student.user.national_code">
+                                <input type="number" class="form-control" id="input-national-code"
+                                       placeholder="0012345678" v-model="student.user.national_code">
                             </div>
                         </div>
                     </div>
@@ -35,7 +38,8 @@
                         <div class="form-group">
                             <label for="input-email" class="col-sm-2 col-md-4 control-label">ایمیل</label>
                             <div class="col-sm-10 col-md-8">
-                                <input type="email" class="form-control" id="input-email" placeholder="m.ahmadi@school.com" v-model="student.user.email">
+                                <input type="email" class="form-control" id="input-email"
+                                       placeholder="m.ahmadi@school.com" v-model="student.user.email">
                             </div>
                         </div>
                     </div>
@@ -43,23 +47,28 @@
                         <div class="form-group">
                             <label for="input-password" class="col-sm-2 col-md-4 control-label">رمز عبور</label>
                             <div class="col-sm-10 col-md-8">
-                                <input type="password" class="form-control" id="input-password" placeholder="Password" v-model="student.user.password">
+                                <input type="password" class="form-control" id="input-password" placeholder="Password"
+                                       v-model="student.user.password">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="input-password-confirm" class="col-sm-2 col-md-4 control-label">تکرار رمز عبور</label>
+                            <label for="input-password-confirm"
+                                   class="col-sm-2 col-md-4 control-label">تکرار رمز عبور</label>
                             <div class="col-sm-10 col-md-8">
-                                <input type="password" class="form-control" id="input-password-confirm" placeholder="Password" v-model="student.user.password_confirm">
+                                <input type="password" class="form-control" id="input-password-confirm"
+                                       placeholder="Password" v-model="student.user.password_confirm">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="input-student-code" class="col-sm-2 col-md-4 control-label">کد دانش آموزی</label>
+                            <label for="input-student-code"
+                                   class="col-sm-2 col-md-4 control-label">کد دانش آموزی</label>
                             <div class="col-sm-10 col-md-8">
-                                <input type="number" class="form-control" id="input-student-code" placeholder="14567829734234" v-model="student.student_code">
+                                <input type="number" class="form-control" id="input-student-code"
+                                       placeholder="14567829734234" v-model="student.student_code">
                             </div>
                         </div>
                     </div>
@@ -67,7 +76,8 @@
                         <div class="form-group">
                             <label for="input-date-of-birth" class="col-sm-2 col-md-4 control-label">تاریخ تولد</label>
                             <div class="col-sm-10 col-md-8">
-                                <input class="form-control" id="input-date-of-birth" placeholder="1380/05/06" style="direction: ltr" v-model="student.date_of_birth_per">
+                                <input class="form-control" id="input-date-of-birth" placeholder="1380/05/06"
+                                       style="direction: ltr" v-model="student.date_of_birth_per"><span id="sp"></span>
                             </div>
                         </div>
                     </div>
@@ -75,7 +85,8 @@
                         <div class="form-group">
                             <label for="input-phone-number" class="col-sm-2 col-md-4 control-label">تلفن تماس</label>
                             <div class="col-sm-10 col-md-8">
-                                <input type="number" class="form-control" id="input-phone-number" placeholder="88229231" v-model="student.phone">
+                                <input type="number" class="form-control" id="input-phone-number" placeholder="88229231"
+                                       v-model="student.phone">
                             </div>
                         </div>
                     </div>
@@ -83,7 +94,8 @@
                         <div class="form-group">
                             <label for="input-mobile" class="col-sm-2 col-md-4 control-label">موبایل دانش آموز</label>
                             <div class="col-sm-10 col-md-8">
-                                <input type="number" class="form-control" id="input-mobile" placeholder="09121234567" v-model="student.mobile">
+                                <input type="number" class="form-control" id="input-mobile" placeholder="09121234567"
+                                       v-model="student.mobile">
                             </div>
                         </div>
                     </div>
@@ -91,7 +103,8 @@
                         <div class="form-group">
                             <label for="input-address" class="col-sm-2 control-label">آدرس</label>
                             <div class="col-sm-10">
-                                <input class="form-control" id="input-address" placeholder="تهران خیبان شریعتی ..." v-model="student.address">
+                                <input class="form-control" id="input-address" placeholder="تهران خیبان شریعتی ..."
+                                       v-model="student.address">
                             </div>
                         </div>
                     </div>
@@ -99,7 +112,9 @@
                         <div class="form-group">
                             <label for="input-description" class="col-sm-2 control-label">توضیحات</label>
                             <div class="col-sm-10">
-                                <input class="form-control" id="input-description" placeholder="توضیحات تکمیلی در مورد دانش آموز مثل اینکه ایشان در سال گذشته شاگرد ممتاز بوده اند" v-model="student.user.description">
+                                <input class="form-control" id="input-description"
+                                       placeholder="توضیحات تکمیلی در مورد دانش آموز مثل اینکه ایشان در سال گذشته شاگرد ممتاز بوده اند"
+                                       v-model="student.user.description">
                             </div>
                         </div>
                     </div>
@@ -143,13 +158,9 @@
             }
         },
 
-        created: function() {
-            $(document).ready(function() {
-                $('#input-date-of-birth').pDatepicker({
-                    format : "YYYY-MM-DD",
-                    viewMode : "year"
-                });
-            });
+        mounted: function () {
+            console.log('here');
+            $('#input-date-of-birth').persianDatepicker()
         },
 
         methods: {
@@ -157,7 +168,7 @@
                 console.log("mounted");
             },
 
-            btnSaveClicked: function(){
+            btnSaveClicked: function () {
                 this.$Progress.start();
                 this.errors = {};
                 axios.post(route('staff.student.store'), removeNulls(this.student, true))
@@ -165,14 +176,14 @@
                     .catch(this.onError);
             },
 
-            onStoreSuccess: function(response) {
+            onStoreSuccess: function (response) {
                 console.log('success');
                 this.$Progress.finish();
             },
 
             onError(error) {
                 this.$Progress.fail();
-                if(error.response.status === 422) {
+                if (error.response.status === 422) {
                     this.errors = error.response.data;
                 } else {
                     alert("Oops, Something went wrong!!!");

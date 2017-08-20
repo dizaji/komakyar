@@ -12,7 +12,7 @@ return [
                 'path' => 'image/user/cover-photo',
                 'max_size' => 1024,
             ],
-            'display_picture' => [
+            'profile_picture' => [
                 'path' => 'image/user/display-picture',
                 'max_size' => 1024,
             ]

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Staff\Student;
 
+use App\Http\Requests\General\DisplayPictureRequest;
+use App\Http\Requests\Staff\Student\ChangePasswordRequest;
 use App\Http\Requests\Staff\Student\StudentRequest;
 use App\Models\User\Student;
 use App\Repositories\Staff\User\Student\StudentRepository;
+use App\Tools\FileHelper;
 use App\Tools\HttpResponse;
 use App\Tools\JsonResponse;
 use Illuminate\Http\Request;
@@ -94,7 +97,7 @@ class StudentController extends Controller
      */
     public function update(StudentRequest $request, Student $student)
     {
-        return JsonResponse::successMessage(HttpResponse::OK, $this->studentRepository->update($request, $student));
+        return JsonResponse::successObject(HttpResponse::OK, $this->studentRepository->update($request, $student));
     }
 
     /**
@@ -106,5 +109,17 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         return JsonResponse::successMessage(HttpResponse::OK, $this->studentRepository->destroy($student));
+    }
+
+    public function uploadDisplayPicture(DisplayPictureRequest $request, Student $student)
+    {
+        return JsonResponse::successObject(HttpResponse::OK, $this->studentRepository->uploadDisplayPicture($request, $student));
+    }
+
+    public function changePassword(ChangePasswordRequest $request, Student $student)
+    {
+        $this->studentRepository->changePassword($request, $student);
+
+        return JsonResponse::successMessage(HttpResponse::OK, "Password has been changed successfully");
     }
 }

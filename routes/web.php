@@ -18,6 +18,8 @@ Route::group(['prefix' => 'staff', 'as' => 'staff.', 'namespace' => 'Staff', 'mi
     Route::group(['prefix' => 'student', 'as' => 'student.', 'namespace' => 'Student'], function () {
         Route::group(['prefix' => '{student}'], function () {
             Route::resource('parent', 'ParentController', ['except' => ['create', 'edit', 'show']]);
+            Route::post('upload-display-picture', 'StudentController@uploadDisplayPicture')->name('upload-display-picture');
+            Route::post('change-password', 'StudentController@changePassword')->name('change-password');
         });
         Route::resource('', 'StudentController', ['parameters' => ['' => 'student']]);
     });

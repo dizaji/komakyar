@@ -10,9 +10,6 @@ require('./bootstrap');
 window.Vue = require('vue');
 window.VueProgressBar  = require('vue-progressbar');
 window.jmoment = require('moment-jalaali');
-require('persian-date/dist/0.1.8b/persian-date-0.1.8b.min');
-require('persian-datepicker/dist/js/persian-datepicker-0.4.5.min');
-require('persian-datepicker/dist/css/persian-datepicker-0.4.5.min.css');
 
 const options = {
     // color: '#00ff00',
@@ -32,7 +29,11 @@ Vue.use(VueProgressBar, options);
 
 Vue.component('validation-errors-alert', require('./components/common/validation_errors-alert.vue'));
 Vue.component('confirm-delete-modal', require('./components/common/modals/confirm-delete-modal.vue'));
+Vue.component('dropzone-uploader', require('./components/common/dropzone-uploader.vue'));
+Vue.component('persian-date-picker', require('./components/common/persian-date-picker.vue'));
 Vue.component('pagination', require('laravel-vue-pagination'));
+
+Vue.filter('persianDate', require('./filters/persian-date.js'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

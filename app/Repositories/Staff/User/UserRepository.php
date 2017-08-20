@@ -9,6 +9,7 @@
 namespace App\Repositories\Staff\User;
 
 
+use App\Tools\FileHelper;
 use App\User;
 
 class UserRepository
@@ -33,5 +34,12 @@ class UserRepository
         }
 
         return $object;
+    }
+
+    public function load($user)
+    {
+        if($user instanceof $user){
+            $user->profile_picture = FileHelper::downloadFileURL($user->profile_picture);
+        }
     }
 }
