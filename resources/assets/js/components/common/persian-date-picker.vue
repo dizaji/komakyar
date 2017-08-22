@@ -7,21 +7,21 @@
                 </option>
             </select>
         </div>
-        <div class="col-xs-1"><span class="glyphicon glyphicon-minus"></span> </div>
+        <div class="col-xs-1"><span class="glyphicon glyphicon-minus"></span></div>
         <div class="col-xs-3">
-        <select v-model="date.month" class="form-control" style="width: initial; padding: 0 2px; height: 25px">
-            <option v-for="month in 12" :value="month">
-                {{ month }}
-            </option>
-        </select>
+            <select v-model="date.month" class="form-control" style="width: initial; padding: 0 2px; height: 25px">
+                <option v-for="month in 12" :value="month">
+                    {{ month }}
+                </option>
+            </select>
         </div>
-        <div class="col-xs-1"><span class="glyphicon glyphicon-minus"></span> </div>
+        <div class="col-xs-1"><span class="glyphicon glyphicon-minus"></span></div>
         <div class="col-xs-3">
-        <select v-model="date.year" class="form-control" style="width: initial; padding: 0 2px; height: 25px">
-            <option v-for="year in 80" :value="year+1320">
-                {{ year + 1320 }}
-            </option>
-        </select>
+            <select v-model="date.year" class="form-control" style="width: initial; padding: 0 2px; height: 25px">
+                <option v-for="year in 80" :value="year+1320">
+                    {{ year + 1320 }}
+                </option>
+            </select>
         </div>
     </div>
 </template>
