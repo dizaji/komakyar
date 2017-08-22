@@ -18,7 +18,7 @@
         <div class="col-xs-1"><span class="glyphicon glyphicon-minus"></span> </div>
         <div class="col-xs-3">
         <select v-model="date.year" class="form-control" style="width: initial; padding: 0 2px; height: 25px">
-            <option v-for="year in 80" :value="year+1320" v-on:change="change">
+            <option v-for="year in 80" :value="year+1320">
                 {{ year + 1320 }}
             </option>
         </select>
@@ -51,10 +51,5 @@
                 deep: true
             }
         },
-        methods: {
-            change() {
-                console.log('here');
-            }
-        }
     }
 </script>

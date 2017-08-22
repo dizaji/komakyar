@@ -3,7 +3,14 @@
         <div class="row">
             <div class="col-md-12 float-none">
                 <div class="panel panel-default">
-                    <div class="panel-heading">لیست دانش آموزان</div>
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6"> لیست دانش آموزان</div>
+                            <div class="col-xs-6 text-left">
+                                <student-create></student-create>
+                            </div>
+                        </div>
+                    </div>
                     <div class="panel-body">
                         <template v-if="students">
                             <template v-for="student in students.data" >
@@ -23,6 +30,7 @@
 </template>
 <script>
     import StudentCard from './student-card.vue'
+    import StudentCreate from './student-create.vue'
     export default{
         data(){
             return{
@@ -32,6 +40,7 @@
         },
         components:{
             'student-card': StudentCard,
+            'student-create': StudentCreate,
         },
         created: function () {
             this.loadData();

@@ -182,6 +182,7 @@
         },
         methods: {
             btnUpdateClicked: function () {
+                this.$Progress.start();
                 axios.put(route('staff.student.update', {student: this.student.id}), this.editable_student)
                     .then(this.onUpdateSuccess)
                     .catch(this.onUpdateError)
@@ -189,7 +190,6 @@
             onUpdateSuccess: function (response) {
                 this.errors = {};
                 this.mode = 'show';
-
                 $.extend(true, this.student, response.data);
                 this.$Progress.finish();
             },

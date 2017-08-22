@@ -49,7 +49,7 @@ class StudentRepository
         $user->save();
         $user->student()->save($student);
 
-        return $student;
+        return $this->load($student);
     }
 
     public function show(Student $student)
