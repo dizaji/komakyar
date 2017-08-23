@@ -74,64 +74,76 @@ class LevelFieldTableSeeder extends Seeder
             'level_id' => $seventh->id,
             'field_id' => $general->id,
             'parent_id' => $sixth_general->id,
+            'is_visible' => true,
         ]);
         $eighth_general = \App\Models\LevelField::create([
             'level_id' => $eighth->id,
             'field_id' => $general->id,
             'parent_id' => $seventh_general->id,
+            'is_visible' => true,
         ]);
         $ninth_general = \App\Models\LevelField::create([
             'level_id' => $ninth->id,
             'field_id' => $general->id,
             'parent_id' => $eighth_general->id,
+            'is_visible' => true,
         ]);
 
         $tenth_math = \App\Models\LevelField::create([
             'level_id' => $tenth->id,
             'field_id' => $math->id,
             'parent_id' => $ninth_general->id,
+            'is_visible' => true,
         ]);
         $tenth_science = \App\Models\LevelField::create([
             'level_id' => $tenth->id,
             'field_id' => $science->id,
             'parent_id' => $ninth_general->id,
+            'is_visible' => true,
         ]);
         $tenth_humanithies = \App\Models\LevelField::create([
             'level_id' => $tenth->id,
             'field_id' => $humanities->id,
             'parent_id' => $ninth_general->id,
+            'is_visible' => true,
         ]);
 
         $eleventh_math = \App\Models\LevelField::create([
             'level_id' => $eleventh->id,
             'field_id' => $math->id,
             'parent_id' => $tenth_math->id,
+            'is_visible' => true,
         ]);
         $eleventh_science = \App\Models\LevelField::create([
             'level_id' => $eleventh->id,
             'field_id' => $science->id,
             'parent_id' => $tenth_science->id,
+            'is_visible' => true,
         ]);
         $eleventh_humanithies = \App\Models\LevelField::create([
             'level_id' => $eleventh->id,
             'field_id' => $humanities->id,
             'parent_id' => $tenth_humanithies->id,
+            'is_visible' => true,
         ]);
 
         $twelfth_math = \App\Models\LevelField::create([
             'level_id' => $twelfth->id,
             'field_id' => $math->id,
             'parent_id' => $eleventh_math->id,
+            'is_visible' => true,
         ]);
         $twelfth_science = \App\Models\LevelField::create([
             'level_id' => $twelfth->id,
             'field_id' => $science->id,
             'parent_id' => $eleventh_science->id,
+            'is_visible' => true,
         ]);
         $twelfth_humanithies = \App\Models\LevelField::create([
             'level_id' => $twelfth->id,
             'field_id' => $humanities->id,
             'parent_id' => $eleventh_humanithies->id,
+            'is_visible' => true,
         ]);
     }
 }

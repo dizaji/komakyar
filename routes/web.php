@@ -23,6 +23,15 @@ Route::group(['prefix' => 'staff', 'as' => 'staff.', 'namespace' => 'Staff', 'mi
         });
         Route::resource('', 'StudentController', ['parameters' => ['' => 'student']]);
     });
+
+    Route::group(['prefix' => 'lookup', 'as'=>'lookup.', 'namespace' => 'Lookup'], function (){
+        Route::resource('academic-year', 'AcademicYearController', ['parameters' => ['academic-year' => 'year'], 'only' => ['index', 'show']]);
+        Route::group(['prefix' => 'level-field', 'as'=>'level-field.', 'namespace' => 'LevelField'], function () {
+            Route::resource('level', 'LevelController', ['only' => ['index', 'show']]);
+            Route::resource('field', 'FieldController', ['only' => ['index', 'show']]);
+            Route::resource('', 'LevelFieldController', ['parameters' => ['' => 'levelField'], 'only' => ['index', 'show']]);
+        });
+    });
 });
 
 

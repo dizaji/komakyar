@@ -6,6 +6,8 @@ abstract class BaseRepository
 {
     protected $fillable = [];
 
+    public abstract function load($object);
+
     public function fill(array $array, $object, $fillable = [])
     {
         if(empty($fillable)) {

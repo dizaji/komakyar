@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateAcademicYearsTable extends Migration
 {
@@ -18,6 +18,7 @@ class CreateAcademicYearsTable extends Migration
             $table->timestamps();
             $table->unsignedSmallInteger('year');
             $table->string('title');
+            $table->boolean('is_selected')->default('false');
         });
     }
 

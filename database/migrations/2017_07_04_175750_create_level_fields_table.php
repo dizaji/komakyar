@@ -19,6 +19,7 @@ class CreateLevelFieldsTable extends Migration
             $table->unsignedInteger('level_id');
             $table->unsignedInteger('field_id');
             $table->unsignedInteger('parent_id')->nullable();
+            $table->boolean('is_visible')->default('false');
         });
 
         Schema::table('level_fields', function (Blueprint $table) {

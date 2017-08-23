@@ -24,7 +24,8 @@ class AcademicYearTableSeeder extends Seeder
     {
         \App\Models\AcademicYear::create([
             'year' => 1396,
-            'title' => 'سال تحصیلی 1396-1397'
+            'title' => 'سال تحصیلی 1396-1397',
+            'is_selected' => true,
         ]);
     }
 }
