@@ -2,6 +2,6 @@
 
 @section('content')
     <div id="users-app">
-        <group-show></group-show>
+        <group-show id="{{ $group->id }}"></group-show>
     </div>
 @endsection

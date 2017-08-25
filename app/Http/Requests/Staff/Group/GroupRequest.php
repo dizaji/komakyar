@@ -10,9 +10,10 @@ class GroupRequest extends BaseRequest
     /**
      * Get the validation rules that apply to the post request.
      *
+     * @param string $prefix
      * @return array
      */
-    public function postRules()
+    public function postRules($prefix = '')
     {
         return [
             'title' => 'required|alpha_number_spaces',

@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="group">
         <div class="row">
             <div class="col-md-12 float-none">
                 <div class="panel panel-default">
@@ -16,49 +16,76 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="panel-body">
-                        <div class="form-horizontal">
-                            <div class="col-xs-6">
-                                <div class="form-group">
-                                    <label class="col-lg-6 col-sm-6 control-label">رشته / پایه</label>
-                                    <div class="col-lg-6 col-sm-6">
-                                        <p class="form-control-static">ریاضی / سوم دبیرستان</p>
-                                    </div>
+                        <div class="panel-body">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#general"
+                                       aria-controls="general"
+                                       role="tab"
+                                       data-toggle="tab">اطلاعات کلی</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#parents"
+                                       aria-controls="parents"
+                                       role="tab"
+                                       data-toggle="tab">
+                                       <!--v-on:click="$refs.students_list.loadData()">-->دانش آموزان</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="general">
+                                    <group-general-info :group="group"></group-general-info>
                                 </div>
-                            </div>
-                            <div class="col-xs-6">
-                                <div class="form-group">
-                                    <label class="col-lg-6 col-sm-6 control-label">دانش آموزان</label>
-                                    <div class="col-lg-6 col-sm-6">
-                                        <p class="form-control-static">20 نفر</p>
-                                    </div>
+                                <div role="tabpanel" class="tab-pane fade" id="parents">
+                                    <!--<group-student-list :group="group" ref="students_list"></group-student-list>-->
                                 </div>
                             </div>
                         </div>
-                        <hr />
-                        <h3>دانش آموزان</h3>
-                        <student-card></student-card>
                     </div>
                 </div>
             </div>
         </div>
+        <vue-progress-bar></vue-progress-bar>
     </div>
 </template>
 <script>
-    import StudentCard from '../../student/components/student-card.vue'
+    import GeneralInfo from './group-general-info.vue'
+    import StudentList from './group-student-list.vue'
 
     export default {
 
-        props: ['initialGroups'],
+        props: ['id'],
 
         data() {
             return {
-                groups: null
+                group: null
             }
         },
         components: {
-            'student-card': StudentCard,
+            'group-general-info': GeneralInfo,
+            'group-student-list': StudentList,
+        },
+        mounted() {
+            this.load();
+        },
+        methods: {
+            load() {
+                this.$Progress.start();
+                axios.get(route('staff.group.show', {group: this.id}))
+                    .then(this.onLoadSuccess)
+                    .catch(this.onError);
+            },
+            onLoadSuccess: function (response) {
+                this.group = response.data;
+                this.$Progress.finish();
+            },
+
+            onError: function (error) {
+                this.$Progress.fail();
+                alert("Oops, Something went wrong!!!");
+                console.log(error.response);
+            },
         }
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Staff\Group;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Staff\Group\GroupRequest;
+use App\Models\Education\Group\Group;
 use App\Repositories\Staff\GroupRepository;
 use App\Tools\HttpResponse;
 use App\Tools\JsonResponse;
@@ -46,24 +47,28 @@ class GroupController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Group $group
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Group $group)
     {
-        return view('staff.group.show');
+        if(request()->expectsJson()) {
+            return JsonResponse::successObject(HttpResponse::OK, $this->groups->show($group));
+        } else {
+            return view('staff.group.show', ['group' => $group]);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param GroupRequest|Request $request
+     * @param Group $group
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(GroupRequest $request, Group $group)
     {
-        //
+        return JsonResponse::successObject(HttpResponse::OK, $this->groups->update($request, $group));
     }
 
     /**

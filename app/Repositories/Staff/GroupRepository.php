@@ -37,24 +37,32 @@ class GroupRepository extends BaseRepository
         return $this->load($group);
     }
 
+    public function show(Group $group)
+    {
+        return $this->load($group);
+    }
+
+    public function update(GroupRequest $request, Group $group)
+    {
+        $group = $this->fill($request->all(), $group);
+        $group->save();
+
+        return $this->load($group);
+    }
+
     public function load($object)
     {
-        $group_student_query = function ($query) {
-            $query->limit(30);
-            $query->with('student.user');
-        };
-
         if($object instanceof Group){
             $object->load([
                 'levelField.level',
                 'levelField.field',
-                'groupStudents' => $group_student_query
+                'academicYear',
             ]);
         } elseif ($object instanceof Builder) {
             $object->with([
                 'levelField.level',
                 'levelField.field',
-                'groupStudents' => $group_student_query
+                'academicYear',
             ]);
         } else {
             foreach ($object as $index=> $value){

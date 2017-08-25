@@ -10,12 +10,6 @@
         },
         methods: {
             loadAcademicYearsData: function () {
-                console.log("here");
-                console.log(this.$root.ac_loaded);
-                if(this.$root.ac_loaded === false) {
-                    alert(0);
-                }
-                this.$root.ac_loaded = true;
                 axios.get(route('staff.lookup.academic-year.index'))
                     .then(this.onLoadAcademicYearSuccess)
                     .catch(this.onLoadAcademicYear);
