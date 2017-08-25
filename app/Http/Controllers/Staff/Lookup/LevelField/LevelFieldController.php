@@ -26,7 +26,7 @@ class LevelFieldController extends Controller
     public function index()
     {
         if (request()->expectsJson()) {
-            return JsonResponse::successMessage(HttpResponse::OK, $this->levelFieldRepository->index());
+            return JsonResponse::successObject(HttpResponse::OK, $this->levelFieldRepository->index());
         } else {
             abort(HttpResponse::NOT_IMPLEMENTED);
         }
@@ -62,7 +62,7 @@ class LevelFieldController extends Controller
     public function show(LevelField $levelField)
     {
         if (request()->expectsJson()) {
-            return JsonResponse::successMessage(HttpResponse::OK, $this->levelFieldRepository->show($levelField));
+            return JsonResponse::successObject(HttpResponse::OK, $this->levelFieldRepository->show($levelField));
         } else {
             abort(HttpResponse::NOT_IMPLEMENTED);
         }

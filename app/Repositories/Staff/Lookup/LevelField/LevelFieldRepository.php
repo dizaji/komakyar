@@ -13,8 +13,8 @@ class LevelFieldRepository extends BaseRepository
     {
         return $this->load(
             LevelField::query()
-                ->where('is_visible', 'true')
-                ->orderBy('id', 'desc')
+                ->where('is_visible', true)
+//                ->orderBy('id', 'desc')
                 ->take(Settings::LOAD_UNLIMIT)
         )->get();
     }
