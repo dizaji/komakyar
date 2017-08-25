@@ -37,16 +37,18 @@
             </div>
         </div>
         <div class="row" v-if="mode === 'edit'">
-            <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-level-field">پایه / رشته</label>
-                <div class="col-sm-10">
-                    <select class="form-control"
-                            id="input-level-field"
-                            v-model="editable_group.level_field_id">
-                        <option v-for="level_field in level_fields" :value="level_field.id">
-                            {{ level_field.level.title }} / {{ level_field.field.title }}
-                        </option>
-                    </select>
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-level-field">پایه / رشته</label>
+                    <div class="col-sm-10">
+                        <select class="form-control"
+                                id="input-level-field"
+                                v-model="editable_group.level_field_id">
+                            <option v-for="level_field in level_fields" :value="level_field.id">
+                                {{ level_field.level.title }} / {{ level_field.field.title }}
+                            </option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
