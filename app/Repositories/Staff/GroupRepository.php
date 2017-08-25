@@ -9,50 +9,59 @@
 namespace App\Repositories\Staff;
 
 
+use App\Http\Requests\Staff\Group\GroupRequest;
 use App\Models\Education\Group\Group;
+use App\Repositories\BaseRepository;
 use App\Tools\Settings;
 use Illuminate\Database\Eloquent\Builder;
 
-class GroupRepository
+class GroupRepository extends BaseRepository
 {
-    public function index($window_size = Settings::PAGINATION_LIMIT_STAFF)
+    protected $fillable = [
+        'title',
+        'academic_year_id',
+        'level_field_id',
+    ];
+
+    public function index($window_size = Settings::GROUP_LIMIT)
     {
         $group_query = Group::query();
         return $this->load($group_query)->paginate($window_size);
     }
 
-    public function load($group)
+    public function store(GroupRequest $request)
+    {
+        $group = $this->fill($request->all(), new Group());
+        $group->save();
+
+        return $this->load($group);
+    }
+
+    public function load($object)
     {
         $group_student_query = function ($query) {
             $query->limit(30);
             $query->with('student.user');
         };
 
-        if($group instanceof Group){
-            $group->load([
+        if($object instanceof Group){
+            $object->load([
                 'levelField.level',
                 'levelField.field',
                 'groupStudents' => $group_student_query
             ]);
-        } elseif ($group instanceof Builder) {
-            $group->with([
+        } elseif ($object instanceof Builder) {
+            $object->with([
                 'levelField.level',
                 'levelField.field',
                 'groupStudents' => $group_student_query
             ]);
         } else {
-            foreach ($group as $index=>$value){
-                $group[$index] = $this->load($value);
+            foreach ($object as $index=> $value){
+                $object[$index] = $this->load($value);
             }
         }
 
-        return $group;
-    }
-
-    protected function getLoadArray()
-    {
-
-
-        return ;
+        return $object;
     }
 }

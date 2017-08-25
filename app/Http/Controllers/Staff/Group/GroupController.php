@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Staff\Group;
 
-use App\Models\Education\Group\Group;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Staff\Group\GroupRequest;
 use App\Repositories\Staff\GroupRepository;
 use App\Tools\HttpResponse;
 use App\Tools\JsonResponse;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class GroupController extends Controller
 {
@@ -33,24 +33,14 @@ class GroupController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param GroupRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GroupRequest $request)
     {
-        //
+        return JsonResponse::successObject(HttpResponse::CREATED, $this->groups->store($request));
     }
 
     /**
@@ -62,17 +52,6 @@ class GroupController extends Controller
     public function show($id)
     {
         return view('staff.group.show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**

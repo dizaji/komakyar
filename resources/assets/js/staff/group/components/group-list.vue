@@ -1,32 +1,52 @@
 <template>
-    <div class="container" v-if="groups">
+    <div class="container">
         <div class="row">
             <div class="col-md-12 float-none">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Dashboard</div>
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-6">گروه ها</div>
+                            <div class="col-xs-6 text-left">
+                                <group-create v-on:created="groupCreated"></group-create>
+                            </div>
+                        </div>
+                    </div>
                         <div>
 
                         </div>
                     <div class="panel-body">
-                        <template v-for="group in groups.data" >
-                            <group-card :group="group"></group-card>
+                        <template  v-if="groups">
+                            <template v-for="group in groups.data" >
+                                <group-card :group="group"></group-card>
+                            </template>
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    <pagination :data="groups" v-on:pagination-change-page="loadData"></pagination>
+                                </div>
+                            </div>
                         </template>
                     </div>
                 </div>
             </div>
         </div>
+        <vue-progress-bar></vue-progress-bar>
     </div>
 </template>
 <script>
     import GroupCard from './group-card.vue'
+    import GroupCreate from './group-create.vue'
     export default{
         data(){
             return{
-                groups: null,
+                groups: {
+                    data: []
+                },
             }
         },
         components:{
+            GroupCreate,
             'group-card': GroupCard,
+            'group-create': GroupCreate,
         },
         created(){
             this.loadData();
@@ -63,6 +83,10 @@
                 this.$Progress.fail();
                 console.log(error);
 
+            },
+
+            groupCreated: function (group) {
+                this.groups.data.unshift(group);
             }
         }
     }
