@@ -41,6 +41,7 @@
                 groups: {
                     data: []
                 },
+                current_page: 1,
             }
         },
         components:{

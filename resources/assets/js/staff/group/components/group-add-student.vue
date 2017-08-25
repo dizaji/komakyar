@@ -74,6 +74,11 @@
                             </template>
                             </tbody>
                         </table>
+                        <div class="row" v-if="students">
+                            <div class="col-xs-12 text-center">
+                                <pagination :data="students" v-on:pagination-change-page="loadData"></pagination>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-default" data-dismiss="modal">انصراف</button>
@@ -95,13 +100,13 @@
                     national_code: '',
                     all: true,
                 },
-                students: null
+                students: null,
+                current_page: 1,
             }
         },
         watch: {
             search: {
                 handler: function (newSearch) {
-                    console.log("here");
                     this.searchChanged();
                 },
                 deep: true
@@ -109,18 +114,27 @@
         },
         methods: {
             searchChanged: _.debounce(
-                function () {
-                    this.$Progress.start();
-                    this.errors = {};
-
-                    axios.get(route('staff.group.student.index', {group: this.group.id}), {
-                        params: this.search
-                    })
-                        .then(this.onLoadSuccess)
-                        .catch(this.onLoadError);
+                function(){
+                    this.loadData();
                 },
                 500
             ),
+            loadData: function (page) {
+                this.$Progress.start();
+                this.errors = {};
+
+                if (typeof page === 'undefined') {
+                    page = this.current_page;
+                } else {
+                    this.current_page = page;
+                }
+
+                axios.get(route('staff.group.student.index', {group: this.group.id}), {
+                    params: Object.assign(this.search, {page: page})
+                })
+                    .then(this.onLoadSuccess)
+                    .catch(this.onLoadError);
+            },
             onLoadSuccess: function (response) {
                 this.students = response.data;
                 this.$Progress.finish();
@@ -135,7 +149,7 @@
                 console.log(error.response);
             },
             showModal: function () {
-                this.searchChanged();
+                this.loadData();
                 $(this.$refs.create_group_modal).modal('show');
             },
             hideModal: function () {
