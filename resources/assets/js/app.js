@@ -29,6 +29,7 @@ Vue.use(VueProgressBar, options);
 
 Vue.component('validation-errors-alert', require('./components/common/validation_errors-alert.vue'));
 Vue.component('confirm-delete-modal', require('./components/common/modals/confirm-delete-modal.vue'));
+Vue.component('edit-update-delete-buttons', require('./components/common/edit-update-delete-buttons.vue'));
 Vue.component('dropzone-uploader', require('./components/common/dropzone-uploader.vue'));
 Vue.component('persian-date-picker', require('./components/common/persian-date-picker.vue'));
 Vue.component('pagination', require('laravel-vue-pagination'));
