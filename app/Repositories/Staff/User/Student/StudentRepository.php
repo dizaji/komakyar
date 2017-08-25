@@ -13,12 +13,13 @@ use App\Http\Requests\General\DisplayPictureRequest;
 use App\Http\Requests\Staff\Student\ChangePasswordRequest;
 use App\Http\Requests\Staff\Student\StudentRequest;
 use App\Models\User\Student;
+use App\Repositories\BaseRepository;
 use App\Repositories\Staff\User\UserRepository;
 use App\Tools\FileHelper;
 use App\Tools\Settings;
 use Illuminate\Database\Eloquent\Builder;
 
-class StudentRepository
+class StudentRepository extends BaseRepository
 {
     protected $userRepository;
     protected $fillable = [
@@ -41,7 +42,7 @@ class StudentRepository
 
     public function store(StudentRequest $request)
     {
-        $student = $this->fill($request->all());
+        $student = $this->fill($request->all(), new Student());
         $user = $this->userRepository->fill($request->user);
 
         $user->is_student = true;
@@ -57,11 +58,6 @@ class StudentRepository
         return $this->load($student);
     }
 
-    public function edit(Student $student)
-    {
-        return $this->show($student);
-    }
-
     public function update(StudentRequest $request, Student $student)
     {
         $this->fill($request->all(), $student)->save();
@@ -73,17 +69,6 @@ class StudentRepository
     public function destroy(Student $student)
     {
         return true;
-    }
-
-    public function fill($array, $object = null)
-    {
-        if(is_null($object)){
-            $object = (new Student());
-        }
-
-        $object->fillable($this->fillable)->fill($array);
-
-        return $object;
     }
 
     public function load($object)
