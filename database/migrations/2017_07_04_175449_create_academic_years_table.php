@@ -18,7 +18,7 @@ class CreateAcademicYearsTable extends Migration
             $table->timestamps();
             $table->unsignedSmallInteger('year');
             $table->string('title');
-            $table->boolean('is_selected')->default('false');
+            $table->boolean('is_selected')->default(false);
         });
     }
 
