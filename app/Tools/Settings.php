@@ -23,4 +23,5 @@ class Settings
     const PARENT_LIMIT = self::LOAD_LIMIT;
     const GROUP_STUDENT_LIMIT = self::LOAD_LIMIT;
     const STUDENT_LOAD_LIMIT = self::LOAD_LIMIT;
+    const GROUP_LIMIT = self::LOAD_LIMIT;
 }
