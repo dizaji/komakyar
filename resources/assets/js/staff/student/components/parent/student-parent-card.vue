@@ -239,14 +239,14 @@
 
                 axios.delete(route('staff.student.parent.destroy', {student: this.student.id, parent: this.parent.id}))
                     .then(this.onDeleteSuccess)
-                    .catch(this.onError);
+                    .catch(this.onLoadError);
             },
             onDeleteSuccess: function (response) {
                 this.$Progress.finish();
                 this.deleted = true;
                 this.$emit('delete');
             },
-            onError(error) {
+            onLoadError(error) {
                 this.$Progress.fail();
                 alert("Oops, Something went wrong!!!");
                 console.log(error.response);

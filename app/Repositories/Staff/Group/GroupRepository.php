@@ -6,7 +6,7 @@
  * Time: 12:17 AM
  */
 
-namespace App\Repositories\Staff;
+namespace App\Repositories\Staff\Group;
 
 
 use App\Http\Requests\Staff\Group\GroupRequest;
@@ -23,7 +23,7 @@ class GroupRepository extends BaseRepository
         'level_field_id',
     ];
 
-    public function index($window_size = Settings::GROUP_LIMIT)
+    public function index($window_size = Settings::PAGINATION_GROUP_LIMIT)
     {
         $group_query = Group::query();
         return $this->load($group_query)->paginate($window_size);

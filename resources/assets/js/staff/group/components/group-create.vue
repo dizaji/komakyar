@@ -88,7 +88,7 @@
                 this.errors = {};
                 axios.post(route('staff.group.store'), removeNulls(this.group, true))
                     .then(this.onStoreSuccess)
-                    .catch(this.onError);
+                    .catch(this.onLoadError);
             },
             onStoreSuccess: function (response) {
                 console.log('success');
@@ -98,7 +98,7 @@
                 this.hideModal();
                 this.$Progress.finish();
             },
-            onError: function(error) {
+            onLoadError: function(error) {
                 this.$Progress.fail();
                 if (error.response.status === 422) {
                     this.errors = error.response.data;

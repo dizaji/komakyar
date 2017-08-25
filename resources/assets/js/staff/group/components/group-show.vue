@@ -38,7 +38,7 @@
                                     <group-general-info :group="group"></group-general-info>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="parents">
-                                    <!--<group-student-list :group="group" ref="students_list"></group-student-list>-->
+                                    <group-student-list :group="group" ref="students_list"></group-student-list>
                                 </div>
                             </div>
                         </div>
@@ -74,14 +74,14 @@
                 this.$Progress.start();
                 axios.get(route('staff.group.show', {group: this.id}))
                     .then(this.onLoadSuccess)
-                    .catch(this.onError);
+                    .catch(this.onLoadError);
             },
             onLoadSuccess: function (response) {
                 this.group = response.data;
                 this.$Progress.finish();
             },
 
-            onError: function (error) {
+            onLoadError: function (error) {
                 this.$Progress.fail();
                 alert("Oops, Something went wrong!!!");
                 console.log(error.response);

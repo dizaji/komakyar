@@ -43,7 +43,7 @@
                 this.$Progress.start();
                 axios.post(route('staff.student.change-password', {student: this.student.id}), this.user)
                     .then(this.onSuccess)
-                    .catch(this.onError);
+                    .catch(this.onLoadError);
 
             },
             onSuccess: function (response) {
@@ -51,7 +51,7 @@
                 this.reset();
             },
 
-            onError(error) {
+            onLoadError(error) {
                 this.$Progress.fail();
                 if (error.response.status === 422) {
                     this.errors = error.response.data;

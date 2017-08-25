@@ -22,4 +22,9 @@ class Student extends Model
     {
         return $this->hasMany('App\Models\Education\Group\GroupStudent', 'student_id', 'id');
     }
+
+    public function groups()
+    {
+        return $this->belongsToMany('App\Models\Education\Group\Group', 'education_group_students', 'student_id', 'group_id');
+    }
 }

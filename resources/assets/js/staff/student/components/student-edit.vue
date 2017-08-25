@@ -70,7 +70,7 @@
                 this.$Progress.start();
                 axios.get(route('staff.student.edit', {student: this.id}))
                     .then(this.onLoadSuccess)
-                    .catch(this.onError);
+                    .catch(this.onLoadError);
             },
 
             onLoadSuccess: function (response) {
@@ -78,7 +78,7 @@
                 this.$Progress.finish();
             },
 
-            onError: function (error) {
+            onLoadError: function (error) {
                 this.$Progress.fail();
                 alert("Oops, Something went wrong!!!");
                 console.log(error.response);

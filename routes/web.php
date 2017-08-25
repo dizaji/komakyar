@@ -13,6 +13,12 @@
 
 Route::group(['prefix' => 'staff', 'as' => 'staff.', 'namespace' => 'Staff', 'middleware' => ['auth']], function () {
     Route::group(['prefix' => 'group', 'as' => 'group.', 'namespace' => 'Group'], function () {
+        Route::group(['prefix' => '{group}'], function (){
+            Route::group(['prefix' => 'student', 'as' => 'student.'], function () {
+                Route::get('{student}/add', 'StudentController@add')->name('add');
+                Route::resource('', 'StudentController', ['parameters' => ['' => 'student'], 'only' => ['index', 'destroy']]);
+            });
+        });
         Route::resource('', 'GroupController', ['parameters' => ['' => 'group'], 'except' => ['create', 'edit']]);
     });
     Route::group(['prefix' => 'student', 'as' => 'student.', 'namespace' => 'Student'], function () {

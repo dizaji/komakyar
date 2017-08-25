@@ -126,14 +126,14 @@
 
                 axios.post(route('staff.student.parent.store', {student: this.student.id}), removeNulls(this.parent, true))
                     .then(this.onSaveSuccess)
-                    .catch(this.onError)
+                    .catch(this.onLoadError)
             },
             onSaveSuccess: function (response) {
                 this.$Progress.finish();
                 this.$emit('created', response);
                 $('#add-new-parent').modal('hide');
             },
-            onError(error) {
+            onLoadError(error) {
                 console.log(error);
                 this.$Progress.fail();
                 if (error.response.status === 422) {

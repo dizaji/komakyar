@@ -69,7 +69,7 @@
                     }
                 })
                     .then(this.onLoadSuccess)
-                    .catch(this.onError);
+                    .catch(this.onLoadError);
             },
 
             onLoadSuccess: function(response){
@@ -78,7 +78,7 @@
                 this.$Progress.finish();
             },
 
-            onError: function(error){
+            onLoadError: function(error){
                 alert('Oops! Some thing went wrong. :(');
                 this.$Progress.fail();
                 console.log(error);

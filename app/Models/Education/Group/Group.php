@@ -23,6 +23,11 @@ class Group extends Model
         return $this->hasMany('App\Models\Education\Group\GroupStudent', 'group_id', 'id');
     }
 
+    public function students()
+    {
+        return $this->belongsToMany('App\Models\User\Student', 'education_group_students', 'group_id', 'student_id');
+    }
+
     public function Presentation()
     {
         return $this->hasMany('App\Models\Education\Course\Presentation', 'group_id', 'id');

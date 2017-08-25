@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Staff\Group;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Staff\Group\GroupRequest;
 use App\Models\Education\Group\Group;
-use App\Repositories\Staff\GroupRepository;
+use App\Repositories\Staff\Group\GroupRepository;
 use App\Tools\HttpResponse;
 use App\Tools\JsonResponse;
 use Illuminate\Http\Request;
