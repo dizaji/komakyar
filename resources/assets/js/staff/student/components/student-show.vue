@@ -45,9 +45,7 @@
 
     export default {
 
-        props: {
-            id: {}
-        },
+        props: ['id'],
 
         data: function () {
             return {
@@ -68,7 +66,7 @@
         methods: {
             load() {
                 this.$Progress.start();
-                axios.get(route('staff.student.edit', {student: this.id}))
+                axios.get(route('staff.student.show', {student: this.id}))
                     .then(this.onLoadSuccess)
                     .catch(this.onError);
             },
