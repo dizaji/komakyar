@@ -11,7 +11,6 @@ namespace App\Repositories\Staff\User;
 
 use App\Repositories\BaseRepository;
 use App\Tools\FileHelper;
-use App\User;
 
 class UserRepository extends BaseRepository
 {
@@ -25,11 +24,7 @@ class UserRepository extends BaseRepository
 
     public function fill(array $array, $object = null, $fillable = [])
     {
-        if(is_null($object)){
-            $object = (new User());
-        }
-
-        $object->fillable($fillable)->fill($array);
+        parent::fill($array, $object, $fillable);
         if(isset($array['password'])){
             $object->password = bcrypt($array['password']);
         }

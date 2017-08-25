@@ -17,6 +17,7 @@ use App\Repositories\BaseRepository;
 use App\Repositories\Staff\User\UserRepository;
 use App\Tools\FileHelper;
 use App\Tools\Settings;
+use App\User;
 use Illuminate\Database\Eloquent\Builder;
 
 class StudentRepository extends BaseRepository
@@ -43,7 +44,7 @@ class StudentRepository extends BaseRepository
     public function store(StudentRequest $request)
     {
         $student = $this->fill($request->all(), new Student());
-        $user = $this->userRepository->fill($request->user);
+        $user = $this->userRepository->fill($request->user, new User());
 
         $user->is_student = true;
 
@@ -99,7 +100,7 @@ class StudentRepository extends BaseRepository
         $user->profile_picture = $new_dp_path;
         $user->save();
 
-        return ['url' => FileHelper::downloadFileURL($user->profile_picture)];
+        return ['url' => $user->profile_picture];
     }
 
     public function changePassword(ChangePasswordRequest $request, Student $student)

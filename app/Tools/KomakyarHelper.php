@@ -8,6 +8,7 @@
 
 namespace App\Tools;
 
+use Faker\Factory;
 
 class KomakyarHelper
 {
@@ -22,13 +23,31 @@ class KomakyarHelper
         return $faker->boolean($chanceOfGettingModel) ? $model : null;
     }
 
-    public static function stringifyArrayForValidation($array)
+    public static function appendParentAndDot($string, $parent)
     {
-        $result = "";
-        foreach ($array as $value) {
-            $result .= (strlen($result) > 0 ? "," : "");
-            $result .= $value;
+        if ($parent != '') {
+            $string = $parent . "." . $string;
         }
-        return $result;
+
+        return $string;
+    }
+
+    public static function appendPrefixToArrayKeys(array $array, $prefix)
+    {
+        foreach ($array as $key => $value) {
+            $array[$prefix . $key] = $value;
+            unset($array[$key]);
+        }
+
+        return $array;
+    }
+
+    public static function appendParentToArrayKeys(array $array, $parent)
+    {
+        if ($parent == '') {
+            return $array;
+        }
+
+        return self::appendPrefixToArrayKeys($array, $parent . '.');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 
+use App\Tools\KomakyarHelper;
 use Illuminate\Foundation\Http\FormRequest;
 
 abstract class BaseRequest extends FormRequest
@@ -20,9 +21,10 @@ abstract class BaseRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
+     * @param string $prefix
      * @return array
      */
-    public function rules()
+    public function rules($prefix = '')
     {
         $this->registerCustomValidations();
 
@@ -31,28 +33,30 @@ abstract class BaseRequest extends FormRequest
             case 'DELETE':
                 return [];
             case 'POST':
-                return $this->postRules();
+                return KomakyarHelper::appendParentToArrayKeys($this->postRules($prefix), $prefix);
             case 'PUT':
             case 'PATCH':
-                return $this->putRules();
+                return KomakyarHelper::appendParentToArrayKeys($this->putRules($prefix), $prefix);
         }
     }
 
     /**
      * Get the validation rules that apply to the post request.
      *
+     * @param string $prefix
      * @return array
      */
-    public abstract function postRules();
+    public abstract function postRules($prefix = '');
 
     /**
      * Get the validation rules that apply to the put/patch request.
      *
+     * @param string $prefix
      * @return array
      */
-    public function putRules()
+    public function putRules($prefix = '')
     {
-        return $this->postRules();
+        return $this->postRules($prefix);
     }
 
     /**

@@ -12,25 +12,9 @@
         <hr>
         <div class="row">
             <div class="col-xs-12 text-left margin-10">
-                <template v-if="mode === 'show'">
-                    <button class="btn btn-sm btn-primary" v-on:click="toggleMode">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </button>
-                    <button class="btn btn-sm btn-danger" v-on:click="$refs.confirm_delete_modal.show()">
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </button>
-                    <confirm-delete-modal ref="confirm_delete_modal"
-                                          v-on:confirm="btnDeleteClicked">
-                    </confirm-delete-modal>
-                </template>
-                <template v-else="">
-                    <button class="btn btn-sm btn-success" v-on:click="btnUpdateClicked">
-                        <span class="glyphicon glyphicon-ok"></span>
-                    </button>
-                    <button class="btn btn-sm btn-default" v-on:click="toggleMode">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </button>
-                </template>
+                <edit-update-delete-buttons v-model="mode"
+                                            v-on:update="btnUpdateClicked"
+                                            v-on:delete="btnDeleteClicked"></edit-update-delete-buttons>
             </div>
         </div>
         <validation-errors-alert :errors="errors"></validation-errors-alert>
@@ -221,10 +205,6 @@
             profilePictureUploadError: function (file) {
                 alert('آپلود فایل با موفقیت انجام نشد!')
             },
-
-            toggleMode: function () {
-                this.mode = (this.mode === 'show' ? 'edit' : 'show');
-            }
         }
     }
 </script>
