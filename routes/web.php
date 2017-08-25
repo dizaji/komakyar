@@ -13,7 +13,7 @@
 
 Route::group(['prefix' => 'staff', 'as' => 'staff.', 'namespace' => 'Staff', 'middleware' => ['auth']], function () {
     Route::group(['prefix' => 'group', 'as' => 'group.', 'namespace' => 'Group'], function () {
-        Route::resource('', 'GroupController', ['parameters' => ['' => 'group']]);
+        Route::resource('', 'GroupController', ['parameters' => ['' => 'group'], 'except' => ['create', 'edit']]);
     });
     Route::group(['prefix' => 'student', 'as' => 'student.', 'namespace' => 'Student'], function () {
         Route::group(['prefix' => '{student}'], function () {
@@ -21,7 +21,7 @@ Route::group(['prefix' => 'staff', 'as' => 'staff.', 'namespace' => 'Staff', 'mi
             Route::post('upload-display-picture', 'StudentController@uploadDisplayPicture')->name('upload-display-picture');
             Route::post('change-password', 'StudentController@changePassword')->name('change-password');
         });
-        Route::resource('', 'StudentController', ['parameters' => ['' => 'student']]);
+        Route::resource('', 'StudentController', ['parameters' => ['' => 'student'], 'except' => ['create', 'edit']]);
     });
 
     Route::group(['prefix' => 'lookup', 'as'=>'lookup.', 'namespace' => 'Lookup'], function (){

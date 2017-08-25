@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Staff\Student;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\General\DisplayPictureRequest;
 use App\Http\Requests\Staff\Student\ChangePasswordRequest;
 use App\Http\Requests\Staff\Student\StudentRequest;
 use App\Models\User\Student;
 use App\Repositories\Staff\User\Student\StudentRepository;
-use App\Tools\FileHelper;
 use App\Tools\HttpResponse;
 use App\Tools\JsonResponse;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class StudentController extends Controller
 {
@@ -34,16 +33,6 @@ class StudentController extends Controller
         } else {
             return view('staff.student.index');
         }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('staff.student.create');
     }
 
     /**
@@ -70,21 +59,6 @@ class StudentController extends Controller
             return JsonResponse::successObject(HttpResponse::OK, $this->studentRepository->show($student));
         } else {
             return view('staff.student.show', ['student' => $student]);
-        }
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User\Student $student
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Student $student)
-    {
-        if (request()->expectsJson()) {
-            return JsonResponse::successObject(HttpResponse::OK, $this->studentRepository->edit($student));
-        } else {
-            return view('staff.student.edit', ['student' => $student]);
         }
     }
 
