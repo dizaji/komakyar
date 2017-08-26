@@ -5,15 +5,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="row">
-                            <div class="col-xs-6">گروه شماره 101</div>
-                            <div class="col-xs-6 text-left">
-                                <a class="btn btn-sm btn-primary"
-                                   data-toggle="tooltip"
-                                   data-placement="bottom"
-                                   title="ویرایش">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </a>
-                            </div>
+                            <div class="col-xs-12">{{ group.title }}</div>
                         </div>
                     </div>
                     <div class="panel-body">
@@ -29,8 +21,8 @@
                                     <a href="#parents"
                                        aria-controls="parents"
                                        role="tab"
-                                       data-toggle="tab">
-                                       <!--v-on:click="$refs.students_list.loadData()">-->دانش آموزان</a>
+                                       data-toggle="tab"
+                                       v-on:click="$refs.students_list.loadData()">دانش آموزان</a>
                                 </li>
                             </ul>
                             <div class="tab-content">

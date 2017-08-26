@@ -25,20 +25,22 @@ class StudentRepository
 
     public function index(Group $group, $window_size = Settings::PAGINATION_GROUP_STUDENT_LIMIT)
     {
-        $students =  $this->mainStudentRepository->load(
+        $students = $this->mainStudentRepository->load(
             Student::query()
                 ->whereHas('user', function ($query) {
-                    $query
-                        ->when(!is_null(Input::get('first_name')), function ($query) {
-                            $query->where('first_name', 'like', '%' . Input::get('first_name') . '%');
-                        })
-                        ->when(!is_null(Input::get('surname')), function ($query) {
-                            $query->where('surname', 'like', '%' . Input::get('surname') . '%');
-                        })->when(!is_null(Input::get('national_code')), function ($query) {
-                            $query->where('national_code', 'like', '%' . Input::get('national_code') . '%');
-                        });
+                    $query->when(!is_null(Input::get('first_name')), function ($query) {
+                        $query->where('first_name', 'like', '%' . Input::get('first_name') . '%');
+                    })->when(!is_null(Input::get('surname')), function ($query) {
+                        $query->where('surname', 'like', '%' . Input::get('surname') . '%');
+                    })->when(!is_null(Input::get('national_code')), function ($query) {
+                        $query->where('national_code', 'like', '%' . Input::get('national_code') . '%');
+                    })->when(!is_null(Input::get('email')), function ($query) {
+                        $query->where('email', 'like', '%' . Input::get('email') . '%');
+                    });
+                })->when(!is_null(Input::get('student_code')), function ($query) {
+                    $query->where('student_code', 'like', '%' . Input::get('student_code') . '%');
                 })->when(Input::get('all') != true, function ($query) use ($group) {
-                    $query->whereHas('groups', function($query) use ($group) {
+                    $query->whereHas('groups', function ($query) use ($group) {
                         $query->where($group->getTable() . '.id', $group->id);
                     });
                 })/*->with(['groups' => function($query) use ($group) {
@@ -46,7 +48,7 @@ class StudentRepository
                 }])*/
         )->paginate($window_size);
 
-        foreach ($students as $student){
+        foreach ($students as $student) {
             $student->current_group = ($student->groups()->where($group->getTable() . '.id', $group->id)->exists());
         }
 
@@ -55,7 +57,7 @@ class StudentRepository
 
     public function add(Group $group, Student $student)
     {
-        if(!$student->groups()->where($group->getTable() . '.id', $group->id)->exists()){
+        if (!$student->groups()->where($group->getTable() . '.id', $group->id)->exists()) {
             $group->students()->attach($student->id);
         }
 
@@ -67,7 +69,7 @@ class StudentRepository
 
     public function destroy(Group $group, Student $student)
     {
-        if($student->groups()->where($group->getTable() . '.id', $group->id)->exists()){
+        if ($student->groups()->where($group->getTable() . '.id', $group->id)->exists()) {
             $group->students()->detach($student->id);
         }
 

@@ -3,10 +3,10 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-10">
+                    <div class="col-xs-6">
                         {{ student.user.first_name }} {{ student.user.surname }}
                     </div>
-                    <div class="col-xs-2 text-left">
+                    <div class="col-xs-6 text-left">
                         <a class="btn btn-sm btn-success" :href="url.show">
                             <span class="glyphicon glyphicon-eye-open"></span>
                         </a>
@@ -15,6 +15,7 @@
                         </button>
                         <confirm-delete-modal ref="confirm_delete_modal"
                                               v-on:confirm="btnDeleteClicked"></confirm-delete-modal>-->
+                        <slot name="buttons"></slot>
                     </div>
                 </div>
             </div>

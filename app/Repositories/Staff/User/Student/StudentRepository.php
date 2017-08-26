@@ -19,6 +19,7 @@ use App\Tools\FileHelper;
 use App\Tools\Settings;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Input;
 
 class StudentRepository extends BaseRepository
 {
@@ -38,7 +39,22 @@ class StudentRepository extends BaseRepository
 
     public function index()
     {
-        return $this->load(Student::query())->paginate(Settings::STUDENT_LOAD_LIMIT);
+        return $this->load(
+            Student::query()
+                ->whereHas('user', function ($query) {
+                    $query->when(!is_null(Input::get('first_name')), function ($query) {
+                        $query->where('first_name', 'like', '%' . Input::get('first_name') . '%');
+                    })->when(!is_null(Input::get('surname')), function ($query) {
+                        $query->where('surname', 'like', '%' . Input::get('surname') . '%');
+                    })->when(!is_null(Input::get('national_code')), function ($query) {
+                        $query->where('national_code', 'like', '%' . Input::get('national_code') . '%');
+                    })->when(!is_null(Input::get('email')), function ($query) {
+                        $query->where('email', 'like', '%' . Input::get('email') . '%');
+                    });
+                })->when(!is_null(Input::get('student_code')), function ($query) {
+                    $query->where('student_code', 'like', '%' . Input::get('student_code') . '%');
+                })
+        )->paginate(Settings::STUDENT_LOAD_LIMIT);
     }
 
     public function store(StudentRequest $request)
@@ -72,25 +88,6 @@ class StudentRepository extends BaseRepository
         return true;
     }
 
-    public function load($object)
-    {
-//        $parent_query = function ($query) {
-//            $query->take(Settings::PARENT_LIMIT);
-//        };
-//        $group_student_query = function ($query) {
-//            $query->take(Settings::GROUP_STUDENT_LIMIT);
-//            $query->with('group');
-//        };
-
-        if($object instanceof Student) {
-            $object->load(['user']);
-        } elseif ($object instanceof Builder) {
-            return $object->with(['user']);
-        }
-
-        return $object;
-    }
-
     public function uploadDisplayPicture(DisplayPictureRequest $request, Student $student)
     {
         $new_dp_path = FileHelper::store($request->file('file'), 'file.images.user.profile_picture.path');
@@ -106,5 +103,24 @@ class StudentRepository extends BaseRepository
     public function changePassword(ChangePasswordRequest $request, Student $student)
     {
         return $this->userRepository->fill($request->all(), $student->user)->save();
+    }
+
+    public function load($object)
+    {
+//        $parent_query = function ($query) {
+//            $query->take(Settings::PARENT_LIMIT);
+//        };
+//        $group_student_query = function ($query) {
+//            $query->take(Settings::GROUP_STUDENT_LIMIT);
+//            $query->with('group');
+//        };
+
+        if ($object instanceof Student) {
+            $object->load(['user']);
+        } elseif ($object instanceof Builder) {
+            return $object->with(['user']);
+        }
+
+        return $object;
     }
 }

@@ -9,7 +9,7 @@
                     </slot>
                 </div>
                 <div class="modal-body text-right">
-                    <slot name="body">آیا برای حذف مطمئن هستید؟</slot>
+                    <slot>آیا برای حذف مطمئن هستید؟</slot>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-default" v-on:click="$emit('dismiss')" data-dismiss="modal">

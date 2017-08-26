@@ -12,8 +12,9 @@
                         </div>
                     </div>
                     <div class="panel-body">
+                        <student-search-panel v-on:search="doSearch"></student-search-panel>
                         <template v-if="students">
-                            <template v-for="student in students.data" >
+                            <template v-for="student in students.data">
                                 <student-card :student="student"></student-card>
                             </template>
                             <div class="row">
@@ -32,21 +33,25 @@
 <script>
     import StudentCard from './student-card.vue'
     import StudentCreate from './student-create.vue'
-    export default{
-        data(){
-            return{
+    import StudentSearchPanel from './student-search-panel.vue'
+
+    export default {
+        data() {
+            return {
                 students: null,
                 current_page: 1,
+                search: {}
             }
         },
-        components:{
+        components: {
             'student-card': StudentCard,
             'student-create': StudentCreate,
+            'student-search-panel': StudentSearchPanel,
         },
         created: function () {
             this.loadData();
         },
-        methods:{
+        methods: {
             loadData: function (page) {
                 this.$Progress.start();
                 this.parents = null;
@@ -59,9 +64,7 @@
 
                 // Using vue-resource as an example
                 axios.get(route('staff.student.index'), {
-                    params: {
-                        page: page
-                    }
+                    params: Object.assign(this.search, {page: page})
                 })
                     .then(this.onLoadSuccess)
                     .catch(this.onLoadError);
@@ -75,6 +78,10 @@
                 alert("Oops, Something went wrong!!!");
                 console.log(error.response);
             },
+            doSearch: function (search) {
+                this.search = search;
+                this.loadData(1)
+            }
         }
     }
 

@@ -32,6 +32,7 @@ Vue.component('confirm-delete-modal', require('./components/common/modals/confir
 Vue.component('edit-update-delete-buttons', require('./components/common/edit-update-delete-buttons.vue'));
 Vue.component('dropzone-uploader', require('./components/common/dropzone-uploader.vue'));
 Vue.component('persian-date-picker', require('./components/common/persian-date-picker.vue'));
+Vue.component('expandable-search', require('./components/common/expandaple-search.vue'));
 Vue.component('pagination', require('laravel-vue-pagination'));
 
 Vue.filter('persianDate', require('./filters/persian-date.js'));
