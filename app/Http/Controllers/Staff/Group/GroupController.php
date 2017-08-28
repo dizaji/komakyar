@@ -27,7 +27,7 @@ class GroupController extends Controller
     public function index()
     {
         if (request()->expectsJson()) {
-            return JsonResponse::successObject(HttpResponse::OK, $this->groups->index());
+            return JsonResponse::successObject($this->groups->index());
         } else {
             return view('staff.group.index');
         }
@@ -41,7 +41,7 @@ class GroupController extends Controller
      */
     public function store(GroupRequest $request)
     {
-        return JsonResponse::successObject(HttpResponse::CREATED, $this->groups->store($request));
+        return JsonResponse::successObject($this->groups->store($request), HttpResponse::CREATED);
     }
 
     /**
@@ -52,8 +52,8 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-        if(request()->expectsJson()) {
-            return JsonResponse::successObject(HttpResponse::OK, $this->groups->show($group));
+        if (request()->expectsJson()) {
+            return JsonResponse::successObject($this->groups->show($group));
         } else {
             return view('staff.group.show', ['group' => $group]);
         }
@@ -68,13 +68,13 @@ class GroupController extends Controller
      */
     public function update(GroupRequest $request, Group $group)
     {
-        return JsonResponse::successObject(HttpResponse::OK, $this->groups->update($request, $group));
+        return JsonResponse::successObject($this->groups->update($request, $group));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

@@ -26,7 +26,7 @@ class FieldController extends Controller
     public function index()
     {
         if (request()->expectsJson()) {
-            return JsonResponse::successObject(HttpResponse::OK, $this->fieldRepository->index());
+            return JsonResponse::successObject($this->fieldRepository->index());
         } else {
             abort(HttpResponse::NOT_IMPLEMENTED);
         }
@@ -62,7 +62,7 @@ class FieldController extends Controller
     public function show(Field $field)
     {
         if (request()->expectsJson()) {
-            return JsonResponse::successObject(HttpResponse::OK, $this->fieldRepository->show($field));
+            return JsonResponse::successObject($this->fieldRepository->show($field));
         } else {
             abort(HttpResponse::NOT_IMPLEMENTED);
         }

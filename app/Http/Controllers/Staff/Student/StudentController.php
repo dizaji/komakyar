@@ -29,7 +29,7 @@ class StudentController extends Controller
     public function index()
     {
         if (request()->expectsJson()) {
-            return JsonResponse::successObject(HttpResponse::OK, $this->studentRepository->index());
+            return JsonResponse::successObject($this->studentRepository->index());
         } else {
             return view('staff.student.index');
         }
@@ -43,7 +43,7 @@ class StudentController extends Controller
      */
     public function store(StudentRequest $request)
     {
-        return JsonResponse::successObject(HttpResponse::CREATED, $this->studentRepository->store($request));
+        return JsonResponse::successObject($this->studentRepository->store($request), HttpResponse::CREATED);
 
     }
 
@@ -56,7 +56,7 @@ class StudentController extends Controller
     public function show(Student $student)
     {
         if (request()->expectsJson()) {
-            return JsonResponse::successObject(HttpResponse::OK, $this->studentRepository->show($student));
+            return JsonResponse::successObject($this->studentRepository->show($student));
         } else {
             return view('staff.student.show', ['student' => $student]);
         }
@@ -71,7 +71,7 @@ class StudentController extends Controller
      */
     public function update(StudentRequest $request, Student $student)
     {
-        return JsonResponse::successObject(HttpResponse::OK, $this->studentRepository->update($request, $student));
+        return JsonResponse::successObject($this->studentRepository->update($request, $student));
     }
 
     /**
@@ -82,18 +82,18 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        return JsonResponse::successMessage(HttpResponse::OK, $this->studentRepository->destroy($student));
+        return JsonResponse::successMessage($this->studentRepository->destroy($student));
     }
 
     public function uploadDisplayPicture(DisplayPictureRequest $request, Student $student)
     {
-        return JsonResponse::successObject(HttpResponse::OK, $this->studentRepository->uploadDisplayPicture($request, $student));
+        return JsonResponse::successObject($this->studentRepository->uploadDisplayPicture($request, $student));
     }
 
     public function changePassword(ChangePasswordRequest $request, Student $student)
     {
         $this->studentRepository->changePassword($request, $student);
 
-        return JsonResponse::successMessage(HttpResponse::OK, "Password has been changed successfully");
+        return JsonResponse::successMessage("Password has been changed successfully");
     }
 }

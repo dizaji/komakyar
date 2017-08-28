@@ -20,21 +20,26 @@ class JsonResponse
     const RECORD_NOT_FOUND = 'record not found';
     const RECORDS_CREATED = 'records created';
 
-    public static function successMessage($responseCode, $responseMessage)
+    public static function successMessage($responseMessage, $responseCode = HttpResponse::OK, $headers = [], $options = 0)
     {
         return response()->json(
             [
                 JsonResponse::RESPONSE_DESCRIPTION => $responseMessage
-            ], $responseCode);
+            ],
+            $responseCode,
+            $headers,
+            $options
+        );
     }
 
-    public static function successObject($responseCode, $responseObject)
+    public static function successObject($responseObject, $responseCode = HttpResponse::OK, $headers = [], $options = 0)
     {
-        return response()->json( $responseObject, $responseCode);
+        return response()->json($responseObject, $responseCode, $headers, $options);
     }
 
     public static function json($object)
     {
         return \GuzzleHttp\json_encode($object);
     }
+
 }

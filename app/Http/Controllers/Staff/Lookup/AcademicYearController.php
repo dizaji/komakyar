@@ -29,7 +29,7 @@ class AcademicYearController extends Controller
     public function index()
     {
         if (request()->expectsJson()) {
-            return JsonResponse::successObject(HttpResponse::OK, $this->academicYearRepository->index());
+            return JsonResponse::successObject($this->academicYearRepository->index());
         } else {
             abort(HttpResponse::NOT_IMPLEMENTED);
         }
@@ -65,7 +65,7 @@ class AcademicYearController extends Controller
     public function show(AcademicYear $year)
     {
         if (request()->expectsJson()) {
-            return JsonResponse::successObject(HttpResponse::OK, $this->academicYearRepository->show($year));
+            return JsonResponse::successObject($this->academicYearRepository->show($year));
         } else {
             abort(HttpResponse::NOT_IMPLEMENTED);
         }

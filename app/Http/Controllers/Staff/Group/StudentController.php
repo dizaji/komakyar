@@ -26,8 +26,8 @@ class StudentController extends Controller
      */
     public function index(Group $group)
     {
-        if(request()->expectsJson()){
-            return JsonResponse::successObject(HttpResponse::OK, $this->studentRepository->index($group));
+        if (request()->expectsJson()) {
+            return JsonResponse::successObject($this->studentRepository->index($group));
         } else {
             abort(HttpResponse::NOT_IMPLEMENTED);
         }
@@ -42,8 +42,8 @@ class StudentController extends Controller
      */
     public function add(Group $group, Student $student)
     {
-        if(request()->expectsJson()){
-            return JsonResponse::successObject(HttpResponse::OK, $this->studentRepository->add($group, $student));
+        if (request()->expectsJson()) {
+            return JsonResponse::successObject($this->studentRepository->add($group, $student));
         } else {
             abort(HttpResponse::NOT_IMPLEMENTED);
         }
@@ -58,8 +58,8 @@ class StudentController extends Controller
      */
     public function destroy(Group $group, Student $student)
     {
-        if(request()->expectsJson()){
-            return JsonResponse::successObject(HttpResponse::OK, $this->studentRepository->destroy($group, $student));
+        if (request()->expectsJson()) {
+            return JsonResponse::successObject($this->studentRepository->destroy($group, $student));
         } else {
             abort(HttpResponse::NOT_IMPLEMENTED);
         }
