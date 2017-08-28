@@ -19,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
             return false;
         });
 
+        Validator::extend('not_present_with', function($attribute, $value, $parameters)
+        {
+            return is_null($value) || is_null($this->getValue($parameters[0]));
+        });
+
         /*
          * Validates only alphabetic and spaces
          */

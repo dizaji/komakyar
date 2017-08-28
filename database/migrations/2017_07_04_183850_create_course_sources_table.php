@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateCourseSourcesTable extends Migration
 {
@@ -17,14 +17,8 @@ class CreateCourseSourcesTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->string('title');
-            $table->unsignedInteger('level_field_id');
+            $table->string('reference_name');
             $table->string('reference_code')->nullable();
-            $table->string('reference_name')->nullable();
-        });
-
-        Schema::table('lookup_course_sources', function (Blueprint $table) {
-            $table->foreign('level_field_id', 'fk_lookup_course_sources_1')->references('id')->on('level_fields')->onUpdate('CASCADE');
         });
     }
 
@@ -35,10 +29,6 @@ class CreateCourseSourcesTable extends Migration
      */
     public function down()
     {
-        Schema::table('lookup_course_sources', function (Blueprint $table) {
-            $table->dropForeign('fk_lookup_course_sources_1');
-        });
-
         Schema::dropIfExists('lookup_course_sources');
     }
 }

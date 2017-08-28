@@ -13,7 +13,7 @@
 
 Route::group(['prefix' => 'staff', 'as' => 'staff.', 'namespace' => 'Staff', 'middleware' => ['auth']], function () {
     Route::group(['prefix' => 'group', 'as' => 'group.', 'namespace' => 'Group'], function () {
-        Route::group(['prefix' => '{group}'], function (){
+        Route::group(['prefix' => '{group}'], function () {
             Route::group(['prefix' => 'student', 'as' => 'student.'], function () {
                 Route::get('{student}/add', 'StudentController@add')->name('add');
                 Route::resource('', 'StudentController', ['parameters' => ['' => 'student'], 'only' => ['index', 'destroy']]);
@@ -30,12 +30,16 @@ Route::group(['prefix' => 'staff', 'as' => 'staff.', 'namespace' => 'Staff', 'mi
         Route::resource('', 'StudentController', ['parameters' => ['' => 'student'], 'except' => ['create', 'edit']]);
     });
 
-    Route::group(['prefix' => 'lookup', 'as'=>'lookup.', 'namespace' => 'Lookup'], function (){
+    Route::group(['prefix' => 'lookup', 'as' => 'lookup.', 'namespace' => 'Lookup'], function () {
         Route::resource('academic-year', 'AcademicYearController', ['parameters' => ['academic-year' => 'year'], 'only' => ['index', 'show']]);
-        Route::group(['prefix' => 'level-field', 'as'=>'level-field.', 'namespace' => 'LevelField'], function () {
+        Route::group(['prefix' => 'level-field', 'as' => 'level-field.', 'namespace' => 'LevelField'], function () {
             Route::resource('level', 'LevelController', ['only' => ['index', 'show']]);
             Route::resource('field', 'FieldController', ['only' => ['index', 'show']]);
             Route::resource('', 'LevelFieldController', ['parameters' => ['' => 'levelField'], 'only' => ['index', 'show']]);
+        });
+        Route::group(['prefix' => 'course', 'as' => 'course.', 'namespace' => 'Course'], function () {
+            Route::resource('source', 'SourceController', ['parameters' => ['source' => 'courseSource'], 'except' => ['create', 'show', 'edit']]);
+            Route::resource('', 'CourseController', ['parameters' => ['' => 'course'], 'except' => ['create', 'show', 'edit']]);
         });
     });
 });

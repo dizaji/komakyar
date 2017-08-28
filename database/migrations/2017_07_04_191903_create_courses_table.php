@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateCoursesTable extends Migration
 {
@@ -17,7 +17,8 @@ class CreateCoursesTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->unsignedInteger('course_source_id');
+            $table->string('title');
+            $table->unsignedInteger('course_source_id')->nullable();
             $table->unsignedInteger('level_field_id');
             $table->unsignedInteger('academic_year_id');
 
