@@ -21,7 +21,7 @@ class StudentRequest extends BaseRequest
         return array_merge(
             [
                 'student_code' => 'nullable|string',
-                'date_of_birth' => 'required|date',
+//                'date_of_birth' => 'required|date',
                 'phone' => 'required|max:20|string',
                 'mobile' => 'nullable|string|max:20',
                 'address' => 'nullable|string|max:255',
