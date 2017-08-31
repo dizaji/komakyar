@@ -18,17 +18,10 @@ class CreateCoursesTable extends Migration
             $table->timestamps();
 
             $table->string('title');
-            $table->unsignedInteger('course_source_id')->nullable();
-            $table->unsignedInteger('level_field_id');
-            $table->unsignedInteger('academic_year_id');
-
             $table->unsignedTinyInteger('multiplier')->default(0);
-        });
-
-        Schema::table('education_courses', function (Blueprint $table) {
-            $table->foreign('course_source_id', 'fk_education_courses_1')->references('id')->on('lookup_course_sources')->onUpdate('CASCADE');
-            $table->foreign('level_field_id', 'fk_education_courses_2')->references('id')->on('level_fields')->onUpdate('CASCADE');
-            $table->foreign('academic_year_id', 'fk_education_courses_3')->references('id')->on('academic_years')->onUpdate('CASCADE');
+            $table->string('reference_name');
+            $table->string('reference_code')->nullable();
+            $table->boolean('is_available')->default(true);
         });
     }
 

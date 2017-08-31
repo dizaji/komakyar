@@ -13,9 +13,9 @@ class GradeType extends Model
         return $this->belongsTo('App\Models\User\Teacher\Teacher', 'teacher_id', 'id');
     }
 
-    public function courseSource()
+    public function course()
     {
-        return $this->belongsTo('App\Models\Lookup\CourseSource', 'course_source_id', 'id');
+        return $this->belongsTo('App\Models\Education\Course\Course', 'course_id', 'id');
     }
 
     public function grades()

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateTeacherGradeTypesTable extends Migration
 {
@@ -18,7 +18,7 @@ class CreateTeacherGradeTypesTable extends Migration
             $table->timestamps();
 
             $table->unsignedInteger('teacher_id');
-            $table->unsignedInteger('course_source_id');
+            $table->unsignedInteger('course_id');
 
             $table->string('title');
             $table->integer('maximum_mark')->default(20);
@@ -29,7 +29,7 @@ class CreateTeacherGradeTypesTable extends Migration
 
         Schema::table('user_teacher_grade_types', function (Blueprint $table) {
             $table->foreign('teacher_id', 'fk_user_teacher_grade_types_1')->references('id')->on('user_teachers')->onUpdate('CASCADE');
-            $table->foreign('course_source_id', 'fk_user_teacher_grade_types_2')->references('id')->on('lookup_course_sources')->onUpdate('CASCADE');
+            $table->foreign('course_id', 'fk_user_teacher_grade_types_2')->references('id')->on('education_courses')->onUpdate('CASCADE');
         });
     }
 
