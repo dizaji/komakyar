@@ -38,7 +38,6 @@ Route::group(['prefix' => 'staff', 'as' => 'staff.', 'namespace' => 'Staff', 'mi
             Route::resource('', 'LevelFieldController', ['parameters' => ['' => 'levelField'], 'only' => ['index', 'show']]);
         });
         Route::group(['prefix' => 'course', 'as' => 'course.', 'namespace' => 'Course'], function () {
-            Route::resource('source', 'SourceController', ['parameters' => ['source' => 'courseSource'], 'except' => ['create', 'show', 'edit']]);
             Route::resource('', 'CourseController', ['parameters' => ['' => 'course'], 'except' => ['create', 'show', 'edit']]);
         });
     });

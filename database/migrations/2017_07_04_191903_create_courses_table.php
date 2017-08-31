@@ -19,7 +19,7 @@ class CreateCoursesTable extends Migration
 
             $table->string('title');
             $table->unsignedTinyInteger('multiplier')->default(0);
-            $table->string('reference_name');
+            $table->string('reference_name')->nullable();
             $table->string('reference_code')->nullable();
             $table->boolean('is_available')->default(true);
         });

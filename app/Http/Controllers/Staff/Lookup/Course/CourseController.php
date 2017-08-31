@@ -5,13 +5,18 @@ namespace App\Http\Controllers\Staff\Lookup\Course;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Staff\Lookup\Course\CourseRequest;
 use App\Models\Education\Course\Course;
+use App\Repositories\Staff\Lookup\Course\CourseRepository;
+use App\Tools\HttpResponse;
 use App\Tools\JsonResponse;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-    public function __construct()
+    protected $courseRepository;
+
+    public function __construct(CourseRepository $courseRepository)
     {
+        $this->courseRepository = $courseRepository;
     }
 
     /**
@@ -22,7 +27,9 @@ class CourseController extends Controller
     public function index()
     {
         if(request()->expectsJson()){
-            return JsonResponse::successObject();
+            return JsonResponse::successObject($this->courseRepository->index());
+        } else {
+            return view('staff.lookup.course.course');
         }
     }
 
@@ -34,7 +41,7 @@ class CourseController extends Controller
      */
     public function store(CourseRequest $request)
     {
-        //
+        return JsonResponse::successObject($this->courseRepository->store($request->all()));
     }
 
     /**
@@ -46,7 +53,7 @@ class CourseController extends Controller
      */
     public function update(CourseRequest $request, Course $course)
     {
-        //
+        return JsonResponse::successObject($this->courseRepository->update($request->all(), $course));
     }
 
     /**
@@ -57,6 +64,10 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        if ($this->courseRepository->destroy($course)) {
+            return JsonResponse::successMessage('Object has been deleted successfully');
+        }
+
+        abort(HttpResponse::INTERNAL_SERVER_ERROR);
     }
 }
