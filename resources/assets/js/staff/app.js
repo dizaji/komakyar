@@ -8,6 +8,7 @@
 require('./group/group');
 require('./student/student');
 require('./lookup/lookup');
+require('./teacher/teacher');
 
 const staff_app = new Vue({
      el: '#staff-app'
