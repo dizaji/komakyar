@@ -105,14 +105,6 @@ class StudentRepository extends BaseRepository
 
     public function load($object)
     {
-//        $parent_query = function ($query) {
-//            $query->take(Settings::PARENT_LIMIT);
-//        };
-//        $group_student_query = function ($query) {
-//            $query->take(Settings::GROUP_STUDENT_LIMIT);
-//            $query->with('group');
-//        };
-
         if ($object instanceof Student) {
             $object->load(['user']);
         } elseif ($object instanceof Builder) {
