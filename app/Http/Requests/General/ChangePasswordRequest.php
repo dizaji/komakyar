@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: am
- * Date: 9/3/2017
- * Time: 9:39 PM
- */
 
 namespace App\Http\Requests\General;
 
