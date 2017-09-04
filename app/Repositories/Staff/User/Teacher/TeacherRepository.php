@@ -1,14 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Mohammad
- * Date: 8/14/2017
- * Time: 10:35 PM
- */
 
 namespace App\Repositories\Staff\User\Teacher;
-
-
 
 
 use App\Http\Requests\Staff\Teacher\ChangePasswordRequest;
@@ -24,20 +16,17 @@ class TeacherRepository extends BaseRepository
 {
     protected $userRepository;
     protected $fillable = [
-        'user_id',
         'degree',
         'field_of_study',
         'description',
-        'is_visible',
-        'phone',
         'mobile',
-        'address',
     ];
 
     public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
     }
+
     public function index()
     {
 //        return $this->load(
@@ -59,52 +48,31 @@ class TeacherRepository extends BaseRepository
 
         return $this->load(
             Teacher::query()
-                ->whereHas('user', function ($query) {}))->paginate(Settings::TEACHER_LOAD_LIMIT);
+                ->whereHas('user', function ($query) {
+                }))->paginate(Settings::TEACHER_LOAD_LIMIT);
 
 //        return $this->load(Teacher::all())->paginate(Settings::TEACHER_LOAD_LIMIT);
 //        return $this->load(Teacher::find(1))->paginate(Settings::TEACHER_LOAD_LIMIT);
     }
+
     public function store(TeacherRequest $request)
     {
-//        $myfile = fopen("newfile.txt", "a") or die("Unable to open file!");
-//
-//        fwrite($myfile, $request);
-//
-//
-//        fclose($myfile);
-      $teacher = $this->fill($request->all(), new Teacher());
+        $teacher = $this->fill($request->all(), new Teacher());
         $user = $this->userRepository->fill($request->user, new User());
 
         $user->is_teacher = true;
 
         $user->save();
-       $user->teacher()->save($teacher);
+        $user->teacher()->save($teacher);
 
         return $this->load($teacher);
     }
-    public function changePassword(ChangePasswordRequest $request, Teacher $teacher)
+
+    public function show(Teacher $teacher)
     {
-
-        return $this->userRepository->fill($request->all(), $teacher->user)->save();
+        return $this->load($teacher);
     }
-    public function load($object)
-    {
-//        $parent_query = function ($query) {
-//            $query->take(Settings::PARENT_LIMIT);
-//        };
-//        $group_student_query = function ($query) {
-//            $query->take(Settings::GROUP_STUDENT_LIMIT);
-//            $query->with('group');
-//        };
 
-        if ($object instanceof Teacher) {
-            $object->load(['user']);
-        } elseif ($object instanceof Builder) {
-            return $object->with(['user']);
-        }
-
-        return $object;
-    }
     public function update(TeacherRequest $request, Teacher $teacher)
     {
         $this->fill($request->all(), $teacher)->save();
@@ -112,9 +80,21 @@ class TeacherRepository extends BaseRepository
 
         return $this->load($teacher);
     }
-    public function show(Teacher $teacher)
+
+    public function changePassword(ChangePasswordRequest $request, Teacher $teacher)
     {
 
-        return $this->load($teacher);
+        return $this->userRepository->fill($request->all(), $teacher->user)->save();
+    }
+
+    public function load($object)
+    {
+        if ($object instanceof Teacher) {
+            $object->load(['user']);
+        } elseif ($object instanceof Builder) {
+            return $object->with(['user']);
+        }
+
+        return $object;
     }
 }
