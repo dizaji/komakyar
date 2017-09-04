@@ -19,7 +19,8 @@ class CreateTeachersTable extends Migration
 
             $table->unsignedInteger('user_id');
 
-            $table->enum('degree', ['below diploma', 'diploma', 'BsC', 'MsC', 'PhD', 'Other'])->nullable();
+            $table->enum('degree', ['belowdiploma', 'diploma','Ad', 'BsC', 'MsC', 'PhD', 'Other'])->nullable();
+            $table->string('mobile')->nullable();
             $table->string('field_of_study')->nullable();
             $table->text('description')->nullable();
             $table->boolean('is_visible')->default(true);

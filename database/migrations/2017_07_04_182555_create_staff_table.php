@@ -19,7 +19,7 @@ class CreateStaffTable extends Migration
 
             $table->unsignedInteger('user_id');
 
-            $table->enum('degree', ['below diploma', 'diploma', 'BsC', 'MsC', 'PhD', 'Other'])->nullable();
+            $table->enum('degree', ['below diploma', 'diploma','Ad', 'BsC', 'MsC', 'PhD', 'Other'])->nullable();
             $table->string('field_of_study')->nullable();
             $table->string('direct_no')->nullable();
             $table->string('extension')->nullable();

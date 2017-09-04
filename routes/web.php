@@ -41,6 +41,13 @@ Route::group(['prefix' => 'staff', 'as' => 'staff.', 'namespace' => 'Staff', 'mi
             Route::resource('', 'CourseController', ['parameters' => ['' => 'course'], 'except' => ['create', 'show', 'edit']]);
         });
     });
+    Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'namespace' => 'Teacher'], function () {
+        // Route::resourc('','TeacherController');
+        Route::group(['prefix' => '{teacher}'], function () {
+            Route::post('change-password', 'TeacherController@changePassword')->name('change-password');
+        });
+        Route::resource('', 'TeacherController', ['parameters' => ['' => 'teacher']]);
+    });
 });
 
 
