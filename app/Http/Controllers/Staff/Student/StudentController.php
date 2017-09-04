@@ -43,7 +43,7 @@ class StudentController extends Controller
      */
     public function store(StudentRequest $request)
     {
-        return JsonResponse::successObject($this->studentRepository->store($request), HttpResponse::CREATED);
+        return JsonResponse::successObject($this->studentRepository->store($request->all()), HttpResponse::CREATED);
 
     }
 
@@ -71,7 +71,7 @@ class StudentController extends Controller
      */
     public function update(StudentRequest $request, Student $student)
     {
-        return JsonResponse::successObject($this->studentRepository->update($request, $student));
+        return JsonResponse::successObject($this->studentRepository->update($request->all(), $student));
     }
 
     /**
@@ -92,7 +92,7 @@ class StudentController extends Controller
 
     public function changePassword(ChangePasswordRequest $request, Student $student)
     {
-        $this->studentRepository->changePassword($request, $student);
+        $this->studentRepository->changePassword($request->all(), $student);
 
         return JsonResponse::successMessage("Password has been changed successfully");
     }

@@ -10,8 +10,6 @@ namespace App\Repositories\Staff\User\Student;
 
 
 use App\Http\Requests\General\DisplayPictureRequest;
-use App\Http\Requests\Staff\Student\ChangePasswordRequest;
-use App\Http\Requests\Staff\Student\StudentRequest;
 use App\Models\User\Student;
 use App\Repositories\BaseRepository;
 use App\Repositories\Staff\User\UserRepository;
@@ -57,10 +55,10 @@ class StudentRepository extends BaseRepository
         )->paginate(Settings::STUDENT_LOAD_LIMIT);
     }
 
-    public function store(StudentRequest $request)
+    public function store(array $data)
     {
-        $student = $this->fill($request->all(), new Student());
-        $user = $this->userRepository->fill($request->user, new User());
+        $student = $this->fill($data, new Student());
+        $user = $this->userRepository->fill($data['user'], new User());
 
         $user->is_student = true;
 
@@ -75,10 +73,10 @@ class StudentRepository extends BaseRepository
         return $this->load($student);
     }
 
-    public function update(StudentRequest $request, Student $student)
+    public function update(array $data, Student $student)
     {
-        $this->fill($request->all(), $student)->save();
-        $this->userRepository->fill($request->user, $student->user)->save();
+        $this->fill($data, $student)->save();
+        $this->userRepository->fill($data['user'], $student->user)->save();
 
         return $this->load($student);
     }
@@ -100,9 +98,9 @@ class StudentRepository extends BaseRepository
         return ['url' => $user->profile_picture];
     }
 
-    public function changePassword(ChangePasswordRequest $request, Student $student)
+    public function changePassword(array $data, Student $student)
     {
-        return $this->userRepository->fill($request->all(), $student->user)->save();
+        return $this->userRepository->fill($data, $student->user)->save();
     }
 
     public function load($object)
