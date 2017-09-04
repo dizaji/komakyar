@@ -21,7 +21,7 @@
         <template slot="more">
             <div class="col-sm-4">
                 <div class="form-group">
-                    <input class="form-control input-sm" placeholder="کد " v-model="search.user_id" />
+                    <input class="form-control input-sm" placeholder="شماره موبایل" v-model="search.mobile" />
                 </div>
             </div>
             <div class="col-sm-4">
@@ -47,7 +47,7 @@
                     first_name: '',
                     surname: '',
                     national_code: '',
-                    user_id: '',
+                    mobile: '',
                     email: '',
                 }
             }
