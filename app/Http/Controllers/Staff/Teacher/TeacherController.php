@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Staff\Teacher;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Staff\Teacher\ChangePasswordRequest;
+use App\Http\Requests\General\ChangePasswordRequest;
 use App\Http\Requests\Staff\Teacher\TeacherRequest;
 use App\Models\User\Teacher\Teacher;
 use App\Repositories\Staff\User\Teacher\TeacherRepository;

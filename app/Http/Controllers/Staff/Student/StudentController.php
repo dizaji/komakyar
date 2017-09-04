@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Staff\Student;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\General\ChangePasswordRequest;
 use App\Http\Requests\General\DisplayPictureRequest;
-use App\Http\Requests\Staff\Student\ChangePasswordRequest;
 use App\Http\Requests\Staff\Student\StudentRequest;
 use App\Models\User\Student;
 use App\Repositories\Staff\User\Student\StudentRepository;
