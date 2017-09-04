@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateStaffTable extends Migration
 {
@@ -19,8 +19,9 @@ class CreateStaffTable extends Migration
 
             $table->unsignedInteger('user_id');
 
-            $table->enum('degree', ['below diploma', 'diploma','Ad', 'BsC', 'MsC', 'PhD', 'Other'])->nullable();
+            $table->enum('degree', ['below diploma', 'diploma', 'above diploma', 'bsc', 'msc', 'phd', 'other'])->nullable();
             $table->string('field_of_study')->nullable();
+            $table->string('mobile')->nullable();
             $table->string('direct_no')->nullable();
             $table->string('extension')->nullable();
             $table->text('description')->nullable();
