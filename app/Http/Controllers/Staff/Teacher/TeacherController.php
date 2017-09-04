@@ -41,7 +41,7 @@ class TeacherController extends Controller
      */
     public function store(TeacherRequest $request)
     {
-        return JsonResponse::successObject($this->teacherRepository->store($request), HttpResponse::CREATED);
+        return JsonResponse::successObject($this->teacherRepository->store($request->all()), HttpResponse::CREATED);
     }
 
     /**
@@ -68,7 +68,7 @@ class TeacherController extends Controller
      */
     public function update(TeacherRequest $request, Teacher $teacher)
     {
-        return JsonResponse::successObject($this->teacherRepository->update($request, $teacher));
+        return JsonResponse::successObject($this->teacherRepository->update($request->all(), $teacher));
     }
 
     /**
@@ -85,7 +85,7 @@ class TeacherController extends Controller
 
     public function changePassword(ChangePasswordRequest $request, Teacher $teacher)
     {
-        $this->teacherRepository->changePassword($request, $teacher);
+        $this->teacherRepository->changePassword($request->all(), $teacher);
 
         return JsonResponse::successMessage("Password has been changed successfully");
     }
