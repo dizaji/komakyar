@@ -4,6 +4,7 @@ namespace App\Http\Requests\Staff\Teacher;
 
 use App\Http\Requests\BaseRequest;
 use App\Http\Requests\Staff\User\UserRequest;
+use App\Models\User\Teacher\Teacher;
 
 class TeacherRequest extends BaseRequest
 {
@@ -14,19 +15,16 @@ class TeacherRequest extends BaseRequest
      */
     public function postRules($prefix = '')
     {
-
         $userRequest = new UserRequest($this->user);
         $userRequest->setMethod($this->method());
         if($this->method() == 'PUT') $userRequest->setUser($this->teacher->user);
 
         return array_merge(
             [
-//                'student_code' => 'nullable|string',
-////                'date_of_birth' => 'required|date',
-//                'phone' => 'required|max:20|string',
-//                'mobile' => 'nullable|string|max:20',
-//                'address' => 'nullable|string|max:255',
-
+                'degree' => ['nullable', 'in:' . implode(',', Teacher::DEGREES)],
+                'mobile' => ['nullable', 'string', 'max:20'],
+                'field_of_study' => ['nullable', 'string', 'max:255'],
+                'description' => ['nullable', 'string', 'max:255'],
             ],
             $userRequest->rules('user')
         );
