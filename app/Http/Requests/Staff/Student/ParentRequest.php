@@ -23,7 +23,7 @@ class ParentRequest extends BaseRequest
         return array_merge(
             [
                 'relative' => 'required|in:' . implode(',', StudentParent::RELATIVES),
-                'mobile_1' => 'required|max:20',
+                'mobile_1' => 'nullable|string|max:20',
                 'mobile_2' => 'nullable|string|max:20',
 
             ],
