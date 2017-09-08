@@ -46,4 +46,8 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\User\Teacher\Teacher', 'user_id', 'id');
     }
+    public function rollcalldevices()
+    {
+        return $this->hasMany('App\Models\RollCallDevice','user_id','id');
+    }
 }
