@@ -32,12 +32,6 @@ class CreateCoursesTable extends Migration
      */
     public function down()
     {
-        Schema::table('education_courses', function (Blueprint $table) {
-            $table->dropForeign('fk_education_courses_1');
-            $table->dropForeign('fk_education_courses_2');
-            $table->dropForeign('fk_education_courses_3');
-        });
-
         Schema::dropIfExists('education_courses');
     }
 }

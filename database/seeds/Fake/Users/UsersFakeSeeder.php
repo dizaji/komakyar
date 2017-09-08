@@ -25,13 +25,16 @@ class StudentsTableSeeder extends Seeder
         factory(\App\User::class, 100)->create()
             ->each(function (\App\User $user) {
                 if ($user->is_student) {
-                    $user->student()->save(factory(\App\Models\User\Student::class)->create());
+                    $student = factory(\App\Models\User\Student::class)->make();
+                    $user->student()->save($student);
                 }
                 if ($user->is_teacher) {
-                    $user->teacher()->save(factory(\App\Models\User\Teacher\Teacher::class)->create());
+                    $teacher = factory(\App\Models\User\Teacher\Teacher::class)->make();
+                    $user->teacher()->save($teacher);
                 }
                 if ($user->is_staff) {
-                    $user->staff()->save(factory(\App\Models\User\Staff::class)->create());
+                    $staff = factory(\App\Models\User\Staff::class)->make();
+                    $user->staff()->save($staff);
                 }
             });
     }
