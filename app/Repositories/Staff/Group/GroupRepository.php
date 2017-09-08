@@ -52,7 +52,7 @@ class GroupRepository extends BaseRepository
 
     public function load($object)
     {
-        if($object instanceof Group){
+        if ($object instanceof Group) {
             $object->load([
                 'levelField.level',
                 'levelField.field',
@@ -63,9 +63,15 @@ class GroupRepository extends BaseRepository
                 'levelField.level',
                 'levelField.field',
                 'academicYear',
+                'students' => function ($query) {
+                    $query
+                        ->with(['user' => function ($query) {
+                            //$query->select(['users.profile_picture', 'users.first_name', 'users.surname']);
+                        }])->select(['user_students.id','users.profile_picture', 'users.first_name', 'users.surname']);
+                }
             ]);
         } else {
-            foreach ($object as $index=> $value){
+            foreach ($object as $index => $value) {
                 $object[$index] = $this->load($value);
             }
         }

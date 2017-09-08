@@ -19,7 +19,7 @@ class CreateParentsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('student_id');
             $table->enum('relative', ['father', 'mother', 'other']);
-            $table->string('mobile_1', 20);
+            $table->string('mobile_1', 20)->nullable();
             $table->string('mobile_2', 20)->nullable();
         });
 

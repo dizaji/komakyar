@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\General;
 
+
 use App\Http\Requests\BaseRequest;
 
-class DisplayPictureRequest extends BaseRequest
+class ChangePasswordRequest extends BaseRequest
 {
     /**
      * Get the validation rules that apply to the post request.
@@ -15,7 +16,8 @@ class DisplayPictureRequest extends BaseRequest
     public function postRules($prefix = '')
     {
         return [
-            'file' => 'required|image|max:' . config('file.images.user.profile_picture.max_size', 200),
+            'password' => ['filled', 'same:password_confirm', 'between:6,255', 'string'],
+            'password_confirm' => ['filled', 'same:password', 'between:6,255', 'string'],
         ];
     }
 }

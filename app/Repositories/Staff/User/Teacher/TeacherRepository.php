@@ -1,16 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Mohammad
- * Date: 8/14/2017
- * Time: 10:35 PM
- */
 
-namespace App\Repositories\Staff\User\Student;
+namespace App\Repositories\Staff\User\Teacher;
 
 
 use App\Http\Requests\General\DisplayPictureRequest;
-use App\Models\User\Student;
+use App\Models\User\Teacher\Teacher;
 use App\Repositories\BaseRepository;
 use App\Repositories\Staff\User\UserRepository;
 use App\Tools\FileHelper;
@@ -19,15 +13,14 @@ use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Input;
 
-class StudentRepository extends BaseRepository
+class TeacherRepository extends BaseRepository
 {
     protected $userRepository;
     protected $fillable = [
-        'student_code',
-        'date_of_birth',
-        'phone',
+        'degree',
+        'field_of_study',
+        'description',
         'mobile',
-        'address',
     ];
 
     public function __construct(UserRepository $userRepository)
@@ -38,7 +31,7 @@ class StudentRepository extends BaseRepository
     public function index()
     {
         return $this->load(
-            Student::query()
+            Teacher::query()
                 ->whereHas('user', function ($query) {
                     $query->when(!is_null(Input::get('first_name')), function ($query) {
                         $query->where('first_name', 'like', '%' . Input::get('first_name') . '%');
@@ -49,48 +42,51 @@ class StudentRepository extends BaseRepository
                     })->when(!is_null(Input::get('email')), function ($query) {
                         $query->where('email', 'like', '%' . Input::get('email') . '%');
                     });
-                })->when(!is_null(Input::get('student_code')), function ($query) {
-                    $query->where('student_code', 'like', '%' . Input::get('student_code') . '%');
+                })->when(!is_null(Input::get('mobile')), function ($query) {
+                    $query->where('mobile', 'like', '%' . Input::get('mobile') . '%');
                 })
-        )->paginate(Settings::STUDENT_LOAD_LIMIT);
+        )->paginate(Settings::PAGINATION_TEACHERS_LIMIT);
+
+//        return $this->load(
+//            Teacher::query()
+//                ->whereHas('user', function ($query) {
+//                }))->paginate(Settings::PAGINATION_TEACHERS_LIMIT);
+//
+////        return $this->load(Teacher::all())->paginate(Settings::TEACHER_LOAD_LIMIT);
+////        return $this->load(Teacher::find(1))->paginate(Settings::TEACHER_LOAD_LIMIT);
     }
 
     public function store(array $data)
     {
-        $student = $this->fill($data, new Student());
+        $teacher = $this->fill($data, new Teacher());
         $user = $this->userRepository->fill($data['user'], new User());
 
-        $user->is_student = true;
+        $user->is_teacher = true;
 
         $user->save();
-        $user->student()->save($student);
+        $user->teacher()->save($teacher);
 
-        return $this->load($student);
+        return $this->load($teacher);
     }
 
-    public function show(Student $student)
+    public function show(Teacher $teacher)
     {
-        return $this->load($student);
+        return $this->load($teacher);
     }
 
-    public function update(array $data, Student $student)
+    public function update(array $data, Teacher $teacher)
     {
-        $this->fill($data, $student)->save();
-        $this->userRepository->fill($data['user'], $student->user)->save();
+        $this->fill($data, $teacher)->save();
+        $this->userRepository->fill($data['user'], $teacher->user)->save();
 
-        return $this->load($student);
+        return $this->load($teacher);
     }
 
-    public function destroy(Student $student)
-    {
-        return true;
-    }
-
-    public function uploadDisplayPicture(DisplayPictureRequest $request, Student $student)
+    public function uploadDisplayPicture(DisplayPictureRequest $request, Teacher $teacher)
     {
         $new_dp_path = FileHelper::store($request->file('file'), 'file.images.user.profile_picture.path');
 
-        $user = $student->user;
+        $user = $teacher->user;
         FileHelper::delete($user->profile_picture);
         $user->profile_picture = $new_dp_path;
         $user->save();
@@ -98,14 +94,15 @@ class StudentRepository extends BaseRepository
         return ['url' => $user->profile_picture];
     }
 
-    public function changePassword(array $data, Student $student)
+    public function changePassword(array $data, Teacher $teacher)
     {
-        return $this->userRepository->fill($data, $student->user)->save();
+
+        return $this->userRepository->fill($data, $teacher->user)->save();
     }
 
     public function load($object)
     {
-        if ($object instanceof Student) {
+        if ($object instanceof Teacher) {
             $object->load(['user']);
         } elseif ($object instanceof Builder) {
             return $object->with(['user']);
