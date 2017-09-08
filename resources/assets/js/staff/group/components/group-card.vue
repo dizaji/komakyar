@@ -38,14 +38,14 @@
                     </div>
                 </div>
                 <div class="col-xs-8 multi-image">
-                    <a href="#">
-                        <img v-for="i in 30"
-                             width="40"
-                             :src="'http://lorempixel.com/150/150/people/' + i%10"
+
+                    <a v-for="student in group.students" :href="studentUrl(student)" >
+                        <img width="40"
+                             :src="student.profile_picture"
                              class="img-circle"
                              data-toggle="tooltip"
                              data-placement="bottom"
-                             title="احمد حسن زاده">
+                             :title="student.user.first_name + ' ' + student.user.surname">
                     </a>
                 </div>
             </div>
@@ -63,7 +63,11 @@
             }
         },
 
-        methods: {}
+        methods: {
+            studentUrl(student){
+                return route('staff.student.show', {student: student.id})
+            }
+        }
     }
 
 

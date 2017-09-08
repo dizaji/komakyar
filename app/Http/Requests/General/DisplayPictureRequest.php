@@ -2,26 +2,17 @@
 
 namespace App\Http\Requests\General;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class DisplayPictureRequest extends FormRequest
+class DisplayPictureRequest extends BaseRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Get the validation rules that apply to the post request.
      *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
+     * @param string $prefix
      * @return array
      */
-    public function rules()
+    public function postRules($prefix = '')
     {
         return [
             'file' => 'required|image|max:' . config('file.images.user.profile_picture.max_size', 200),

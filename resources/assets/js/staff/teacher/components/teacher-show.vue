@@ -3,7 +3,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-12">{{ teacher.user.first_name }}{{'&nbsp;&nbsp;'}} {{ teacher.user.surname }}</div>
+                    <div class="col-xs-12">{{ teacher.user.first_name }} {{ teacher.user.surname }}</div>
                 </div>
             </div>
             <div class="panel-body">
@@ -74,7 +74,6 @@
             onLoadSuccess: function (response) {
                 this.teacher = response.data;
                 this.$Progress.finish();
-                console.log("r data =",response.data)
             },
 
             onLoadError: function (error) {

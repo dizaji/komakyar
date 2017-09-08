@@ -57,8 +57,6 @@
         methods: {
             loadData: function (page) {
                 this.$Progress.start();
-//                this.parents = null;
-                console.log(page);
                 if (typeof page === 'undefined') {
                     page = this.current_page;
                 } else {
@@ -76,7 +74,6 @@
             onLoadSuccess(response) {
                 this.teachers = response.data;
                 this.$Progress.finish();
-                console.log("response =",response.data);
             },
             onLoadError: function (error) {
                 this.$Progress.fail();

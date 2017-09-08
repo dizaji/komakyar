@@ -43,6 +43,7 @@ Route::group(['prefix' => 'staff', 'as' => 'staff.', 'namespace' => 'Staff', 'mi
     });
     Route::group(['prefix' => 'teacher', 'as' => 'teacher.', 'namespace' => 'Teacher'], function () {
         Route::group(['prefix' => '{teacher}'], function () {
+            Route::post('upload-display-picture', 'TeacherController@uploadDisplayPicture')->name('upload-display-picture');
             Route::post('change-password', 'TeacherController@changePassword')->name('change-password');
         });
         Route::resource('', 'TeacherController', ['parameters' => ['' => 'teacher'], 'except' => ['create', 'edit']]);

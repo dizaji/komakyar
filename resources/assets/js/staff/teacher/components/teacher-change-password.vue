@@ -40,7 +40,6 @@
         },
         methods: {
             btnSaveClicked: function () {
-                console.log("teacher.id =",this.teacher.id)
                 this.$Progress.start();
                 axios.post(route('staff.teacher.change-password', {teacher: this.teacher.id}), this.user)
                     .then(this.onSuccess)

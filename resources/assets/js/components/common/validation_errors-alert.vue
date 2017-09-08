@@ -4,7 +4,7 @@
             <div class="alert alert-danger" role="alert">
                 <button type="button" class="close" v-on:click="btnCloseAlertClicked()"><span aria-hidden="true">&times;</span></button>
                 <ul>
-                    <li v-for="error in errors">
+                    <li v-for="error in errors.errors">
                         {{ error[0] }}
                     </li>
                 </ul>

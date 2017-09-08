@@ -155,13 +155,8 @@
                     .catch(this.onLoadError);
             },
             onStoreSuccess: function (response) {
-                console.log('success');
-                console.log(response);
-                console.log(response.data.id);
-                let $e = response.data.id;
-                console.log($e);
-                window.location.href = route('staff.teacher.show', {teacher: response.data.id});
                 this.$Progress.finish();
+                window.location.href = route('staff.teacher.show', {teacher: response.data.id});
             },
             onLoadError: function (error) {
                 this.$Progress.fail();

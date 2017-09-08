@@ -5,8 +5,9 @@
                 <img :src="profile_picture" alt="..." width="140" height="140" class="img-circle">
             </div>
             <div class="col-xs-12  col-sm-8">
-                <!--<dropzone-uploader :url="upload_display_picture_route" v-on:upload-success="profilePictureUploadSuccess"-->
-                                   <!--v-on:upload-error="profilePictureUploadError"></dropzone-uploader>-->
+                <dropzone-uploader :url="upload_display_picture_route"
+                                   v-on:upload-success="profilePictureUploadSuccess"
+                                   v-on:upload-error="profilePictureUploadError"></dropzone-uploader>
             </div>
         </div>
         <hr>
@@ -63,107 +64,6 @@
             </div>
         </div>
         <div class="row">
-
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="col-sm-2 col-md-4 control-label">تاریخ تولد</label>
-                    <div class="col-sm-10 col-md-8">
-                        <!--<persian-date-picker v-model="editable_teacher.date_of_birth" v-if="moteacherde === 'edit'"></persian-date-picker>-->
-                        <!--<p v-else="" class="form-control-static">{{ teacher.date_of_birth | persianDate }}</p>-->
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="col-sm-2 col-md-4 control-label">مدرک</label>
-                    <div class="col-sm-10 col-md-8">
-                        <!--<input v-if="mode === 'edit'" type="email" class="form-control" id="input-degree"-->
-                               <!--placeholder="" v-model="editable_teacher.degree">-->
-
-                        <div v-if="mode === 'edit'">
-                            <div class="form-group">
-
-
-                                <select class="form-control" v-model="editable_teacher.degree"
-                                        id="input-field-of-study">
-
-                                    <option  :value= 0>
-                                        <div>زیر دیپلم</div>
-                                    </option>
-                                    <option  :value= 1>
-                                        <div>دیپلم</div>
-                                    </option>
-                                    <option  :value= 2>
-                                        <div>فوق دیپلم</div>
-                                    </option>
-                                    <option  :value= 3>
-                                        <div>کارشناسی</div>
-                                    </option>
-                                    <option  :value= 4>
-                                        <div>کارشناسی ارشد</div>
-                                    </option>
-                                    <option  :value= 5>
-                                        <div>دکتری</div>
-                                    </option>
-                                    <option  :value= 6>
-                                        <div>موارد دیگر</div>
-                                    </option>
-                                </select>
-
-                            </div>
-                        </div>
-
-                    <div v-else="">
-                        <div v-if="teacher.degree == 'below diploma' " class="">
-                            <p  class="form-control-static">زیر دیپلم</p>
-                        </div>
-                        <div v-if="teacher.degree == 0 " class="">
-                            <p  class="form-control-static">زیر دیپلم</p>
-                        </div>
-                        <div v-if="teacher.degree == 'diploma' " class="">
-                            <p  class="form-control-static">دیپلم</p>
-                        </div>
-                        <div v-if="teacher.degree == 1" class="">
-                            <p  class="form-control-static">دیپلم</p>
-                        </div>
-                        <div v-if="teacher.degree == 'Ad'" class="">
-                            <p  class="form-control-static">فوق دیپلم</p>
-                        </div>
-                        <div v-if="teacher.degree == 2 " class="">
-                            <p  class="form-control-static">فوق دیپلم</p>
-                        </div>
-                        <div v-if="teacher.degree == 'BsC'" class="">
-                            <p  class="form-control-static">کارشناسی</p>
-                        </div>
-                        <div v-if="teacher.degree == 3 " class="">
-                            <p  class="form-control-static">کارشناسی</p>
-                        </div>
-                        <div v-if="teacher.degree == 'MsC'  " class="">
-                            <p  class="form-control-static">کارشناسی ارشد</p>
-                        </div>
-                        <div v-if="teacher.degree == 4 " class="">
-                            <p  class="form-control-static">کارشناسی ارشد</p>
-                        </div>
-                        <div v-if="teacher.degree == 5 " class="">
-                            <p  class="form-control-static">دکتری</p>
-                        </div>
-                        <div v-if="teacher.degree == 'PhD'  " class="">
-                            <p  class="form-control-static">دکتری</p>
-                        </div>
-                        <div v-if="teacher.degree == 'Other' " class="">
-                            <p  class="form-control-static">موارد دیگر</p>
-                        </div>
-                        <div v-if="teacher.degree == 6 " class="">
-                            <p  class="form-control-static">موارد دیگر</p>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="col-sm-2 col-md-4 control-label">موبایل</label>
@@ -171,6 +71,22 @@
                         <input v-if="mode === 'edit'" type="number" class="form-control" id="input-mobile"
                                placeholder="09121234567" v-model="editable_teacher.mobile">
                         <p v-else="" class="form-control-static">{{ teacher.mobile }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-4 control-label">سطح تحصیلات</label>
+                    <div class="col-sm-10 col-md-8">
+                        <template v-if="mode === 'edit'">
+                            <degree-level-dropdownlist
+                                    v-model="editable_teacher.degree"
+                                    id="input-field-of-study">
+                            </degree-level-dropdownlist>
+                        </template>
+                        <template v-else="">
+                            <degree-level-paragraph v-model="teacher.degree"></degree-level-paragraph>
+                        </template>
                     </div>
                 </div>
             </div>
@@ -182,7 +98,7 @@
                     <label class="col-sm-2 control-label">توضیحات</label>
                     <div class="col-sm-10">
                         <input v-if="mode === 'edit'" class="form-control" id="input-description"
-                               placeholder="توضیحات تکمیلی در مورد دانش آموز مثل اینکه ایشان در سال گذشته شاگرد ممتاز بوده اند"
+                               placeholder="توضیحات تکمیلی"
                                v-model="editable_teacher.user.description">
                         <p v-else="" class="form-control-static">{{ teacher.user.description }}</p>
                     </div>
@@ -213,7 +129,7 @@
             return {
                 errors: {},
                 mode: 'show',
-//                upload_display_picture_route: route('staff.teacher.upload-display-picture', {teacher: this.teacher.id}),
+                upload_display_picture_route: route('staff.teacher.upload-display-picture', {teacher: this.teacher.id}),
                 editable_teacher: $.extend(true, {}, this.teacher),
             }
         },
@@ -234,7 +150,6 @@
                 this.mode = 'show';
                 $.extend(true, this.teacher, response.data);
                 this.$Progress.finish();
-                console.log("r data info =",response.data)
             },
             onUpdateError(error) {
                 this.$Progress.fail();
@@ -244,7 +159,6 @@
                     alert("Oops, Something went wrong!!!");
                 }
                 console.log(error.response);
-                console.log("r data info =",response.data)
             },
 
             btnDeleteClicked: function () {

@@ -1,22 +1,16 @@
 <template>
     <div>
-               <div class="panel panel-default">
+        <div class="panel panel-default">
             <div class="panel-heading panel-heading-custom">
                 <div class="row">
                     <div class="col-xs-6">
-                          {{ teacher.user.first_name}}{{ '&nbsp;&nbsp;' }} {{ teacher.user.surname }}
+                        {{ teacher.user.first_name}} {{ teacher.user.surname }}
                     </div>
                     <div class="col-xs-6 text-left">
-                        <a class="btn  btn-xs" style="background: #f7ecb5" :href="url.show">
-                            <span class="glyphicon glyphicon-eye-open" style="font-size:15px;color: crimson"></span>
+                        <a class="btn btn-sm btn-primary" :href="url.show">
+                            <span class="glyphicon glyphicon-eye-open"></span>
 
                         </a>
-                        <!--<button class="btn btn-sm btn-danger" v-on:click="$refs.confirm_delete_modal.show()">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </button>
-                        <confirm-delete-modal ref="confirm_delete_modal"
-                                              v-on:confirm="btnDeleteClicked"></confirm-delete-modal>-->
-                        <!--<slot name="buttons"></slot>-->
                     </div>
                 </div>
             </div>
@@ -26,31 +20,6 @@
                     <img width="140" height="140"
                          :src="profile_picture"
                          class="img-circle">
-
-                    <!--<h4>احمد حسن زاده</h4>
-                    <div>
-                        <a :href="url.show"
-                           class="test-actual"
-                           data-toggle="tooltip"
-                           data-placement="bottom"
-                           title="مشاهده">
-                            <span class="glyphicon glyphicon-eye-open text-info"></span>
-                        </a>-->
-                    <!--<a href="#"
-                       class="test-actual"
-                       data-toggle="tooltip"
-                       data-placement="bottom"
-                       title="ویرایش">
-                        <span class="glyphicon glyphicon-pencil text-pimary"></span>
-                    </a>
-                    <a href="#"
-                       class="test-actual"
-                       data-toggle="tooltip"
-                       data-placement="bottom"
-                       title="حدف">
-                        <span class="glyphicon glyphicon-remove text-danger"></span>
-                    </a>-->
-                    <!--</div>-->
                 </div>
                 <div class="form-horizontal col-sm-9 col-xs-6">
                     <div class="form-group col-md-6">
@@ -77,46 +46,46 @@
                         <div class="col-md-8 col-sm-9 col-xs-8">
                             <!--<p class="form-control-static">{{ teacher.degree }}</p>-->
                             <div v-if="teacher.degree == 'below diploma' " class="">
-                                <p  class="form-control-static">زیر دیپلم</p>
+                                <p class="form-control-static">زیر دیپلم</p>
                             </div>
                             <div v-if="teacher.degree == 0 " class="">
-                                <p  class="form-control-static">زیر دیپلم</p>
+                                <p class="form-control-static">زیر دیپلم</p>
                             </div>
                             <div v-if="teacher.degree == 'diploma' " class="">
-                                <p  class="form-control-static">دیپلم</p>
+                                <p class="form-control-static">دیپلم</p>
                             </div>
                             <div v-if="teacher.degree == 1" class="">
-                                <p  class="form-control-static">دیپلم</p>
+                                <p class="form-control-static">دیپلم</p>
                             </div>
                             <div v-if="teacher.degree == 'Ad'" class="">
-                                <p  class="form-control-static">فوق دیپلم</p>
+                                <p class="form-control-static">فوق دیپلم</p>
                             </div>
                             <div v-if="teacher.degree == 2 " class="">
-                                <p  class="form-control-static">فوق دیپلم</p>
+                                <p class="form-control-static">فوق دیپلم</p>
                             </div>
                             <div v-if="teacher.degree == 'BsC'" class="">
-                                <p  class="form-control-static">کارشناسی</p>
+                                <p class="form-control-static">کارشناسی</p>
                             </div>
                             <div v-if="teacher.degree == 3 " class="">
-                                <p  class="form-control-static">کارشناسی</p>
+                                <p class="form-control-static">کارشناسی</p>
                             </div>
                             <div v-if="teacher.degree == 'MsC'  " class="">
-                                <p  class="form-control-static">کارشناسی ارشد</p>
+                                <p class="form-control-static">کارشناسی ارشد</p>
                             </div>
                             <div v-if="teacher.degree == 4 " class="">
-                                <p  class="form-control-static">کارشناسی ارشد</p>
+                                <p class="form-control-static">کارشناسی ارشد</p>
                             </div>
                             <div v-if="teacher.degree == 5 " class="">
-                                <p  class="form-control-static">دکتری</p>
+                                <p class="form-control-static">دکتری</p>
                             </div>
                             <div v-if="teacher.degree == 'PhD'  " class="">
-                                <p  class="form-control-static">دکتری</p>
+                                <p class="form-control-static">دکتری</p>
                             </div>
                             <div v-if="teacher.degree == 'Other' " class="">
-                                <p  class="form-control-static">موارد دیگر</p>
+                                <p class="form-control-static">موارد دیگر</p>
                             </div>
                             <div v-if="teacher.degree == 6 " class="">
-                                <p  class="form-control-static">موارد دیگر</p>
+                                <p class="form-control-static">موارد دیگر</p>
                             </div>
                         </div>
                     </div>
@@ -146,23 +115,5 @@
                 }
             }
         },
-        methods: {
-            test: function () {
-                console.log("mounted");
-            }
-        }
     }
-
-
 </script>
-<style>
-    .panel-default > .panel-heading-custom {
-        background: #800040; color: #fff;
-
-    }
-    .panel-default > .panel-heading-custom:hover {
-        background:  #ff4444; color: #fff;
-
-    }
-
-</style>

@@ -3,9 +3,11 @@
 namespace App\Repositories\Staff\User\Teacher;
 
 
+use App\Http\Requests\General\DisplayPictureRequest;
 use App\Models\User\Teacher\Teacher;
 use App\Repositories\BaseRepository;
 use App\Repositories\Staff\User\UserRepository;
+use App\Tools\FileHelper;
 use App\Tools\Settings;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -78,6 +80,18 @@ class TeacherRepository extends BaseRepository
         $this->userRepository->fill($data['user'], $teacher->user)->save();
 
         return $this->load($teacher);
+    }
+
+    public function uploadDisplayPicture(DisplayPictureRequest $request, Teacher $teacher)
+    {
+        $new_dp_path = FileHelper::store($request->file('file'), 'file.images.user.profile_picture.path');
+
+        $user = $teacher->user;
+        FileHelper::delete($user->profile_picture);
+        $user->profile_picture = $new_dp_path;
+        $user->save();
+
+        return ['url' => $user->profile_picture];
     }
 
     public function changePassword(array $data, Teacher $teacher)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Staff\Teacher;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\General\ChangePasswordRequest;
+use App\Http\Requests\General\DisplayPictureRequest;
 use App\Http\Requests\Staff\Teacher\TeacherRequest;
 use App\Models\User\Teacher\Teacher;
 use App\Repositories\Staff\User\Teacher\TeacherRepository;
@@ -80,6 +81,11 @@ class TeacherController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function uploadDisplayPicture(DisplayPictureRequest $request, Teacher $teacher)
+    {
+        return JsonResponse::successObject($this->teacherRepository->uploadDisplayPicture($request, $teacher));
     }
 
 

@@ -11,6 +11,7 @@ require('./lookup/lookup');
 require('./teacher/teacher');
 
 Vue.component('degree-level-dropdownlist', require('./common/degree-level-dropdownlist.vue'));
+Vue.component('degree-level-paragraph', require('./common/degree-level-paragraph.vue'));
 
 const staff_app = new Vue({
      el: '#staff-app'
