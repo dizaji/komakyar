@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateDailyProgramsTable extends Migration
 {
@@ -17,9 +17,9 @@ class CreateDailyProgramsTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->unsignedInteger('presentation_id')->nulable();
+            $table->unsignedInteger('presentation_id');
             $table->unsignedInteger('staff_id')->nullable();
-            $table->unsignedInteger('group_id')->nullable();
+            $table->unsignedInteger('group_id');
 
             $table->timestamp('started_at')->nullable();
             $table->timestamp('finished_at')->nullable();

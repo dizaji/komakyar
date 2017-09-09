@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateAnnualPlansTable extends Migration
 {
@@ -18,6 +18,7 @@ class CreateAnnualPlansTable extends Migration
             $table->timestamps();
 
             $table->unsignedInteger('presentation_id');
+            $table->unsignedInteger('group_id');
 
             $table->time('start_at');
             $table->time('end_at');
@@ -33,6 +34,8 @@ class CreateAnnualPlansTable extends Migration
 
         Schema::table('education_annual_programs', function (Blueprint $table) {
             $table->foreign('presentation_id', 'fk_education_annual_programs_1')->references('id')->on('education_course_presentations')->onUpdate('CASCADE');
+            $table->foreign('group_id', 'fk_education_annual_programs_2')->references('id')->on('education_groups')->onUpdate('CASCADE');
+
         });
     }
 
@@ -45,6 +48,7 @@ class CreateAnnualPlansTable extends Migration
     {
         Schema::table('education_annual_programs', function (Blueprint $table) {
             $table->dropForeign('fk_education_annual_programs_1');
+            $table->dropForeign('fk_education_annual_programs_2');
         });
 
         Schema::dropIfExists('education_annual_programs');
