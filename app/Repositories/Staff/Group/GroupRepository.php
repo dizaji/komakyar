@@ -63,12 +63,7 @@ class GroupRepository extends BaseRepository
                 'levelField.level',
                 'levelField.field',
                 'academicYear',
-                'students' => function ($query) {
-                    $query
-                        ->with(['user' => function ($query) {
-                            //$query->select(['users.profile_picture', 'users.first_name', 'users.surname']);
-                        }])->select(['user_students.id','users.profile_picture', 'users.first_name', 'users.surname']);
-                }
+                'students.user',
             ]);
         } else {
             foreach ($object as $index => $value) {
