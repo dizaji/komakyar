@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -45,5 +45,16 @@ class User extends Authenticatable
     public function teacher()
     {
         return $this->hasOne('App\Models\User\Teacher\Teacher', 'user_id', 'id');
+    }
+
+    public function rollCallDevices()
+    {
+        return $this->belongsToMany('App\Models\User\RollCall\RollCallDevice', 'roll_call_device_user_id', 'user_id', 'roll_call_device_id')
+            ->withPivot('device_user_id');
+    }
+
+    public function rollCallDeviceRecords()
+    {
+        return $this->hasMany('App\Models\User\RollCall\RollCallDeviceRecord', 'user_id', 'id');
     }
 }
