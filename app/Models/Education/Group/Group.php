@@ -37,4 +37,9 @@ class Group extends Model
     {
         return $this->hasMany('App\Models\Education\Program\DailyProgram', 'group_id', 'id');
     }
+
+    public function annualPrograms()
+    {
+        return $this->hasMany('App\Models\Education\Program\AnnualProgram', 'group_id', 'id');
+    }
 }
