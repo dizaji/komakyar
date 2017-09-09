@@ -47,7 +47,7 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\User\Teacher\Teacher', 'user_id', 'id');
     }
 
-    public function users()
+    public function rollCallDevices()
     {
         return $this->belongsToMany('App\Models\User\RollCall\RollCallDevice', 'roll_call_device_user_id', 'user_id', 'roll_call_device_id')
             ->withPivot('device_user_id');
