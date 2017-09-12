@@ -17,7 +17,7 @@
             <div class="panel-body">
                 <div class="col-sm-3 col-xs-4 text-center">
 
-                    <img width="140" height="140"
+                    <img style="max-width: 100%; max-height: 140px;"
                          :src="profile_picture"
                          class="img-circle">
                 </div>
@@ -64,18 +64,24 @@
 
         data() {
             return {
-                url: {
-                    show: route('staff.teacher.show', {teacher: this.teacher.id}),
-                }
             }
         },
         computed: {
             profile_picture: function () {
-                if (this.teacher && this.teacher.profile_picture) {
-                    return window.default_values.storage_base_url + this.teacher.user.profile_picture;
+                if (this.teacher && this.teacher.user.profile_picture) {
+                    if(window.isValidURL(this.teacher.user.profile_picture)) {
+                        return this.teacher.user.profile_picture;
+                    } else {
+                        return window.default_values.storage_base_url + this.teacher.user.profile_picture;
+                    }
                 } else {
                     return window.default_values.defaults.dp;
                 }
+            },
+            url: function () {
+                return {
+                    show: route('staff.teacher.show', {teacher: this.teacher.id}),
+                };
             }
         },
     }
