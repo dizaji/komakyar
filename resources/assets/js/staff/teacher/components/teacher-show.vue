@@ -12,7 +12,7 @@
                         <a href="#general" aria-controls="general" role="tab" data-toggle="tab">اطلاعات کلی</a>
                     </li>
                     <li role="presentation">
-                        <a href="#courses" aria-controls="courses" role="tab" data-toggle="tab">دروس</a>
+                        <a href="#courses" aria-controls="courses" role="tab" data-toggle="tab" v-on:click="$refs.presentation_list.loadData()">دروس</a>
                     </li>
                     <li role="presentation">
                         <a href="#password" aria-controls="password" role="tab" data-toggle="tab">گذر واژه</a>
@@ -26,7 +26,7 @@
                         <teacher-general-info :teacher="teacher"></teacher-general-info>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="courses">
-                        <teacher-course-list :teacher="teacher"></teacher-course-list>
+                        <teacher-presentation-list :teacher="teacher" ref="presentation_list"></teacher-presentation-list>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="password">
                         <teacher-change-password :teacher="teacher"></teacher-change-password>
@@ -43,7 +43,7 @@
 <script>
     import TeacherGeneralInfo from './teacher-general-info.vue'
     import TeacherChangePassword from './teacher-change-password.vue'
-    import TeacherCourseList from './course/teacher-course-list.vue'
+    import TeacherPresentationList from './course/teacher-presentation-list.vue'
 
     export default {
 
@@ -58,7 +58,7 @@
         components: {
             'teacher-general-info': TeacherGeneralInfo,
             'teacher-change-password': TeacherChangePassword,
-            'teacher-course-list': TeacherCourseList,
+            'teacher-presentation-list': TeacherPresentationList,
         },
 
         mounted() {

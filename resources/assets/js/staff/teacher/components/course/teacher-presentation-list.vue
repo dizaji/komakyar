@@ -1,10 +1,10 @@
 <template>
     <div>
-        <teacher-course-create :teacher="teacher" v-on:created="onParentCreated"></teacher-course-create>
+        <teacher-presentation-create :teacher="teacher" v-on:attached="loadData()" v-on:detached="loadData()"></teacher-presentation-create>
 
         <template v-if="presentations">
             <template v-for="presentation in presentations.data">
-                <teacher-course-card :teacher="teacher" :course="presentation" v-on:delete="loadData"></teacher-course-card>
+                <teacher-presentation-card :teacher="teacher" :presentation="presentation" v-on:delete="loadData"></teacher-presentation-card>
             </template>
             <div class="row">
                 <div class="col-xs-12 text-center">
@@ -15,8 +15,8 @@
     </div>
 </template>
 <script>
-    import TeacherCourseCreate from './teacher-course-create.vue';
-    import TeacherCourseCard from './teacher-course-card.vue';
+    import TeacherPresentationCreate from './teacher-presentation-create.vue';
+    import TeacherPresentationCard from './teacher-presentation-card.vue';
 
     export default {
         props: ['teacher'],
@@ -28,8 +28,8 @@
             }
         },
         components: {
-            'teacher-course-card': TeacherCourseCard,
-            'teacher-course-create': TeacherCourseCreate,
+            'teacher-presentation-card': TeacherPresentationCard,
+            'teacher-presentation-create': TeacherPresentationCreate,
         },
         methods: {
             loadData: function (page) {
@@ -43,7 +43,7 @@
                 }
 
                 // Using vue-resource as an example
-                axios.get(route('staff.teacher.course.index', {teacher: this.teacher.id}), {
+                axios.get(route('staff.teacher.presentation.index', {teacher: this.teacher.id}), {
                     params: {
                         page: page
                     }
@@ -53,7 +53,7 @@
             },
 
             onLoadSuccess(response) {
-                this.parents = response.data;
+                this.presentations = response.data;
                 this.$Progress.finish();
             },
 
@@ -62,10 +62,6 @@
                 alert("Oops, Something went wrong!!!");
                 console.log(error.response);
             },
-
-            onParentCreated(response) {
-                this.loadData(this.current_page = 1);
-            }
         }
     }
 </script>
