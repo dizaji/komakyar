@@ -170,6 +170,7 @@
             onAttachSuccess(response, student) {
                 student.current_group = true;
                 this.$emit('attached', student);
+                this.$Progress.finish();
             },
             detach: function (student) {
                 axios.delete(route('staff.group.student.destroy', {group: this.group.id, student: student.id}))
@@ -179,6 +180,7 @@
             onDetachSuccess(response, student) {
                 student.current_group = false;
                 this.$emit('detached', student);
+                this.$Progress.finish();
             },
             onError(error) {
                 this.$Progress.fail();
