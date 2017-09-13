@@ -28,6 +28,9 @@ class CourseRepository extends BaseRepository
     {
         return $this->load(
             Course::query()
+                ->when(is_null(Input::get('all')) || Input::get('all') == false, function ($query) {
+                    $query->where('is_available', true);
+                })
                 ->when(!is_null(Input::get('reference_name')), function ($query) {
                     $query->where('reference_name', 'like', '%' . Input::get('reference_name') . '%');
                 })
