@@ -119,7 +119,11 @@
         computed: {
             profile_picture: function () {
                 if (this.teacher && this.teacher.user.profile_picture) {
-                    return window.default_values.storage_base_url + this.teacher.user.profile_picture;
+                    if(window.isValidURL(this.teacher.user.profile_picture)) {
+                        return this.teacher.user.profile_picture;
+                    } else {
+                        return window.default_values.storage_base_url + this.teacher.user.profile_picture;
+                    }
                 } else {
                     return window.default_values.defaults.dp;
                 }
