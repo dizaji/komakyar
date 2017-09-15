@@ -30,6 +30,6 @@ class Group extends Model
 
     public function groupPresentedCourses()
     {
-        return $this->hasMany('App\Models\Education\Group\GroupPresentedCourses', 'group_id', 'id');
+        return $this->hasMany('App\Models\Education\Group\GroupPresentedCourse', 'group_id', 'id');
     }
 }

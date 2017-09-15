@@ -10,7 +10,7 @@ class DailyProgram extends Model
 
     public function groupPresentedCourse()
     {
-        return $this->belongsTo('App\Models\Education\Group\GroupPresentedCourses', 'group_present_course_id', 'id');
+        return $this->belongsTo('App\Models\Education\Group\GroupPresentedCourse', 'group_present_course_id', 'id');
     }
 
     public function staff()

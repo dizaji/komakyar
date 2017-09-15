@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Staff\Group\Course;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Staff\Group\GroupPresentedCourseRequest;
 use App\Models\Education\Group\Group;
-use App\Models\Education\Group\GroupPresentedCourses;
+use App\Models\Education\Group\GroupPresentedCourse;
 use App\Repositories\Staff\Group\GroupPresentedCourseRepository;
 use App\Tools\JsonResponse;
 
@@ -14,15 +14,15 @@ class GroupPresentedCourseController extends Controller
     /**
      * @var GroupPresentedCourseRepository
      */
-    protected $groupPresentedCoursesRepository;
+    protected $groupPresentedCourseRepository;
 
     /**
-     * GroupPresentedCoursesController constructor.
-     * @param GroupPresentedCourseRepository $groupPresentedCoursesRepository
+     * GroupPresentedCourseController constructor.
+     * @param GroupPresentedCourseRepository $groupPresentedCourseRepository
      */
-    public function __construct(GroupPresentedCourseRepository $groupPresentedCoursesRepository)
+    public function __construct(GroupPresentedCourseRepository $groupPresentedCourseRepository)
     {
-        $this->groupPresentedCoursesRepository = $groupPresentedCoursesRepository;
+        $this->groupPresentedCourseRepository = $groupPresentedCourseRepository;
     }
 
     /**
@@ -33,7 +33,7 @@ class GroupPresentedCourseController extends Controller
      */
     public function index(Group $group)
     {
-        return JsonResponse::successObject($this->groupPresentedCoursesRepository->index($group));
+        return JsonResponse::successObject($this->groupPresentedCourseRepository->index($group));
     }
 
     /**
@@ -45,19 +45,19 @@ class GroupPresentedCourseController extends Controller
      */
     public function store(GroupPresentedCourseRequest $request, Group $group)
     {
-        return JsonResponse::successObject($this->groupPresentedCoursesRepository->store($request->all(), $group));
+        return JsonResponse::successObject($this->groupPresentedCourseRepository->store($request->all(), $group));
     }
 
     /**
      * Display the specified resource.
      *
      * @param  Group $group
-     * @param  \App\Models\Education\Group\GroupPresentedCourses $groupPresentedCourses
+     * @param  \App\Models\Education\Group\GroupPresentedCourse $groupPresentedCourse
      * @return \Illuminate\Http\Response
      */
-    public function show(Group $group, GroupPresentedCourses $groupPresentedCourses)
+    public function show(Group $group, GroupPresentedCourse $groupPresentedCourse)
     {
-        return JsonResponse::successObject($this->groupPresentedCoursesRepository->show($groupPresentedCourses));
+        return JsonResponse::successObject($this->groupPresentedCourseRepository->show($groupPresentedCourse));
     }
 
     /**
@@ -65,23 +65,25 @@ class GroupPresentedCourseController extends Controller
      *
      * @param  GroupPresentedCourseRequest $request
      * @param  Group $group
-     * @param  \App\Models\Education\Group\GroupPresentedCourses $groupPresentedCourses
+     * @param  \App\Models\Education\Group\GroupPresentedCourse $groupPresentedCourse
      * @return \Illuminate\Http\Response
      */
-    public function update(GroupPresentedCourseRequest $request, Group $group, GroupPresentedCourses $groupPresentedCourses)
+    public function update(GroupPresentedCourseRequest $request, Group $group, GroupPresentedCourse $groupPresentedCourse)
     {
-        return JsonResponse::successObject($this->groupPresentedCoursesRepository->update($request->all(), $groupPresentedCourses));
+        return JsonResponse::successObject($this->groupPresentedCourseRepository->update($request->all(), $groupPresentedCourse));
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  Group $group
-     * @param  \App\Models\Education\Group\GroupPresentedCourses $groupPresentedCourses
+     * @param  \App\Models\Education\Group\GroupPresentedCourse $groupPresentedCourse
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Group $group, GroupPresentedCourses $groupPresentedCourses)
+    public function destroy(Group $group, GroupPresentedCourse $groupPresentedCourse)
     {
-        return JsonResponse::successObject($this->groupPresentedCoursesRepository->destroy($groupPresentedCourses));
+        $this->groupPresentedCourseRepository->destroy($groupPresentedCourse);
+
+        return JsonResponse::successMessage('Object has been deleted successfully');
     }
 }
