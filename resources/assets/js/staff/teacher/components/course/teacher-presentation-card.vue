@@ -1,5 +1,5 @@
 <template>
-    <div class="panel panel-info" v-if="!deleted">
+    <div class="panel panel-info">
         <div class="panel-heading">
             <div class="row">
                 <div class="col-xs-6">
