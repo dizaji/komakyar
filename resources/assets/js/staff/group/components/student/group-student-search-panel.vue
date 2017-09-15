@@ -2,7 +2,7 @@
     <student-search-panel v-on:search="search"></student-search-panel>
 </template>
 <script>
-    import StudentSearchPanel from '../../student/components/student-search-panel';
+    import StudentSearchPanel from '../../../student/components/student-search-panel';
 
     export default {
         components: {

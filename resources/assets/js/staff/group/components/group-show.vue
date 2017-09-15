@@ -24,6 +24,13 @@
                                        data-toggle="tab"
                                        v-on:click="$refs.students_list.loadData()">دانش آموزان</a>
                                 </li>
+                                <li role="presentation">
+                                    <a href="#parents"
+                                       aria-controls="parents"
+                                       role="tab"
+                                       data-toggle="tab"
+                                       v-on:click="$refs.students_list.loadData()">برنامه سالانه</a>
+                                </li>
                             </ul>
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in active" id="general">
@@ -43,7 +50,7 @@
 </template>
 <script>
     import GeneralInfo from './group-general-info.vue'
-    import StudentList from './group-student-list.vue'
+    import StudentList from './student/group-student-list.vue'
 
     export default {
 
