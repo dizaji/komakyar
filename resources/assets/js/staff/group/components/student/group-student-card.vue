@@ -12,7 +12,7 @@
     </student-card>
 </template>
 <script>
-    import StudentCard from '../../student/components/student-card'
+    import StudentCard from '../../../student/components/student-card'
 
     export default {
         props: ['student', 'group'],

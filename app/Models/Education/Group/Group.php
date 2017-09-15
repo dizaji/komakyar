@@ -28,18 +28,8 @@ class Group extends Model
         return $this->belongsToMany('App\Models\User\Student', 'education_group_students', 'group_id', 'student_id');
     }
 
-    public function Presentation()
+    public function groupPresentedCourses()
     {
-        return $this->hasMany('App\Models\Education\Course\Presentation', 'group_id', 'id');
-    }
-
-    public function dailyPrograms()
-    {
-        return $this->hasMany('App\Models\Education\Program\DailyProgram', 'group_id', 'id');
-    }
-
-    public function annualPrograms()
-    {
-        return $this->hasMany('App\Models\Education\Program\AnnualProgram', 'group_id', 'id');
+        return $this->hasMany('App\Models\Education\Group\GroupPresentedCourse', 'group_id', 'id');
     }
 }

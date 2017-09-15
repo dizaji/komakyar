@@ -24,6 +24,13 @@
                                        data-toggle="tab"
                                        v-on:click="$refs.students_list.loadData()">دانش آموزان</a>
                                 </li>
+                                <li role="presentation">
+                                    <a href="#presentation"
+                                       aria-controls="presentation"
+                                       role="tab"
+                                       data-toggle="tab"
+                                       v-on:click="$refs.presentation_list.loadData()">برنامه و دروس</a>
+                                </li>
                             </ul>
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in active" id="general">
@@ -31,6 +38,9 @@
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="parents">
                                     <group-student-list :group="group" ref="students_list"></group-student-list>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="presentation">
+                                    <group-presentation-list :group="group" ref="presentation_list"></group-presentation-list>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +53,8 @@
 </template>
 <script>
     import GeneralInfo from './group-general-info.vue'
-    import StudentList from './group-student-list.vue'
+    import StudentList from './student/group-student-list.vue'
+    import PresentationList from './presentation/group-presentation-list.vue'
 
     export default {
 
@@ -57,6 +68,7 @@
         components: {
             'group-general-info': GeneralInfo,
             'group-student-list': StudentList,
+            'group-presentation-list': PresentationList,
         },
         mounted() {
             this.load();

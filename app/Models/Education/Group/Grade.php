@@ -10,7 +10,7 @@ class Grade extends Model
 
     public function dailyProgram()
     {
-        return $this->belongsTo('App\Models\Education\Program\DailyProgram', 'daily_program_id', 'id');
+        return $this->belongsTo('App\Models\Education\Group\Program\DailyProgram', 'daily_program_id', 'id');
     }
 
     public function groupStudent()

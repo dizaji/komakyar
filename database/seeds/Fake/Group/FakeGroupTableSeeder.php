@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class GroupTableSeeder extends Seeder
+class FakeGroupTableSeeder extends Seeder
 {
     /**
      * @var \Faker\Generator
