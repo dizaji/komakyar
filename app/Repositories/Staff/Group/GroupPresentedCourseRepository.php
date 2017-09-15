@@ -16,8 +16,12 @@ use App\Tools\Settings;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
-class PresentationRepository extends BaseRepository
+class GroupPresentedCourseRepository extends BaseRepository
 {
+    protected $fillable = [
+        'presentation_id',
+        'description',
+    ];
 
     public function index(Group $group, $window_size = Settings::PAGINATION_GROUP_PRESENTED_COURSE_LIMIT)
     {

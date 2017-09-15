@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Staff\Lookup\Course;
 use App\Http\Controllers\Controller;
 use App\Models\Education\Course\Presentation;
 use App\Repositories\Staff\Lookup\Course\PresentationRepository;
+use App\Tools\JsonResponse;
 
 class PresentationController extends Controller
 {
@@ -29,7 +30,7 @@ class PresentationController extends Controller
      */
     public function index()
     {
-        return $this->presentationRepository->index();
+        return JsonResponse::successObject($this->presentationRepository->index());
     }
 
     /**

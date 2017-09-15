@@ -21,7 +21,7 @@ class PresentationRepository extends BaseRepository
 
     public function index($window_size = Settings::PAGINATION_LOOKUP_COURSE_PRESENTED_COURSE_LIMIT)
     {
-        $this->load(Presentation::query()->whereHas('course', function ($query) {
+        return $this->load(Presentation::query()->whereHas('course', function ($query) {
             $query->when(!is_null(Input::get('reference_name')), function ($query) {
                 $query->where('reference_name', 'like', '%' . Input::get('reference_name') . '%');
             })->when(!is_null(Input::get('reference_code')), function ($query) {
@@ -43,12 +43,16 @@ class PresentationRepository extends BaseRepository
                     $query->where('email', 'like', '%' . Input::get('email') . '%');
                 });
             });
+        })->when(!is_null(Input::get('group_id')), function ($query) {
+            $query->with(['groupPresentedCourses' => function($query) {
+                $query->where('group_id', Input::get('group_id'));
+            }]);
         }))->paginate($window_size);
     }
 
     public function show(Presentation $presentation)
     {
-        $this->load($presentation);
+        return $this->load($presentation);
     }
 
     /**
@@ -58,9 +62,9 @@ class PresentationRepository extends BaseRepository
     public function load($object)
     {
         if ($object instanceof Relation || $object instanceof Builder) {
-            $object->with(['teacher', 'course']);
+            $object->with(['teacher.user', 'course']);
         } elseif ($object instanceof Presentation) {
-            $object->load(['teacher', 'course']);
+            $object->load(['teacher.user', 'course']);
         }
 
         return $object;

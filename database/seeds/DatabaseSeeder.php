@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersAdminSeeder::class);
 
         //fake
-        $this->call(StudentsTableSeeder::class);
-        $this->call(GroupTableSeeder::class);
+        $this->call(FakeGroupTableSeeder::class);
+        $this->call(FakeUsersTableSeeder::class);
+        $this->call(FakeCourseTableSeeder::class);
     }
 }

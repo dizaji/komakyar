@@ -20,7 +20,7 @@ class CreateGroupPresentedCoursesTable extends Migration
             $table->unsignedInteger('presentation_id');
             $table->unsignedInteger('group_id');
 
-            $table->text('description');
+            $table->text('description')->nullable();
         });
 
         Schema::table('education_group_presented_courses', function (Blueprint $table) {

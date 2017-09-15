@@ -4,7 +4,7 @@ namespace App\Http\Requests\Staff\Group;
 
 use App\Http\Requests\BaseRequest;
 
-class PresentationRequest extends BaseRequest
+class GroupPresentedCourseRequest extends BaseRequest
 {
     /**
      * Get the validation rules that apply to the post request.
@@ -15,7 +15,6 @@ class PresentationRequest extends BaseRequest
     public function postRules($prefix = '')
     {
         return [
-            'group_id' => ['required', 'exists:education_groups,id',],
             'presentation_id' => ['required', 'exists:education_course_presentations,id',],
             'description' => ['nullable', 'string', 'max:65535',],
         ];

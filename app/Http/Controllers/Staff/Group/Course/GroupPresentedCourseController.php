@@ -3,24 +3,24 @@
 namespace App\Http\Controllers\Staff\Group\Course;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Staff\Group\PresentationRequest;
+use App\Http\Requests\Staff\Group\GroupPresentedCourseRequest;
 use App\Models\Education\Group\Group;
 use App\Models\Education\Group\GroupPresentedCourses;
-use App\Repositories\Staff\Group\PresentationRepository;
+use App\Repositories\Staff\Group\GroupPresentedCourseRepository;
 use App\Tools\JsonResponse;
 
-class PresentationController extends Controller
+class GroupPresentedCourseController extends Controller
 {
     /**
-     * @var PresentationRepository
+     * @var GroupPresentedCourseRepository
      */
     protected $groupPresentedCoursesRepository;
 
     /**
      * GroupPresentedCoursesController constructor.
-     * @param PresentationRepository $groupPresentedCoursesRepository
+     * @param GroupPresentedCourseRepository $groupPresentedCoursesRepository
      */
-    public function __construct(PresentationRepository $groupPresentedCoursesRepository)
+    public function __construct(GroupPresentedCourseRepository $groupPresentedCoursesRepository)
     {
         $this->groupPresentedCoursesRepository = $groupPresentedCoursesRepository;
     }
@@ -39,11 +39,11 @@ class PresentationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  PresentationRequest $request
+     * @param  GroupPresentedCourseRequest $request
      * @param  Group $group
      * @return \Illuminate\Http\Response
      */
-    public function store(PresentationRequest $request, Group $group)
+    public function store(GroupPresentedCourseRequest $request, Group $group)
     {
         return JsonResponse::successObject($this->groupPresentedCoursesRepository->store($request->all(), $group));
     }
@@ -63,12 +63,12 @@ class PresentationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  PresentationRequest $request
+     * @param  GroupPresentedCourseRequest $request
      * @param  Group $group
      * @param  \App\Models\Education\Group\GroupPresentedCourses $groupPresentedCourses
      * @return \Illuminate\Http\Response
      */
-    public function update(PresentationRequest $request, Group $group, GroupPresentedCourses $groupPresentedCourses)
+    public function update(GroupPresentedCourseRequest $request, Group $group, GroupPresentedCourses $groupPresentedCourses)
     {
         return JsonResponse::successObject($this->groupPresentedCoursesRepository->update($request->all(), $groupPresentedCourses));
     }

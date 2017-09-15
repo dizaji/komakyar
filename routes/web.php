@@ -18,8 +18,8 @@ Route::group(['prefix' => 'staff', 'as' => 'staff.', 'namespace' => 'Staff', 'mi
                 Route::get('{student}/add', 'StudentController@add')->name('add');
                 Route::resource('', 'StudentController', ['parameters' => ['' => 'student'], 'only' => ['index', 'destroy']]);
             });
-            Route::group(['prefix' => 'course', 'as' => 'course', 'namespace' => 'Course'], function () {
-                Route::resource('presentation', 'PresentationController', ['parameters' => ['presentation' => 'groupPresentedCourse'], 'except' => ['create', 'update']]);
+            Route::group(['prefix' => 'groupPresentedCourse', 'as' => 'groupPresentedCourse.', 'namespace' => 'Course'], function () {
+                Route::resource('', 'GroupPresentedCourseController', ['parameters' => ['' => 'groupPresentedCourse'], 'except' => ['create', 'update']]);
             });
         });
         Route::resource('', 'GroupController', ['parameters' => ['' => 'group'], 'except' => ['create', 'edit']]);
