@@ -44,7 +44,6 @@
         watch: {
             date: {
                 handler(newDate) {
-                    console.log("here");
                     this.daysRanges[11] = (jmoment.jIsLeapYear(newDate.year)) ? 30 : 29;
                     this.$emit('input', jmoment(newDate.year + ' ' + newDate.month + ' ' + newDate.day, 'jYYYY jM jD').format('YYYY-M-D'));
                 },

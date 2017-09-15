@@ -22,34 +22,9 @@
             <div class="panel-body">
                 <div class="col-sm-3 col-xs-4 text-center">
 
-                    <img width="140" height="140"
+                    <img style="max-width: 100%; max-height: 140px;"
                          :src="profile_picture"
                          class="img-circle">
-
-                    <!--<h4>احمد حسن زاده</h4>
-                    <div>
-                        <a :href="url.show"
-                           class="test-actual"
-                           data-toggle="tooltip"
-                           data-placement="bottom"
-                           title="مشاهده">
-                            <span class="glyphicon glyphicon-eye-open text-info"></span>
-                        </a>-->
-                    <!--<a href="#"
-                       class="test-actual"
-                       data-toggle="tooltip"
-                       data-placement="bottom"
-                       title="ویرایش">
-                        <span class="glyphicon glyphicon-pencil text-pimary"></span>
-                    </a>
-                    <a href="#"
-                       class="test-actual"
-                       data-toggle="tooltip"
-                       data-placement="bottom"
-                       title="حدف">
-                        <span class="glyphicon glyphicon-remove text-danger"></span>
-                    </a>-->
-                    <!--</div>-->
                 </div>
                 <div class="form-horizontal col-sm-9 col-xs-6">
                     <div class="form-group col-md-6">
@@ -99,18 +74,24 @@
 
         data() {
             return {
-                url: {
-                    show: route('staff.student.show', {student: this.student.id}),
-                }
             }
         },
         computed: {
             profile_picture: function () {
                 if (this.student && this.student.user.profile_picture) {
-                    return window.default_values.storage_base_url + this.student.user.profile_picture;
+                    if(window.isValidURL(this.student.user.profile_picture)) {
+                        return this.student.user.profile_picture;
+                    } else {
+                        return window.default_values.storage_base_url + this.student.user.profile_picture;
+                    }
                 } else {
                     return window.default_values.defaults.dp;
                 }
+            },
+            url: function () {
+                return {
+                    show: route('staff.student.show', {student: this.student.id}),
+                };
             }
         },
         methods: {
