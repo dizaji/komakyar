@@ -18,7 +18,7 @@ class CreateRollCallDeviceRecordsTable extends Migration
             $table->timestamps();
 
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('device_id');
+            $table->unsignedInteger('roll_call_device_id');
 
             $table->time('roll_called_at')->nullable();
             $table->enum('verify_type', ['finger_print', 'card']);

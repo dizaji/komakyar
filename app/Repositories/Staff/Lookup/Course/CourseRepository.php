@@ -28,6 +28,9 @@ class CourseRepository extends BaseRepository
     {
         return $this->load(
             Course::query()
+                ->when(is_null(Input::get('all')) || Input::get('all') == false, function ($query) {
+                    $query->where('is_available', true);
+                })
                 ->when(!is_null(Input::get('reference_name')), function ($query) {
                     $query->where('reference_name', 'like', '%' . Input::get('reference_name') . '%');
                 })
@@ -39,6 +42,11 @@ class CourseRepository extends BaseRepository
                 })
                 ->when(!is_null(Input::get('title')), function ($query) {
                     $query->where('title', 'like', '%' . Input::get('title') . '%');
+                })
+                ->when(!is_null(Input::get('teacher_id')), function ($query) {
+                    $query->with(['presentations' => function($query) {
+                        $query->where('teacher_id', Input::get('teacher_id'));
+                    }]);
                 })
         )->paginate($window_size);
     }

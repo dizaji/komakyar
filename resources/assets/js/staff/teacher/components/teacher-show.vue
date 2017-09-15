@@ -11,11 +11,12 @@
                     <li role="presentation" class="active">
                         <a href="#general" aria-controls="general" role="tab" data-toggle="tab">اطلاعات کلی</a>
                     </li>
-
+                    <li role="presentation">
+                        <a href="#courses" aria-controls="courses" role="tab" data-toggle="tab" v-on:click="$refs.presentation_list.loadData()">دروس</a>
+                    </li>
                     <li role="presentation">
                         <a href="#password" aria-controls="password" role="tab" data-toggle="tab">گذر واژه</a>
                     </li>
-
                     <li role="presentation">
                         <a href="#accesslevel" aria-controls="accesslevel" role="tab" data-toggle="tab">سطح دسترسی</a>
                     </li>
@@ -24,8 +25,9 @@
                     <div role="tabpanel" class="tab-pane fade in active" id="general">
                         <teacher-general-info :teacher="teacher"></teacher-general-info>
                     </div>
-
-
+                    <div role="tabpanel" class="tab-pane fade" id="courses">
+                        <teacher-presentation-list :teacher="teacher" ref="presentation_list"></teacher-presentation-list>
+                    </div>
                     <div role="tabpanel" class="tab-pane fade" id="password">
                         <teacher-change-password :teacher="teacher"></teacher-change-password>
                     </div>
@@ -41,7 +43,7 @@
 <script>
     import TeacherGeneralInfo from './teacher-general-info.vue'
     import TeacherChangePassword from './teacher-change-password.vue'
-//    import StudentParentList from './parent/student-parent-list.vue'
+    import TeacherPresentationList from './course/teacher-presentation-list.vue'
 
     export default {
 
@@ -56,7 +58,7 @@
         components: {
             'teacher-general-info': TeacherGeneralInfo,
             'teacher-change-password': TeacherChangePassword,
-//            'student-parent-list': StudentParentList,
+            'teacher-presentation-list': TeacherPresentationList,
         },
 
         mounted() {

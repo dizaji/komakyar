@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-xs-6 text-right">{{ group.title }}</div>
                     <div class="col-xs-6 text-left">
-                        <a :href="edit_url"
+                        <a :href="url.show"
                            class="btn btn-sm btn-success"
                            data-toggle="tooltip"
                            data-placement="bottom"
@@ -39,9 +39,9 @@
                 </div>
                 <div class="col-xs-8 multi-image">
 
-                    <a v-for="student in group.students" :href="studentUrl(student)" >
+                    <a v-for="student in group.students" :href="studentUrl(student)">
                         <img width="40"
-                             :src="student.profile_picture"
+                             :src="profilePictureUrl(student.user.profile_picture)"
                              class="img-circle"
                              data-toggle="tooltip"
                              data-placement="bottom"
@@ -58,15 +58,30 @@
         props: ['group'],
 
         data() {
-            return {
-                edit_url: route('staff.group.show', {group: this.group.id})
+            return {}
+        },
+        computed: {
+            url: function () {
+                return {
+                    show: route('staff.group.show', {group: this.group.id}),
+                }
             }
         },
-
         methods: {
-            studentUrl(student){
+            studentUrl(student) {
                 return route('staff.student.show', {student: student.id})
-            }
+            },
+            profilePictureUrl: function (profile_picture) {
+                if (profile_picture) {
+                    if(window.isValidURL(profile_picture)) {
+                        return profile_picture;
+                    } else {
+                        return window.default_values.storage_base_url + profile_picture;
+                    }
+                } else {
+                    return window.default_values.defaults.dp;
+                }
+            },
         }
     }
 
