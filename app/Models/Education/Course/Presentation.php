@@ -18,13 +18,8 @@ class Presentation extends Model
         return $this->belongsTo('App\Models\Education\Course\Course', 'course_id', 'id');
     }
 
-    public function annualPrograms()
+    public function groupPresentedCourses()
     {
-        return $this->hasMany('App\Models\Education\Program\AnnualProgram', 'presentation_id', 'id');
-    }
-
-    public function dailyPrograms()
-    {
-        return $this->hasMany('App\Models\Education\Program\DailyProgram', 'presentation_id', 'id');
+        return $this->hasMany('App\Models\Education\Group\GroupPresentedCourses', 'presentation_id', 'id');
     }
 }

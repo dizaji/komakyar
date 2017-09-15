@@ -18,9 +18,9 @@ class GroupStudent extends Model
         return $this->belongsTo('App\Models\User\Student', 'student_id', 'id');
     }
 
-    public function rollcalls()
+    public function rollCalls()
     {
-        return $this->hasMany('App\Models\Education\Group\Rollcall', 'group_student_id', 'id');
+        return $this->hasMany('App\Models\Education\Group\RollCall', 'group_student_id', 'id');
     }
 
     public function grades()

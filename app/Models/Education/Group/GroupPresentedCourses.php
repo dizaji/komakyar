@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models\Education\Program;
+namespace App\Models\Education\Group;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AnnualProgram extends Model
+class GroupPresentedCourses extends Model
 {
-    protected $table = 'education_annual_programs';
+    protected $table = 'education_group_presented_courses';
 
     public function presentation()
     {
@@ -16,5 +16,10 @@ class AnnualProgram extends Model
     public function group()
     {
         return $this->belongsTo('App\Models\Education\Group\Group', 'group_id', 'id');
+    }
+
+    public function annualProgram()
+    {
+        return $this->hasMany('App\Models\Education\Program\Group\AnnualProgram', 'group_present_course_id', 'id');
     }
 }

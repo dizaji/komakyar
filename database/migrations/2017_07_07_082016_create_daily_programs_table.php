@@ -17,9 +17,8 @@ class CreateDailyProgramsTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->unsignedInteger('presentation_id');
+            $table->unsignedInteger('group_present_course_id');
             $table->unsignedInteger('staff_id')->nullable();
-            $table->unsignedInteger('group_id');
 
             $table->timestamp('started_at')->nullable();
             $table->timestamp('finished_at')->nullable();
@@ -30,9 +29,8 @@ class CreateDailyProgramsTable extends Migration
         });
 
         Schema::table('education_daily_programs', function (Blueprint $table) {
-            $table->foreign('presentation_id', 'fk_education_daily_programs_1')->references('id')->on('education_course_presentations')->onUpdate('CASCADE');
+            $table->foreign('group_present_course_id', 'fk_education_daily_programs_1')->references('id')->on('education_group_presented_courses')->onUpdate('CASCADE');
             $table->foreign('staff_id', 'fk_education_daily_programs_2')->references('id')->on('user_staffs')->onUpdate('CASCADE');
-            $table->foreign('group_id', 'fk_education_daily_programs_3')->references('id')->on('education_groups')->onUpdate('CASCADE');
         });
     }
 
@@ -46,7 +44,6 @@ class CreateDailyProgramsTable extends Migration
         Schema::table('education_daily_programs', function (Blueprint $table) {
             $table->dropForeign('fk_education_daily_programs_1');
             $table->dropForeign('fk_education_daily_programs_2');
-            $table->dropForeign('fk_education_daily_programs_3');
         });
 
         Schema::dropIfExists('education_daily_programs');
